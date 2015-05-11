@@ -7,10 +7,13 @@ namespace DDDPizza.DomainModels
     {
         private readonly List<Toppings> _toppings;
 
-        public Pizza(List<Toppings> toppings, Size size)
+        public Pizza(List<Toppings> toppings, Size size, Bread bread, Sauce sause, Cheese cheese)
         {
             _toppings = toppings;
             Size = size;
+            Bread = bread;
+            Sause = sause;
+            Cheese = cheese;
             CalculateCost();
         }
 
@@ -23,14 +26,10 @@ namespace DDDPizza.DomainModels
 
         public void CalculateCost()
         {
-
-         
-
             foreach (var item in _toppings)
             {
                 Total += item.Cost;
             }
-
             Total += Size.Cost;
         }
 

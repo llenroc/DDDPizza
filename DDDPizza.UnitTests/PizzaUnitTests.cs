@@ -1,5 +1,7 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using DDDPizza.DomainModels;
+using DDDPizza.DomainModels.Enums;
 using DDDPizza.Mocks;
 using NUnit.Framework;
 
@@ -11,11 +13,26 @@ namespace DDDPizza.UnitTests
     {
 
         [Test]
-        public void Test()
+        public void Should_Create_Instance_Of_Pizza()
         {
-            var sut = new Pizza(PizzaMocks.ToppingMocks().ToList(), PizzaMocks.SizeMocks().First());
+            var sut = new Pizza(PizzaMocks.ToppingMocks().ToList(), PizzaMocks.SizeMocks().First(), PizzaMocks.BreadMocks().ElementAt(1), PizzaMocks.GetSauces().ElementAt(1), PizzaMocks.GetCheese().ElementAt(2));
             Assert.IsInstanceOf<Pizza>(sut);
             Assert.Greater(sut.Total,0);
+        }
+
+
+        [Test]
+        public void Should_Create_Instance_Of_Order()
+        {
+
+            var pizza = new Pizza(PizzaMocks.ToppingMocks().ToList(), PizzaMocks.SizeMocks().First(), PizzaMocks.BreadMocks().ElementAt(1), PizzaMocks.GetSauces().ElementAt(1), PizzaMocks.GetCheese().ElementAt(2));
+            var pizzas = new List<Pizza>() {pizza};
+            var sut = new Order(ServiceType.Delivery, pizzas);
+
+            Assert.IsInstanceOf<Order>(sut);
+            Assert.Greater(sut.ServiceCharge, 0);
+            Assert.Greater(sut.SubTotal, 0);
+            Assert.Greater(sut.TotalAmount, 0);
         }
 
     }
