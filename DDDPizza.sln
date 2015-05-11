@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDPizza.DomainModels", "DDDPizza.DomainModels\DDDPizza.DomainModels.csproj", "{8AE728BC-E430-4210-8131-9759ADEB4E14}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDPizza.Mocks", "DDDPizza.Mocks\DDDPizza.Mocks.csproj", "{326404D7-CA9C-465D-A1CE-B085A17E8643}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PizzaConsole", "PizzaConsole\PizzaConsole.csproj", "{8A00EA51-1F5E-4090-AFB2-F2831EFD27C9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8AE728BC-E430-4210-8131-9759ADEB4E14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AE728BC-E430-4210-8131-9759ADEB4E14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AE728BC-E430-4210-8131-9759ADEB4E14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AE728BC-E430-4210-8131-9759ADEB4E14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{326404D7-CA9C-465D-A1CE-B085A17E8643}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{326404D7-CA9C-465D-A1CE-B085A17E8643}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{326404D7-CA9C-465D-A1CE-B085A17E8643}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{326404D7-CA9C-465D-A1CE-B085A17E8643}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A00EA51-1F5E-4090-AFB2-F2831EFD27C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A00EA51-1F5E-4090-AFB2-F2831EFD27C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A00EA51-1F5E-4090-AFB2-F2831EFD27C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A00EA51-1F5E-4090-AFB2-F2831EFD27C9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

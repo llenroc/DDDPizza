@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DDDPizza.DomainModels.Bread">
+    <Position X="0.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Bread.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DDDPizza.DomainModels.BaseTypes.InventoryBase" Collapsed="true">
+    <Position X="2" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BaseTypes\InventoryBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DDDPizza.DomainModels.Cheese">
+    <Position X="2.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Cheese.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DDDPizza.DomainModels.Order">
+    <Position X="4.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAQAAAAQAAACAAAAAACAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Order.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DDDPizza.DomainModels.Pizza">
+    <Position X="2.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAQAAAgAAAgAAAAAAAAAAARAAAAAAAACAAAEA=</HashCode>
+      <FileName>Pizza.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DDDPizza.DomainModels.Sauce">
+    <Position X="4.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Sauce.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DDDPizza.DomainModels.Size">
+    <Position X="6" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Size.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DDDPizza.DomainModels.Toppings">
+    <Position X="8" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Toppings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DDDPizza.DomainModels.Enums.ServiceType">
+    <Position X="0.75" Y="5.25" Width="1.5" />
+    <NestedTypes>
+      <Class Name="DDDPizza.DomainModels.Enums.ServiceType.InRestaurantType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Enums\ServiceType.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DDDPizza.DomainModels.Enums.ServiceType.TakeOutType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Enums\ServiceType.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DDDPizza.DomainModels.Enums.ServiceType.DeliveryType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Enums\ServiceType.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAACBAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Enums\ServiceType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Enumeration" Collapsed="true">
+    <Position X="0.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABABEAAAAAAAAAQEgAAAAEQAAAAAAIAEAgAgAAAAIAA=</HashCode>
+      <FileName>BaseTypes\Enumeration.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
