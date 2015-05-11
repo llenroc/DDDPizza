@@ -9,6 +9,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDPizza.Mocks", "DDDPizza.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PizzaConsole", "PizzaConsole\PizzaConsole.csproj", "{8A00EA51-1F5E-4090-AFB2-F2831EFD27C9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0B63D2A4-8E10-4F8F-8CDC-D89C7A3616C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDPizza.UnitTests", "DDDPizza.UnitTests\DDDPizza.UnitTests.csproj", "{5BBBB7AD-EE46-4AF0-B17E-803C3B2195DF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mocks", "Mocks", "{3C5E0C4E-B067-4CA1-AC21-EA867C8D5BCC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,8 +33,16 @@ Global
 		{8A00EA51-1F5E-4090-AFB2-F2831EFD27C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A00EA51-1F5E-4090-AFB2-F2831EFD27C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A00EA51-1F5E-4090-AFB2-F2831EFD27C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BBBB7AD-EE46-4AF0-B17E-803C3B2195DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BBBB7AD-EE46-4AF0-B17E-803C3B2195DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BBBB7AD-EE46-4AF0-B17E-803C3B2195DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BBBB7AD-EE46-4AF0-B17E-803C3B2195DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{326404D7-CA9C-465D-A1CE-B085A17E8643} = {3C5E0C4E-B067-4CA1-AC21-EA867C8D5BCC}
+		{5BBBB7AD-EE46-4AF0-B17E-803C3B2195DF} = {0B63D2A4-8E10-4F8F-8CDC-D89C7A3616C2}
 	EndGlobalSection
 EndGlobal
