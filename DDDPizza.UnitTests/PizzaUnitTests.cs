@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DDDPizza.DomainModels;
 using DDDPizza.DomainModels.Enums;
@@ -11,6 +12,17 @@ namespace DDDPizza.UnitTests
     [TestFixture]
     public class PizzaUnitTests
     {
+
+
+        [Test]
+        public void Should_Create_Instance_Of_Size()
+        {
+            var sut = new Size("reallyBig!", 22.54m);
+            Assert.IsInstanceOf<Size>(sut);
+            Assert.NotNull(sut.Id);
+            Assert.IsInstanceOf<Guid>(sut.Id);
+  
+        }
 
         [Test]
         public void Should_Create_Instance_Of_Pizza()
