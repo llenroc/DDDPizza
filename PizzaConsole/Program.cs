@@ -6,7 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using DDDPizza.DomainModels;
 using DDDPizza.DomainModels.Enums;
+using DDDPizza.DomainModels.Handlers;
+using DDDPizza.DomainModels.Interfaces;
 using DDDPizza.Mocks;
+using StructureMap;
+using StructureMap.Graph;
 
 namespace PizzaConsole
 {
@@ -14,6 +18,9 @@ namespace PizzaConsole
     {
         static void Main(string[] args)
         {
+
+            InitIoC();
+
             Console.WriteLine("---------------------");
             Console.WriteLine("Welcome to DDD Pizza!");
             Console.WriteLine("---------------------");
@@ -49,5 +56,29 @@ namespace PizzaConsole
 
             Console.ReadLine();
         }
+
+      
+
+        private static void InitIoC()
+        {
+
+            ObjectFactory.Configure(config =>
+            {
+                config.Scan(scan =>
+                {
+                    scan.TheCallingAssembly();
+                    scan.AssemblyContainingType<IDomainEvent>();
+                    scan.WithDefaultConventions();
+                    scan.IncludeNamespaceContainingType<NotifyPizzaCreated>(); // specify where handlers are located
+                    scan.ConnectImplementationsToTypesClosing(typeof(IHandle<>));
+                
+                });
+
+
+            });
+
+   
+        }
+
     }
 }

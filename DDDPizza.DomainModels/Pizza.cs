@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DDDPizza.DomainModels.Events;
 
 namespace DDDPizza.DomainModels
 {
@@ -31,6 +32,8 @@ namespace DDDPizza.DomainModels
                 Total += item.Cost;
             }
             Total += Size.Cost;
+
+            DomainEvents.Raise<PizzaOrdered>(new PizzaOrdered(this));
         }
 
     }

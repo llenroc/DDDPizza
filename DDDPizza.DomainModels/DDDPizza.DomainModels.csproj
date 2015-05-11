@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="StructureMap, Version=2.6.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+      <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -39,9 +43,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseTypes\Enumeration.cs" />
+    <Compile Include="BaseTypes\ValueObject.cs" />
     <Compile Include="Bread.cs" />
     <Compile Include="Cheese.cs" />
     <Compile Include="BaseTypes\InventoryBase.cs" />
+    <Compile Include="DomainEvents.cs" />
+    <Compile Include="Events\PizzaOrdered.cs" />
+    <Compile Include="Guard.cs" />
+    <Compile Include="Handlers\NotifyPizzaCreated.cs" />
+    <Compile Include="Interfaces\IApplicationEvent.cs" />
+    <Compile Include="Interfaces\IDomainEvent.cs" />
+    <Compile Include="Interfaces\IHandle.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="Pizza.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -52,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Diagrams\PizzaModels.cd" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
