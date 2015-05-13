@@ -62,6 +62,10 @@
       <Project>{326404d7-ca9c-465d-a1ce-b085a17e8643}</Project>
       <Name>DDDPizza.Mocks</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DDDPizza.SharedKernel\DDDPizza.SharedKernel.csproj">
+      <Project>{d585ea09-f249-4d86-b086-744d5cfedcd4}</Project>
+      <Name>DDDPizza.SharedKernel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
