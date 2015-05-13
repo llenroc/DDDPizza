@@ -55,7 +55,7 @@ namespace PizzaConsole
             Console.WriteLine("Total: {0}", finalOrder.TotalAmount);
 
 
-            var mongoClient = new MongoClient("mongodb://dddpizzauser:ilovepizza@ds034348.mongolab.com:34348/dddpizza");
+            var mongoClient = new MongoClient("mongodb://dddpizzauser:***@ds034348.mongolab.com:34348/dddpizza");
             var db = mongoClient.GetDatabase("dddpizza");
             var collection = db.GetCollection<Order>("Orders");
             collection.InsertOneAsync(finalOrder);
