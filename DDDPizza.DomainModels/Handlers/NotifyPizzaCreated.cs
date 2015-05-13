@@ -10,7 +10,7 @@ namespace DDDPizza.DomainModels.Handlers
     {
         public void Handle(PizzaOrdered args)
         {
-            Console.WriteLine("[EMAIL] Notification email sent to {0}", args.Pizza.Total);
+            Console.WriteLine("[PIZZA] Pizza was ordered! {0}", args.Pizza.Total);
         }
     }
 }

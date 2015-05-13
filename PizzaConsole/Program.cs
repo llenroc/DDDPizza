@@ -9,6 +9,7 @@ using DDDPizza.DomainModels.Enums;
 using DDDPizza.DomainModels.Handlers;
 using DDDPizza.DomainModels.Interfaces;
 using DDDPizza.Mocks;
+using MongoDB.Driver;
 using StructureMap;
 using StructureMap.Graph;
 
@@ -52,7 +53,12 @@ namespace PizzaConsole
             Console.WriteLine("SubTotal: {0}", finalOrder.SubTotal);
             Console.WriteLine("Service Charge: {0}", finalOrder.ServiceCharge);
             Console.WriteLine("Total: {0}", finalOrder.TotalAmount);
-           
+
+
+            var mongoClient = new MongoClient("mongodb://dddpizzauser:ilovepizza@ds034348.mongolab.com:34348/dddpizza");
+            var db = mongoClient.GetDatabase("dddpizza");
+            var collection = db.GetCollection<Order>("Orders");
+            collection.InsertOneAsync(finalOrder);
 
             Console.ReadLine();
         }
