@@ -1,4 +1,5 @@
 ﻿using System;
+using DDDPizza.SharedKernel;
 
 namespace DDDPizza.DomainModels.Enums
 {
