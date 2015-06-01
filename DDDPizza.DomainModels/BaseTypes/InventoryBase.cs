@@ -4,6 +4,12 @@ namespace DDDPizza.DomainModels.BaseTypes
 {
     public abstract class InventoryBase
     {
+
+        public InventoryBase()
+        {
+            
+        }
+
         protected InventoryBase(string name)
         {
             Name = name;
@@ -17,5 +23,7 @@ namespace DDDPizza.DomainModels.BaseTypes
 
         public Guid Id { get; set; }
         public string Name { get; private set; }
+
+        
     }
 }

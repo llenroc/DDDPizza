@@ -3,6 +3,9 @@ using DDDPizza.DomainModels.BaseTypes;
 
 namespace DDDPizza.DomainModels
 {
+
+
+
     public class Sauce : InventoryBase
     {
         public Sauce(string name) : base(name)

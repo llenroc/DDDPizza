@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Globalization;
 using DDDPizza.SharedKernel;
+
 
 namespace DDDPizza.DomainModels.Enums
 {
 
 
-    public abstract class ServiceType : Enumeration
+
+    public class ServiceType : Enumeration
     {
         private ServiceType(int value, string displayName)
             : base(value, displayName)
@@ -17,21 +20,30 @@ namespace DDDPizza.DomainModels.Enums
         public static readonly ServiceType Delivery = new DeliveryType();
 
 
-        public abstract Decimal CalculateTotal(ServiceType serviceType);
+        public virtual Decimal CalculateTotal(ServiceType serviceType)
+        {
+            return 0.00m;
+        }
 
+        public override string ToString()
+        {
+            return base.DisplayName.ToString(CultureInfo.InvariantCulture);
+        }
 
-        private class InRestaurantType : ServiceType
+        public sealed class InRestaurantType : ServiceType
         {
             public InRestaurantType()
-                : base(1, "InRestaurant"){}
+                : base(1, "InRestaurant") { }
 
             public override decimal CalculateTotal(ServiceType serviceType)
             {
                 return 0.00m;
             }
+
+         
         }
 
-        private class TakeOutType : ServiceType
+        public sealed class TakeOutType : ServiceType
         {
             public TakeOutType()
                 : base(2, "TakeOut") { }
@@ -40,9 +52,11 @@ namespace DDDPizza.DomainModels.Enums
             {
                 return 0.50m;
             }
+
+          
         }
 
-        private class DeliveryType : ServiceType
+        public sealed class DeliveryType : ServiceType
         {
             public DeliveryType()
                 : base(3, "Delivery") { }
@@ -51,9 +65,11 @@ namespace DDDPizza.DomainModels.Enums
             {
                 return 2.00m;
             }
+
+           
         }
 
-       
+
 
     }
 

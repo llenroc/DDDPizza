@@ -1,5 +1,7 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO.Pipes;
 using System.Linq;
 using System.Text;
@@ -8,7 +10,10 @@ using DDDPizza.DomainModels;
 using DDDPizza.DomainModels.Enums;
 using DDDPizza.DomainModels.Handlers;
 using DDDPizza.DomainModels.Interfaces;
+using DDDPizza.Infrastructure.MongoDb;
 using DDDPizza.Mocks;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using StructureMap;
 using StructureMap.Graph;
@@ -22,17 +27,31 @@ namespace PizzaConsole
 
             InitIoC();
 
+            var pizzaRepository = new PizzaRepository();
+        
+
+
+            BsonClassMap.RegisterClassMap<Pizza>(cm =>
+            {
+                cm.AutoMap();
+                cm.GetMemberMap(c => c.Toppings).SetElementName("Topping");
+            });
+
             Console.WriteLine("---------------------");
             Console.WriteLine("Welcome to DDD Pizza!");
             Console.WriteLine("---------------------");
 
-            var pizzaSize = PizzaMocks.SizeMocks().ElementAt(3);
-            var newToppings = new List<Toppings>();
-            newToppings.Add(PizzaMocks.ToppingMocks().First());
-            newToppings.Add(PizzaMocks.ToppingMocks().ElementAt(2));
-            newToppings.Add(PizzaMocks.ToppingMocks().ElementAt(3));
 
-            var newPizza = new Pizza(newToppings, pizzaSize, PizzaMocks.BreadMocks().ElementAt(1), PizzaMocks.GetSauces().ElementAt(1), PizzaMocks.GetCheese().ElementAt(2));
+            var pizzaSize = pizzaRepository.GetAllSizes().Result[2];
+            var newToppings = new List<Toppings>();
+            newToppings.Add(pizzaRepository.GetAllToppings().Result[1]);
+            newToppings.Add(pizzaRepository.GetAllToppings().Result[3]);
+            newToppings.Add(pizzaRepository.GetAllToppings().Result[4]);
+            var bread = pizzaRepository.GetAllBreads().Result[1];
+            var sauce = pizzaRepository.GetAllSauces().Result[1];
+            var cheese = pizzaRepository.GetAllCheeses().Result[1];
+
+            var newPizza = new Pizza(newToppings, pizzaSize, bread, sauce, cheese);
 
 
             Console.WriteLine("Your size will be {0}", pizzaSize.Name);
@@ -42,11 +61,11 @@ namespace PizzaConsole
             Console.WriteLine("---------------------");
             foreach (var topping in newPizza.Toppings)
             {
-                Console.WriteLine(topping.Name);
+                Console.WriteLine("{0} {1}", topping.Name, topping.Cost);
             }
             Console.WriteLine("---------------------");
 
-            var pizzas = new List<Pizza> {newPizza};
+            var pizzas = new List<Pizza> { newPizza };
 
             var finalOrder = new Order(ServiceType.Delivery, pizzas);
 
@@ -54,16 +73,29 @@ namespace PizzaConsole
             Console.WriteLine("Service Charge: {0}", finalOrder.ServiceCharge);
             Console.WriteLine("Total: {0}", finalOrder.TotalAmount);
 
-
-            var mongoClient = new MongoClient("mongodb://dddpizzauser:***@ds034348.mongolab.com:34348/dddpizza");
-            var db = mongoClient.GetDatabase("dddpizza");
-            var collection = db.GetCollection<Order>("Orders");
-            collection.InsertOneAsync(finalOrder);
+            var task = new Task(async () =>
+            {
+                await pizzaRepository.Add(finalOrder);
+            });
+            task.Start();
+   
 
             Console.ReadLine();
+
+            BsonClassMap.RegisterClassMap<ServiceType>(cm =>
+            {
+                cm.AutoMap();
+                cm.SetIsRootClass(true);
+            });
+            BsonClassMap.RegisterClassMap<ServiceType.DeliveryType>();
+            BsonClassMap.RegisterClassMap<ServiceType.InRestaurantType>();
+            BsonClassMap.RegisterClassMap<ServiceType.TakeOutType>();
+
+
+          
         }
 
-      
+
 
         private static void InitIoC()
         {
@@ -77,13 +109,13 @@ namespace PizzaConsole
                     scan.WithDefaultConventions();
                     scan.IncludeNamespaceContainingType<NotifyPizzaCreated>(); // specify where handlers are located
                     scan.ConnectImplementationsToTypesClosing(typeof(IHandle<>));
-                
+
                 });
 
 
             });
 
-   
+
         }
 
     }

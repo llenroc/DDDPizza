@@ -6,7 +6,8 @@ namespace DDDPizza.DomainModels
 {
     public class Pizza
     {
-        private readonly List<Toppings> _toppings;
+
+        private List<Toppings> _toppings;
 
         public Pizza(List<Toppings> toppings, Size size, Bread bread, Sauce sause, Cheese cheese)
         {
@@ -18,7 +19,16 @@ namespace DDDPizza.DomainModels
             CalculateCost();
         }
 
-        public IEnumerable<Toppings> Toppings { get { return _toppings; }}
+        public Order Order { get; set; }
+
+        public List<Toppings> Toppings
+        {
+            get { return new List<Toppings>(_toppings); }
+            protected set
+            {
+                _toppings = value;
+            }
+        }
         public Bread Bread { get; set; }
         public Sauce Sause { get; set; }
         public Cheese Cheese { get; set; }

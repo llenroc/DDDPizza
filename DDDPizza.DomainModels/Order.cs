@@ -1,10 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using DDDPizza.DomainModels.Enums;
+
 
 namespace DDDPizza.DomainModels
 {
-    public class Order
+
+
+
+
+    public class  Order
     {
+        public Order()
+        {
+            Id = Guid.NewGuid();
+        }
         public Order(ServiceType service, ICollection<Pizza> pizzas)
         {
             ServiceType = service;
@@ -12,6 +22,8 @@ namespace DDDPizza.DomainModels
             CalculateTotal();
         }
 
+        public Guid Id { get; set; }
+    
         public ServiceType ServiceType { get; private set; }
         public ICollection<Pizza> Pizzas { get; set; }
 

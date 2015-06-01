@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MongoDB.Bson, Version=2.0.0.828, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MongoDB.Bson.2.0.0\lib\net45\MongoDB.Bson.dll</HintPath>
       <Private>True</Private>
@@ -43,19 +47,36 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MongoDbDataContext.cs" />
+    <Compile Include="Factories\RepositoryFactory.cs" />
+    <Compile Include="MongoContext.cs" />
+    <Compile Include="MongoInventoryRepository.cs" />
+    <Compile Include="PizzaRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DDDPizza.DomainModels\DDDPizza.DomainModels.csproj">
+      <Project>{8ae728bc-e430-4210-8131-9759adeb4e14}</Project>
+      <Name>DDDPizza.DomainModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DDDPizza.Interfaces\DDDPizza.Interfaces.csproj">
+      <Project>{54502586-2068-4fe0-b4f5-37bf59a553c4}</Project>
+      <Name>DDDPizza.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DDDPizza.SharedKernel\DDDPizza.SharedKernel.csproj">
+      <Project>{d585ea09-f249-4d86-b086-744d5cfedcd4}</Project>
+      <Name>DDDPizza.SharedKernel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

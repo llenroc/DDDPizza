@@ -1,0 +1,66 @@
+﻿@model DDDPizza.ViewModels.ManageInventoryVm
+
+
+<div class="row">
+    <div class="col-md-6">
+        <h1>@Model.Title</h1>
+    
+    </div>
+    
+    <div class="col-md-6 bottom">
+
+        <div class="pull-right">
+            <a href="@Url.Action("Create")" class="btn btn-default">
+                Create New
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <hr />
+        <table class="table table-bordered table-responsive table-striped">
+            <tr>
+                <td style="width:10%;">Edit</td>
+                <td style="width:60%;">Name</td>
+                <td style="width:10%;">Delete</td>
+
+            </tr>
+            @if (Model.Items != null)
+            {
+                foreach (var item in Model.Items)
+                {
+                    <tr>
+                        <td>
+                            <a href="@Url.Action("Edit", new { id = @item.Id })" class="btn btn-info">
+                                Edit
+                            </a>
+                        </td>
+                        <td>@item.Name</td>
+                        <td>
+                            <a href="@Url.Action("Delete", new { id = @item.Id })" class="btn btn-danger">
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="2">
+
+                        <div class="alert alert-danger">
+                            Nothing Found!
+                        </div>
+                    </td>
+
+                </tr>
+            }
+
+        </table>
+
+    </div>
+</div>
+
