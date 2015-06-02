@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using System.Web.Mvc;
+using Antlr.Runtime.Misc;
 using Autofac;
 using Autofac.Integration.Mvc;
 using DDDPizza.DomainModels;
@@ -19,6 +20,8 @@ namespace DDDPizza.Mvc.App_Start
 
             // Register your MVC controllers.
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
+
+   
 
             builder.RegisterType<PizzaRepository>().As<IPizzaRepository>();
             builder.RegisterType<RepositoryFactory>().As<IRepositoryFactory>();

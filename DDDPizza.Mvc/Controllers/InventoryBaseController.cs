@@ -17,9 +17,9 @@ namespace DDDPizza.Mvc.Controllers
         public string EntityName;
 
 
-        protected InventoryBaseController(IRepositoryFactory repositoryFactory, IVmFactory<T> vmFactory)
+        protected InventoryBaseController(Func<IRepositoryFactory> service, IVmFactory<T> vmFactory)
         {
-            _repositoryFactory = repositoryFactory;
+            _repositoryFactory = service();
             _vmFactory = vmFactory;
             SetEntity();
         }
@@ -27,7 +27,6 @@ namespace DDDPizza.Mvc.Controllers
         [HttpGet]
         public virtual async Task<ActionResult> Index()
         {
-            Logger("Mongo connection!");
             var vm = _vmFactory.Create(await _repositoryFactory.GetRepository<IInventoryRepository<T>>().GetAll(), EntityName);
             return View(vm);
         }
