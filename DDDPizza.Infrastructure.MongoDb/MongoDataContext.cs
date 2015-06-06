@@ -4,11 +4,11 @@ using MongoDB.Driver;
 
 namespace DDDPizza.Infrastructure.MongoDb
 {
-    public class MongoContext 
+    public class MongoDataContext 
     {
         private readonly IMongoDatabase _mongoDatabaseBase;
 
-        public MongoContext()
+        public MongoDataContext()
         {
             var client = new MongoClient(ConfigurationManager.AppSettings.Get("mongoConnection"));
             _mongoDatabaseBase = client.GetDatabase(ConfigurationManager.AppSettings.Get("mongoDb"));

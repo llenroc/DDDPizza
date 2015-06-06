@@ -1,23 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using AutoMapper;
-using DDDPizza.DomainModels.BaseTypes;
+using DDDPizza.DomainModels.Interfaces;
 using DDDPizza.ViewModels;
 
 namespace DDDPizza.Mvc.Factories
 {
-
-    public interface IVmFactory<in T> where T : InventoryBase
-    {
-        ManageInventoryVm Create(IEnumerable<T> list, string name);
-        EditInventoryVm Create(T item, string name);
-        EditInventoryVm Create(InventoryVm item, string name);
-        EditInventoryVm CreateNew(string name);
-        InventoryVm Create();
-
-    }
-
-    public class VmFactory<T> : IVmFactory<T> where T : InventoryBase
+    public class VmFactory<T> : IVmFactory<T> where T : IInventoryEntity
     {
 
         /// <summary>

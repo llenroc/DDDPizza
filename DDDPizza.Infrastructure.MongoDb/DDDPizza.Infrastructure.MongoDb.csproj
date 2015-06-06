@@ -55,8 +55,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseMongoRepository.cs" />
     <Compile Include="Factories\RepositoryFactory.cs" />
-    <Compile Include="MongoContext.cs" />
+    <Compile Include="MongoDataContext.cs" />
     <Compile Include="MongoInventoryRepository.cs" />
     <Compile Include="PizzaRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

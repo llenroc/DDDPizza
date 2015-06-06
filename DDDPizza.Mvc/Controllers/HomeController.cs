@@ -14,9 +14,9 @@ namespace DDDPizza.Mvc.Controllers
     {
 
         private readonly IPizzaRepository _pizzaRepository;
-        private readonly IRepositoryFactory _repositoryFactory; 
+        private readonly Func<IRepositoryFactory> _repositoryFactory;
 
-        public HomeController(IPizzaRepository pizzaRepository, IRepositoryFactory repositoryFactory)
+        public HomeController(IPizzaRepository pizzaRepository, Func<IRepositoryFactory> repositoryFactory)
         {
             _pizzaRepository = pizzaRepository;
             _repositoryFactory = repositoryFactory;
@@ -40,7 +40,7 @@ namespace DDDPizza.Mvc.Controllers
         {
             var dm =
                Mapper.Map<InventoryVm>(
-                   await _repositoryFactory.GetRepository<IInventoryRepository<Bread>>().GetById(Guid.Parse(id)));
+                   await _repositoryFactory().GetRepository<IInventoryRepository<Bread>>().GetById(Guid.Parse(id)));
             return View(dm);
 
         }

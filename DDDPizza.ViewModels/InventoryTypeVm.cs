@@ -2,6 +2,6 @@
 {
     public enum InventoryTypeVm
     {
-        Bread,Cheese,Sauce
+        Bread,Cheese,Sauce,Topping
     }
 }

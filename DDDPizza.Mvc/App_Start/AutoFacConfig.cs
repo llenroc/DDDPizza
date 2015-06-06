@@ -2,9 +2,11 @@
 using System.Web.Mvc;
 using Antlr.Runtime.Misc;
 using Autofac;
+using Autofac.Builder;
 using Autofac.Integration.Mvc;
 using DDDPizza.DomainModels;
 using DDDPizza.Infrastructure.MongoDb;
+//using DDDPizza.Infrastructure.MongoDb.Factories;
 using DDDPizza.Infrastructure.MongoDb.Factories;
 using DDDPizza.Interfaces;
 using DDDPizza.Mvc.Factories;
@@ -21,7 +23,6 @@ namespace DDDPizza.Mvc.App_Start
             // Register your MVC controllers.
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
 
-   
 
             builder.RegisterType<PizzaRepository>().As<IPizzaRepository>();
             builder.RegisterType<RepositoryFactory>().As<IRepositoryFactory>();
@@ -29,6 +30,9 @@ namespace DDDPizza.Mvc.App_Start
             builder.RegisterType<MongoInventoryRepository<Bread>>().As<IInventoryRepository<Bread>>();
             builder.RegisterType<MongoInventoryRepository<Cheese>>().As<IInventoryRepository<Cheese>>();
             builder.RegisterType<MongoInventoryRepository<Sauce>>().As<IInventoryRepository<Sauce>>();
+
+            builder.RegisterType<MongoCostInventoryRepository<Toppings>>().As<IInventoryRepository<Toppings>>();
+            builder.RegisterType<MongoCostInventoryRepository<Toppings>>().As<IInventoryRepository<Size>>();
 
             builder.RegisterType<VmFactory<Bread>>().As<IVmFactory<Bread>>();
             builder.RegisterType<VmFactory<Cheese>>().As<IVmFactory<Cheese>>();

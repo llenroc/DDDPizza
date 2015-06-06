@@ -50,6 +50,7 @@
     <Compile Include="Guard.cs" />
     <Compile Include="Handlers\NotifyPizzaCreated.cs" />
     <Compile Include="Interfaces\IApplicationEvent.cs" />
+    <Compile Include="Interfaces\IInventoryEntity.cs" />
     <Compile Include="Interfaces\IDomainEvent.cs" />
     <Compile Include="Interfaces\IHandle.cs" />
     <Compile Include="Order.cs" />

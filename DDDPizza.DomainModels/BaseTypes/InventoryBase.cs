@@ -26,4 +26,8 @@ namespace DDDPizza.DomainModels.BaseTypes
 
         
     }
+
+
+    
+
 }

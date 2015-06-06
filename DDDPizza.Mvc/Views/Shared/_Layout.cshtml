@@ -20,11 +20,12 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Add Order", "NewOrder", "Home")</li>
-                    <li>@Html.ActionLink("Bread", "Index", "Bread")</li>
-                    <li>@Html.ActionLink("Cheese", "Index", "Cheese")</li>
-                    <li>@Html.ActionLink("Sauce", "Index", "Sauce")</li>
+                    <li id="home">@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li id="order">@Html.ActionLink("Add Order", "NewOrder", "Home")</li>
+                    <li id="bread">@Html.ActionLink("Bread", "Index", "Bread")</li>
+                    <li id="cheese">@Html.ActionLink("Cheese", "Index", "Cheese")</li>
+                    <li id="sauce">@Html.ActionLink("Sauce", "Index", "Sauce")</li>
+                    <li id="topping">@Html.ActionLink("Topping", "Index", "Topping")</li>
                 </ul>
             </div>
         </div>
@@ -39,6 +40,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/app")
     @RenderSection("scripts", required: false)
 </body>
 </html>

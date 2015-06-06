@@ -1,9 +1,10 @@
 ﻿using System;
 using DDDPizza.DomainModels.BaseTypes;
+using DDDPizza.DomainModels.Interfaces;
 
 namespace DDDPizza.DomainModels
 {
-    public class Size : InventoryBase
+    public class Size : InventoryBase, IInventoryEntity, ICostInventoryEntity
     {
 
         public decimal Cost { get; private set; }

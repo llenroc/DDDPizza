@@ -4,22 +4,23 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using AutoMapper;
 using DDDPizza.DomainModels.BaseTypes;
+using DDDPizza.DomainModels.Interfaces;
 using DDDPizza.Interfaces;
 using DDDPizza.Mvc.Factories;
 using DDDPizza.ViewModels;
 
 namespace DDDPizza.Mvc.Controllers
 {
-    public abstract class InventoryBaseController<T> : Controller where T : InventoryBase
+    public abstract class InventoryBaseController<T> : Controller where T : IInventoryEntity
     {
         private readonly IRepositoryFactory _repositoryFactory;
         private readonly IVmFactory<T> _vmFactory;
         public string EntityName;
 
 
-        protected InventoryBaseController(Func<IRepositoryFactory> service, IVmFactory<T> vmFactory)
+        protected InventoryBaseController(IRepositoryFactory repositoryFactory, IVmFactory<T> vmFactory)
         {
-            _repositoryFactory = service();
+            _repositoryFactory = repositoryFactory;
             _vmFactory = vmFactory;
             SetEntity();
         }
