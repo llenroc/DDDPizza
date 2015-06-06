@@ -140,6 +140,7 @@
     <Compile Include="Controllers\InventoryBaseController.cs" />
     <Compile Include="Controllers\SauceController.cs" />
     <Compile Include="Controllers\ToppingController.cs" />
+    <Compile Include="Factories\IVmCostFactory.cs" />
     <Compile Include="Factories\IVmFactory.cs" />
     <Compile Include="Factories\VmFactory.cs" />
     <Compile Include="Global.asax.cs">

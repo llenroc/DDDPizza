@@ -32,11 +32,12 @@ namespace DDDPizza.Mvc.App_Start
             builder.RegisterType<MongoInventoryRepository<Sauce>>().As<IInventoryRepository<Sauce>>();
 
             builder.RegisterType<MongoCostInventoryRepository<Toppings>>().As<IInventoryRepository<Toppings>>();
-            builder.RegisterType<MongoCostInventoryRepository<Toppings>>().As<IInventoryRepository<Size>>();
+            builder.RegisterType<MongoCostInventoryRepository<Size>>().As<IInventoryRepository<Size>>();
 
             builder.RegisterType<VmFactory<Bread>>().As<IVmFactory<Bread>>();
             builder.RegisterType<VmFactory<Cheese>>().As<IVmFactory<Cheese>>();
             builder.RegisterType<VmFactory<Sauce>>().As<IVmFactory<Sauce>>();
+            builder.RegisterType<VmFactory<Toppings>>().As<IVmFactory<Toppings>>();
 
             // OPTIONAL: Register model binders that require DI.
             builder.RegisterModelBinders(Assembly.GetExecutingAssembly());
