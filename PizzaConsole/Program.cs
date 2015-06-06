@@ -25,6 +25,14 @@ namespace PizzaConsole
         static void Main(string[] args)
         {
 
+            IMongoClient mongoClient = new MongoClient(ConfigurationManager.AppSettings.Get("mongoConnection"));
+            var db  = mongoClient.GetDatabase("dddpizza");
+            var coll = db.GetCollection<Test>("Tests");
+            var coll2 = db.GetCollection<Test2>("Tests");
+            coll.InsertOneAsync(new Test() { Id = 14, Name = "test1"});
+            coll2.InsertOneAsync(new Test2() {Id = 234, Name = "tst2"});
+            Console.ReadLine();
+
             InitIoC();
 
             var pizzaRepository = new PizzaRepository();
