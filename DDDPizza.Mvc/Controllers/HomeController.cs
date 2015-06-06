@@ -46,12 +46,19 @@ namespace DDDPizza.Mvc.Controllers
         }
 
         [HttpGet]
-        public ActionResult NewOrder()
+        public async Task<ActionResult> NewOrder()
         {
 
+            ViewBag.Breads = _repositoryFactory().GetRepository<IInventoryRepository<Bread>>().GetAll();
             ViewBag.Message = "Your application description page.";
 
-            return View();
+
+            var vm = new PlaceOrderVm()
+            {
+                Breads = Mapper.Map<List<InventoryVm>>(await _repositoryFactory().GetRepository<IInventoryRepository<Bread>>().GetAll())
+            };
+
+            return View(vm);
         }
 
 

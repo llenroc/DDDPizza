@@ -25,6 +25,7 @@ namespace DDDPizza.UnitTests
         }
 
         [Test]
+        [Ignore]
         public void Should_Create_Instance_Of_Pizza()
         {
             var sut = new Pizza(PizzaMocks.ToppingMocks().ToList(), PizzaMocks.SizeMocks().First(), PizzaMocks.BreadMocks().ElementAt(1), PizzaMocks.GetSauces().ElementAt(1), PizzaMocks.GetCheese().ElementAt(2));
@@ -34,6 +35,7 @@ namespace DDDPizza.UnitTests
 
 
         [Test]
+        [Ignore]
         public void Should_Create_Instance_Of_Order()
         {
 

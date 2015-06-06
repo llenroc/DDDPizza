@@ -1,9 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using DDDPizza.ViewModels.Inventory;
 
 namespace DDDPizza.ViewModels
 {
+
+
+    public class PlaceOrderVm
+    {
+        public List<InventoryVm> Breads { get; set; } 
+    }
+
     public class OrderVm
     {
 
