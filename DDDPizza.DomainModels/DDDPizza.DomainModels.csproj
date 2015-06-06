@@ -30,8 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="StructureMap, Version=2.6.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
-      <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -45,9 +45,8 @@
     <Compile Include="Bread.cs" />
     <Compile Include="Cheese.cs" />
     <Compile Include="BaseTypes\InventoryBase.cs" />
-    <Compile Include="DomainEvents.cs" />
+    <Compile Include="Events\DomainEvents.cs" />
     <Compile Include="Events\PizzaOrdered.cs" />
-    <Compile Include="Guard.cs" />
     <Compile Include="Handlers\NotifyPizzaCreated.cs" />
     <Compile Include="Interfaces\IApplicationEvent.cs" />
     <Compile Include="Interfaces\IInventoryEntity.cs" />
@@ -59,7 +58,7 @@
     <Compile Include="Enums\ServiceType.cs" />
     <Compile Include="Sauce.cs" />
     <Compile Include="Size.cs" />
-    <Compile Include="Toppings.cs" />
+    <Compile Include="Topping.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Diagrams\PizzaModels.cd" />

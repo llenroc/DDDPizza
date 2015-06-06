@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace DDDPizza.ViewModels
+namespace DDDPizza.ViewModels.Inventory
 {
     public class InventoryVm
     {

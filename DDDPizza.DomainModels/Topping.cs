@@ -4,21 +4,19 @@ using DDDPizza.DomainModels.Interfaces;
 
 namespace DDDPizza.DomainModels
 {
-    public class Size : InventoryBase, IInventoryEntity
+    public class Topping : InventoryBase, IInventoryEntity
     {
 
-        public Size(string name, decimal price)
-            : base(name, price)
+        public Topping(string name, decimal price) : base(name, price)
         {
-        
+
         }
 
-        public Size(Guid id, string name, decimal price)
+        public Topping(Guid id, string name, decimal price)
             : base(id, name, price)
         {
-
+       
         }
-
-
+   
     }
-}
+} 

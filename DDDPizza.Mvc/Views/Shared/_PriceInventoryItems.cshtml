@@ -1,4 +1,4 @@
-﻿@model DDDPizza.ViewModels.Inventory.ManageInventoryVm
+﻿@model DDDPizza.ViewModels.CostInventory.ManagePriceInventoryVm
 
 
 <div class="row">
@@ -23,7 +23,8 @@
         <table class="table table-bordered table-responsive table-striped">
             <tr>
                 <td style="width:10%;">Edit</td>
-                <td style="width:60%;">Name</td>
+                <td style="width:40%;">Name</td>
+                <td style="width:20%;">Price</td>
                 <td style="width:10%;">Delete</td>
 
             </tr>
@@ -33,11 +34,12 @@
                 {
                     <tr>
                         <td>
-                            <a href="@Url.Action("Edit", new { id = @item.Id })" class="btn btn-info">
+                            <a href="@Url.Action("Update", new { id = @item.Id })" class="btn btn-info">
                                 Edit
                             </a>
                         </td>
                         <td>@item.Name</td>
+                        <td>@item.Price</td>
                         <td>
                             <a href="@Url.Action("Delete", new { id = @item.Id })" class="btn btn-danger">
                                 Delete

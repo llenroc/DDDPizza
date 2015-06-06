@@ -139,8 +139,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventoryBaseController.cs" />
     <Compile Include="Controllers\SauceController.cs" />
+    <Compile Include="Controllers\SizeController.cs" />
     <Compile Include="Controllers\ToppingController.cs" />
-    <Compile Include="Factories\IVmCostFactory.cs" />
     <Compile Include="Factories\IVmFactory.cs" />
     <Compile Include="Factories\VmFactory.cs" />
     <Compile Include="Global.asax.cs">
@@ -153,6 +153,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\img\PizzaLogo.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -177,6 +178,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Shared\_InventoryItems.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -192,7 +196,6 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\NewOrder.cshtml" />
     <Content Include="Views\Home\Edit.cshtml" />
-    <Content Include="Views\Shared\_InventoryItems.cshtml" />
     <Content Include="Views\Bread\Index.cshtml" />
     <Content Include="Views\Shared\_InventoryEdit.cshtml" />
     <Content Include="Views\Bread\Edit.cshtml" />
@@ -204,6 +207,13 @@
     <Content Include="Views\Sauce\Edit.cshtml" />
     <Content Include="Views\Sauce\Index.cshtml" />
     <Content Include="Views\Topping\Index.cshtml" />
+    <Content Include="Views\Shared\_PriceInventoryItems.cshtml" />
+    <Content Include="Views\Shared\_PriceInventoryEdit.cshtml" />
+    <Content Include="Views\Topping\Update.cshtml" />
+    <Content Include="Views\Topping\Create.cshtml" />
+    <Content Include="Views\Size\Create.cshtml" />
+    <Content Include="Views\Size\Update.cshtml" />
+    <Content Include="Views\Size\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

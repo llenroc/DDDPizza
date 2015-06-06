@@ -37,9 +37,9 @@ namespace DDDPizza.Infrastructure.MongoDb
             return order;
         }
 
-        public async Task<List<Toppings>> GetAllToppings()
+        public async Task<List<Topping>> GetAllToppings()
         {
-            return await (await _mongoDatabase.GetCollection<Toppings>("Toppings").FindAsync(_ => true)).ToListAsync();
+            return await (await _mongoDatabase.GetCollection<Topping>("Toppings").FindAsync(_ => true)).ToListAsync();
         }
 
         public async Task<List<Size>> GetAllSizes()
@@ -70,20 +70,20 @@ namespace DDDPizza.Infrastructure.MongoDb
         public async Task SeedToppings()
         {
 
-            var mongoToppingsCollection = _mongoDatabase.GetCollection<Toppings>("Toppings");
+            var mongoToppingsCollection = _mongoDatabase.GetCollection<Topping>("Toppings");
             if (await mongoToppingsCollection.CountAsync(_ => true) == 0)
             {
-                var seedToppings = new Collection<Toppings>
+                var seedToppings = new Collection<Topping>
                 {
-                    new Toppings("Pepperoni", 0.99m),
-                    new Toppings("Mushrooms", 0.99m),
-                    new Toppings("Bacon", 1.99m),
-                    new Toppings("Extra cheese", 1.99m),
-                    new Toppings("Black olives", 1.99m),
-                    new Toppings("Green peppers", 1.99m),
-                    new Toppings("Sausage", 0.99m),
-                    new Toppings("Pineapple", 0.99m),
-                    new Toppings("Spinach", 0.99m)
+                    new Topping("Pepperoni", 0.99m),
+                    new Topping("Mushrooms", 0.99m),
+                    new Topping("Bacon", 1.99m),
+                    new Topping("Extra cheese", 1.99m),
+                    new Topping("Black olives", 1.99m),
+                    new Topping("Green peppers", 1.99m),
+                    new Topping("Sausage", 0.99m),
+                    new Topping("Pineapple", 0.99m),
+                    new Topping("Spinach", 0.99m)
                 };
                 foreach (var topping in seedToppings)
                 {
@@ -97,7 +97,7 @@ namespace DDDPizza.Infrastructure.MongoDb
 
         public async Task SeedSizes()
         {
-            var mongoSizesCollection = _mongoDatabase.GetCollection<Size>("Sizes");
+            var mongoSizesCollection = _mongoDatabase.GetCollection<Size>("Size");
             if (await mongoSizesCollection.CountAsync(_ => true) == 0)
             {
                 var seed = new Collection<Size>

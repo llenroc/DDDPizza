@@ -25,19 +25,18 @@ namespace PizzaConsole
         static void Main(string[] args)
         {
 
-            IMongoClient mongoClient = new MongoClient(ConfigurationManager.AppSettings.Get("mongoConnection"));
-            var db  = mongoClient.GetDatabase("dddpizza");
-            var coll = db.GetCollection<Test>("Tests");
-            var coll2 = db.GetCollection<Test2>("Tests");
-            coll.InsertOneAsync(new Test() { Id = 14, Name = "test1"});
-            coll2.InsertOneAsync(new Test2() {Id = 234, Name = "tst2"});
-            Console.ReadLine();
 
             InitIoC();
 
             var pizzaRepository = new PizzaRepository();
-        
 
+            var run = new Task(async () =>
+            {
+                await pizzaRepository.SeedSizes();
+            });
+            run.Start();
+            
+            Console.ReadLine();
 
             BsonClassMap.RegisterClassMap<Pizza>(cm =>
             {
@@ -51,7 +50,7 @@ namespace PizzaConsole
 
 
             var pizzaSize = pizzaRepository.GetAllSizes().Result[2];
-            var newToppings = new List<Toppings>();
+            var newToppings = new List<Topping>();
             newToppings.Add(pizzaRepository.GetAllToppings().Result[1]);
             newToppings.Add(pizzaRepository.GetAllToppings().Result[3]);
             newToppings.Add(pizzaRepository.GetAllToppings().Result[4]);
@@ -69,7 +68,7 @@ namespace PizzaConsole
             Console.WriteLine("---------------------");
             foreach (var topping in newPizza.Toppings)
             {
-                Console.WriteLine("{0} {1}", topping.Name, topping.Cost);
+                Console.WriteLine("{0} {1}", topping.Name, topping.Price);
             }
             Console.WriteLine("---------------------");
 

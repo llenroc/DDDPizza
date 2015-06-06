@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DDDPizza.DomainModels
+namespace DDDPizza.SharedKernel
 {
     public class Guard
     {

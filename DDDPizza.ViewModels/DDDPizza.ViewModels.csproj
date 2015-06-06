@@ -40,12 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CostInventory\CostInventoryVm.cs" />
-    <Compile Include="CostInventory\EditCostInventoryVm.cs" />
+    <Compile Include="CostInventory\PriceInventoryVm.cs" />
+    <Compile Include="CostInventory\EditPriceInventoryVm.cs" />
     <Compile Include="Inventory\EditInventoryVm.cs" />
     <Compile Include="InventoryTypeVm.cs" />
     <Compile Include="Inventory\InventoryVm.cs" />
-    <Compile Include="CostInventory\ManageCostInventoryVm.cs" />
+    <Compile Include="CostInventory\ManagePriceInventoryVm.cs" />
     <Compile Include="Inventory\ManageInventoryVm.cs" />
     <Compile Include="OrderVm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

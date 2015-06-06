@@ -3,55 +3,11 @@ using System.Collections.Generic;
 using AutoMapper;
 using DDDPizza.DomainModels.Interfaces;
 using DDDPizza.ViewModels;
+using DDDPizza.ViewModels.CostInventory;
+using DDDPizza.ViewModels.Inventory;
 
 namespace DDDPizza.Mvc.Factories
 {
-    public class VmCostFactory<T> : IVmCostFactory<T> where T : ICostInventoryEntity
-    {
-        public ManageCostInventoryVm Create(IEnumerable<T> list, string name)
-        {
-            return new ManageCostInventoryVm()
-            {
-                Title = String.Format("Manage {0}", name),
-                Items = Mapper.Map<List<CostInventoryVm>>(list)
-            };
-        }
-
-        public EditCostInventoryVm Create(T item, string name)
-        {
-            return new EditCostInventoryVm()
-            {
-                Title = name,
-                Item = Mapper.Map<CostInventoryVm>(item)
-            };
-        }
-
-        public EditCostInventoryVm Create(CostInventoryVm item, string name)
-        {
-            return new EditCostInventoryVm()
-            {
-                Title = name,
-                Item = item
-            };
-        }
-
-        public EditCostInventoryVm CreateNew(string name)
-        {
-            return new EditCostInventoryVm()
-            {
-                Title = name,
-                Item = this.Create()
-            };
-        }
-
-        public CostInventoryVm Create()
-        {
-            return new CostInventoryVm()
-            {
-                Id = Guid.NewGuid()
-            };
-        }
-    }
 
     public class VmFactory<T> : IVmFactory<T> where T : IInventoryEntity
     {
@@ -115,6 +71,48 @@ namespace DDDPizza.Mvc.Factories
             };
         }
 
+        public ManagePriceInventoryVm CreatePrice(IEnumerable<T> list, string name)
+        {
+            return new ManagePriceInventoryVm()
+            {
+                Title = String.Format("Manage {0}", name),
+                Items = Mapper.Map<List<PriceInventoryVm>>(list)
+            };
+        }
 
+        public EditPriceInventoryVm CreatePrice(T item, string name)
+        {
+            return new EditPriceInventoryVm()
+            {
+                Title = name,
+                Item = Mapper.Map<PriceInventoryVm>(item)
+            };
+        }
+
+        public EditPriceInventoryVm CreatePrice(PriceInventoryVm item, string name)
+        {
+            return new EditPriceInventoryVm()
+            {
+                Title = name,
+                Item = Mapper.Map<PriceInventoryVm>(item)
+            };
+        }
+
+        public EditPriceInventoryVm CreatePriceNew(string name, decimal price)
+        {
+            return new EditPriceInventoryVm()
+            {
+                Title = name,
+                Item = this.CreatePrice()
+            };
+        }
+
+        public PriceInventoryVm CreatePrice()
+        {
+            return new PriceInventoryVm()
+            {
+                Id = Guid.NewGuid()
+            };
+        }
     }
 }

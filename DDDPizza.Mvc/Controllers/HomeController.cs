@@ -7,6 +7,7 @@ using AutoMapper;
 using DDDPizza.DomainModels;
 using DDDPizza.Interfaces;
 using DDDPizza.ViewModels;
+using DDDPizza.ViewModels.Inventory;
 
 namespace DDDPizza.Mvc.Controllers
 {
@@ -25,9 +26,8 @@ namespace DDDPizza.Mvc.Controllers
         [HttpGet]
         public async Task<ActionResult> Index()
         {
-            var result = await _pizzaRepository.GetAll();
-            var convertedResult = Mapper.Map<IList<OrderVm>>(result.ToList());
-            return View(convertedResult.ToList());
+ 
+            return View(new List<OrderVm>());
         }
 
         

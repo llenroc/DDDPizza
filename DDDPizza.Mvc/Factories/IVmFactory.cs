@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using DDDPizza.DomainModels.Interfaces;
-using DDDPizza.ViewModels;
+using DDDPizza.ViewModels.CostInventory;
+using DDDPizza.ViewModels.Inventory;
 
 namespace DDDPizza.Mvc.Factories
 {
@@ -12,5 +13,12 @@ namespace DDDPizza.Mvc.Factories
         EditInventoryVm CreateNew(string name);
         InventoryVm Create();
 
+        ManagePriceInventoryVm CreatePrice(IEnumerable<T1> list, string name);
+        EditPriceInventoryVm CreatePrice(T1 item, string name);
+        EditPriceInventoryVm CreatePrice(PriceInventoryVm item, string name);
+        EditPriceInventoryVm CreatePriceNew(string name, decimal price);
+        PriceInventoryVm CreatePrice();
     }
+
+
 }

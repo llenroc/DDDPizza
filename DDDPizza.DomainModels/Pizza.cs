@@ -7,9 +7,9 @@ namespace DDDPizza.DomainModels
     public class Pizza
     {
 
-        private List<Toppings> _toppings;
+        private List<Topping> _toppings;
 
-        public Pizza(List<Toppings> toppings, Size size, Bread bread, Sauce sause, Cheese cheese)
+        public Pizza(List<Topping> toppings, Size size, Bread bread, Sauce sause, Cheese cheese)
         {
             _toppings = toppings;
             Size = size;
@@ -21,9 +21,9 @@ namespace DDDPizza.DomainModels
 
         public Order Order { get; set; }
 
-        public List<Toppings> Toppings
+        public List<Topping> Toppings
         {
-            get { return new List<Toppings>(_toppings); }
+            get { return new List<Topping>(_toppings); }
             protected set
             {
                 _toppings = value;
@@ -39,9 +39,9 @@ namespace DDDPizza.DomainModels
         {
             foreach (var item in _toppings)
             {
-                Total += item.Cost;
+                Total += item.Price;
             }
-            Total += Size.Cost;
+            Total += Size.Price;
 
             DomainEvents.Raise<PizzaOrdered>(new PizzaOrdered(this));
         }

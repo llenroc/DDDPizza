@@ -14,5 +14,11 @@ namespace DDDPizza.DomainModels
         public Sauce(Guid id, string name) : base(id, name)
         {
         }
+
+        public override bool ShouldSerializePrice()
+        {
+            return true;
+        }
+
     }
 }

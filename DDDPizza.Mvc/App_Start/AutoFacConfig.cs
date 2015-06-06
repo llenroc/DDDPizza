@@ -6,7 +6,6 @@ using Autofac.Builder;
 using Autofac.Integration.Mvc;
 using DDDPizza.DomainModels;
 using DDDPizza.Infrastructure.MongoDb;
-//using DDDPizza.Infrastructure.MongoDb.Factories;
 using DDDPizza.Infrastructure.MongoDb.Factories;
 using DDDPizza.Interfaces;
 using DDDPizza.Mvc.Factories;
@@ -30,14 +29,15 @@ namespace DDDPizza.Mvc.App_Start
             builder.RegisterType<MongoInventoryRepository<Bread>>().As<IInventoryRepository<Bread>>();
             builder.RegisterType<MongoInventoryRepository<Cheese>>().As<IInventoryRepository<Cheese>>();
             builder.RegisterType<MongoInventoryRepository<Sauce>>().As<IInventoryRepository<Sauce>>();
+            builder.RegisterType<MongoInventoryRepository<Topping>>().As<IInventoryRepository<Topping>>();
+            builder.RegisterType<MongoInventoryRepository<Size>>().As<IInventoryRepository<Size>>();
 
-            builder.RegisterType<MongoCostInventoryRepository<Toppings>>().As<IInventoryRepository<Toppings>>();
-            builder.RegisterType<MongoCostInventoryRepository<Size>>().As<IInventoryRepository<Size>>();
 
             builder.RegisterType<VmFactory<Bread>>().As<IVmFactory<Bread>>();
             builder.RegisterType<VmFactory<Cheese>>().As<IVmFactory<Cheese>>();
             builder.RegisterType<VmFactory<Sauce>>().As<IVmFactory<Sauce>>();
-            builder.RegisterType<VmFactory<Toppings>>().As<IVmFactory<Toppings>>();
+            builder.RegisterType<VmFactory<Topping>>().As<IVmFactory<Topping>>();
+            builder.RegisterType<VmFactory<Size>>().As<IVmFactory<Size>>();
 
             // OPTIONAL: Register model binders that require DI.
             builder.RegisterModelBinders(Assembly.GetExecutingAssembly());

@@ -1,15 +1,18 @@
+using System;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using AutoMapper;
 using DDDPizza.DomainModels;
 using DDDPizza.Interfaces;
 using DDDPizza.Mvc.Factories;
+using DDDPizza.ViewModels.CostInventory;
 using DDDPizza.ViewModels.Inventory;
 
 namespace DDDPizza.Mvc.Controllers
 {
-    public class ToppingController : InventoryBaseController<Topping>
+    public class SizeController : InventoryBaseController<Size>
     {
-        public ToppingController(IRepositoryFactory repositoryFactory, IVmFactory<Topping> vmFactory) : base(repositoryFactory, vmFactory)
+        public SizeController(IRepositoryFactory repositoryFactory, IVmFactory<Size> vmFactory) : base(repositoryFactory, vmFactory)
         {
         }
 
@@ -28,7 +31,7 @@ namespace DDDPizza.Mvc.Controllers
         [HttpGet]
         public async override Task<ActionResult> Index()
         {
-            var vm = base._vmFactory.CreatePrice(await base._repositoryFactory.GetRepository<IInventoryRepository<Topping>>().GetAll(), EntityName);
+            var vm = base._vmFactory.CreatePrice(await base._repositoryFactory.GetRepository<IInventoryRepository<Size>>().GetAll(), EntityName);
             return View(vm);
         }
 
@@ -38,10 +41,11 @@ namespace DDDPizza.Mvc.Controllers
             return View(_vmFactory.CreatePriceNew(EntityName, new decimal()));
         }
 
+        
 
         public override void SetEntity()
         {
-            EntityName = "Toppings";
+            EntityName = "Sizes of Pizza";
         }
     }
 }

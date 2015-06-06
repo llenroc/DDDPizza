@@ -8,10 +8,16 @@ namespace DDDPizza.DomainModels
     {
         public Bread(string name) : base(name)
         {
+
         }
 
         public Bread(Guid id, string name) : base(id, name)
         {
+        }
+
+        public override bool ShouldSerializePrice()
+        {
+            return true;
         }
     }
 }

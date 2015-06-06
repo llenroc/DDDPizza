@@ -14,6 +14,12 @@ namespace DDDPizza.DomainModels
         {
         }
 
+
+        public override bool ShouldSerializePrice()
+        {
+            return true;
+        }
+
     }
 
   

@@ -40,8 +40,9 @@ namespace DDDPizza.Infrastructure.MongoDb
             }
             else
             {
-                var update = Builders<T>.Update.Set(y => y.Name, obj.Name);
-                await _mongoCollection.UpdateOneAsync(x => x.Id == obj.Id, update);
+      
+                await
+                    _mongoCollection.ReplaceOneAsync(x => x.Id == obj.Id, obj);
             }
 
             return await _mongoCollection.Find(x => x.Id == obj.Id).SingleAsync();

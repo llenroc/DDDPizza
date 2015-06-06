@@ -8,8 +8,5 @@ namespace DDDPizza.DomainModels.Interfaces
         string Name { get;  }
     }
 
-    public interface ICostInventoryEntity
-    {
-        decimal Cost { get; }
-    }
+
 }

@@ -12,7 +12,7 @@ namespace DDDPizza.Interfaces
         Task<Order> GetById(Guid id);
         Task<Order> Add(Order order);
 
-        Task<List<Toppings>> GetAllToppings();
+        Task<List<Topping>> GetAllToppings();
         Task<List<Size>> GetAllSizes();
         Task<List<Sauce>> GetAllSauces();
         Task<List<Cheese>> GetAllCheeses();

@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Autofac;
 using DDDPizza.DomainModels.Interfaces;
-using StructureMap;
 
-namespace DDDPizza.DomainModels
+namespace DDDPizza.DomainModels.Events
 {
     public static class DomainEvents
     {
@@ -15,10 +13,12 @@ namespace DDDPizza.DomainModels
 
         static DomainEvents()
         {
-            Container = ObjectFactory.Container;
+            //Container = ObjectFactory.Container;
         }
 
-        public static IContainer Container { get; set; }
+        //public static IContainer Container { get; set; }
+        public static IComponentContext Container { get; set; }
+
         public static void Register<T>(Action<T> callback) where T : IDomainEvent
         {
             if (actions == null)
@@ -35,10 +35,15 @@ namespace DDDPizza.DomainModels
 
         public static void Raise<T>(T args) where T : IDomainEvent
         {
-            foreach (var handler in Container.GetAllInstances<IHandle<T>>())
+
+            var services = Container.ComponentRegistry.Registrations.SelectMany(x => x.Services)
+            .OfType<IHandle<T>>();
+
+            foreach (var handler in services)
             {
-                handler.Handle(args);
+                handler.Handle(args); 
             }
+       
 
             if (actions != null)
             {
