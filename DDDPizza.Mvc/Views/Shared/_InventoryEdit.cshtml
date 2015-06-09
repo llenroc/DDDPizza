@@ -1,5 +1,4 @@
-﻿@using System.Drawing
-@model DDDPizza.ViewModels.Inventory.EditInventoryVm
+﻿@model DDDPizza.ViewModels.Inventory.EditInventoryVm
 
 <h1>@Model.Title</h1>
 <hr />
@@ -33,7 +32,7 @@
                 
                 @Html.HiddenFor(model => model.Item.Id)
 
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input id="btnSave" type="submit" value="Save" class="btn btn-primary" />
             </div>
         </div>
 

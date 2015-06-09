@@ -21,6 +21,12 @@ namespace DDDPizza.Infrastructure.MongoDb
             _mongoOrdersCollection = _mongoDatabase.GetCollection<Order>("Orders");
         }
 
+        public async Task<Pizza> Add(Pizza pizza)
+        {
+            await _mongoDatabase.GetCollection<Pizza>("Pizza").InsertOneAsync(pizza);
+            return pizza;
+        }
+
         public async Task<IEnumerable<Order>> GetAll()
         {
             return await (await _mongoOrdersCollection.FindAsync(_ => true)).ToListAsync();

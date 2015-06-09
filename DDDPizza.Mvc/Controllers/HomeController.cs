@@ -7,6 +7,7 @@ using AutoMapper;
 using DDDPizza.DomainModels;
 using DDDPizza.Interfaces;
 using DDDPizza.ViewModels;
+using DDDPizza.ViewModels.CostInventory;
 using DDDPizza.ViewModels.Inventory;
 
 namespace DDDPizza.Mvc.Controllers
@@ -26,13 +27,13 @@ namespace DDDPizza.Mvc.Controllers
         [HttpGet]
         public async Task<ActionResult> Index()
         {
- 
+
             return View(new List<OrderVm>());
         }
 
-        
 
-        
+
+
 
 
         [HttpGet]
@@ -49,18 +50,58 @@ namespace DDDPizza.Mvc.Controllers
         public async Task<ActionResult> NewOrder()
         {
 
-            ViewBag.Breads = _repositoryFactory().GetRepository<IInventoryRepository<Bread>>().GetAll();
-            ViewBag.Message = "Your application description page.";
+            var breads = Mapper.Map<List<InventoryVm>>(await _repositoryFactory().GetRepository<IInventoryRepository<Bread>>().GetAll());
+            var toppings = Mapper.Map<List<PriceInventoryVm>>(await _repositoryFactory().GetRepository<IInventoryRepository<Topping>>().GetAll());
+            var cheeses = Mapper.Map<List<InventoryVm>>(await _repositoryFactory().GetRepository<IInventoryRepository<Cheese>>().GetAll());
+            var sauces = Mapper.Map<List<InventoryVm>>(await _repositoryFactory().GetRepository<IInventoryRepository<Sauce>>().GetAll());
+            var sizes = Mapper.Map<List<PriceInventoryVm>>(await _repositoryFactory().GetRepository<IInventoryRepository<Size>>().GetAll());
 
+            ViewBag.Toppings = new List<SelectListItem>(toppings.Select(w => new SelectListItem { Text = w.Name, Value = w.Id.ToString() }).ToList());
+            ViewData["Breads"] = new SelectList(breads.Select(w => new SelectListItem { Text = w.Name, Value = w.Id.ToString() }).ToList());
+            ViewBag.Cheeses = new List<SelectListItem>(cheeses.Select(w => new SelectListItem { Text = w.Name, Value = w.Id.ToString() }).ToList());
+            ViewBag.Sauces = new List<SelectListItem>(sauces.Select(w => new SelectListItem { Text = w.Name, Value = w.Id.ToString() }).ToList());
+            ViewBag.Sizes = new List<SelectListItem>(sizes.Select(w => new SelectListItem { Text = w.Name, Value = w.Id.ToString() }).ToList());
 
-            var vm = new PlaceOrderVm()
-            {
-                Breads = Mapper.Map<List<InventoryVm>>(await _repositoryFactory().GetRepository<IInventoryRepository<Bread>>().GetAll())
-            };
-
+            var vm = new PlaceOrderVm();
             return View(vm);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> NewOrder(PlaceOrderVm vm, FormCollection form)
+        {
+
+            var breads = Mapper.Map<List<InventoryVm>>(await _repositoryFactory().GetRepository<IInventoryRepository<Bread>>().GetAll());
+            var toppings = Mapper.Map<List<PriceInventoryVm>>(await _repositoryFactory().GetRepository<IInventoryRepository<Topping>>().GetAll());
+            var cheeses = Mapper.Map<List<InventoryVm>>(await _repositoryFactory().GetRepository<IInventoryRepository<Cheese>>().GetAll());
+            var sauces = Mapper.Map<List<InventoryVm>>(await _repositoryFactory().GetRepository<IInventoryRepository<Sauce>>().GetAll());
+            var sizes = Mapper.Map<List<PriceInventoryVm>>(await _repositoryFactory().GetRepository<IInventoryRepository<Size>>().GetAll());
+
+
+
+            if (ModelState.IsValid)
+            {
+
+                var pizzaOrder = new PizzaVm();
+                pizzaOrder.Cheese = cheeses.SingleOrDefault(x => x.Id.ToString() == vm.Cheese);
+                pizzaOrder.Bread = breads.SingleOrDefault(x => x.Id.ToString() == vm.Bread);
+                pizzaOrder.Sause = sauces.SingleOrDefault(x => x.Id.ToString() == vm.Sauce);
+                pizzaOrder.Size = sizes.SingleOrDefault(x => x.Id.ToString() == vm.Size);
+                //pizzaOrder.Bread = breads.SingleOrDefault(x => x.Id.ToString() == vm.Bread);
+
+                var cheeseDm = Mapper.Map<Cheese>(pizzaOrder.Cheese);
+                var breadDm = Mapper.Map<Bread>(pizzaOrder.Bread);
+                var sauceDm = Mapper.Map<Sauce>(pizzaOrder.Sause);
+                var sizeDm = Mapper.Map<Size>(pizzaOrder.Size);
+
+                var pizzaDm = new Pizza(new List<Topping>(), sizeDm, breadDm, sauceDm, cheeseDm);
+
+                await _repositoryFactory().GetRepository<IPizzaRepository>().Add(pizzaDm);
+                return RedirectToAction("Index");
+            }
+
+            return View(vm);
+        }
 
     }
 }

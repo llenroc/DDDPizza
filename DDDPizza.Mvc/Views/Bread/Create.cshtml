@@ -4,19 +4,5 @@
 
 @section scripts
 {
-
-
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-
-            if ($('.custom-error').children('span.field-validation-valid').length == 1) {
-                $('.custom-error').hide(); // no errors
-            } else {
-                $('.custom-error').show(); // errors
-            }
-
-        });
-    </script>
-
+    <script src="@Url.Content("~/Scripts/app/inventory.validate.js")"></script>
 }

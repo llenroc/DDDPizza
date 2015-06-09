@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using DDDPizza.DomainModels.Events;
+using DDDPizza.DomainModels.Interfaces;
 
 namespace DDDPizza.DomainModels
 {
-    public class Pizza
+    public class Pizza 
     {
 
         private List<Topping> _toppings;
@@ -43,7 +44,7 @@ namespace DDDPizza.DomainModels
             }
             Total += Size.Price;
 
-            DomainEvents.Raise<PizzaOrdered>(new PizzaOrdered(this));
+            //DomainEvents.Raise<PizzaOrdered>(new PizzaOrdered(this));
         }
 
     }

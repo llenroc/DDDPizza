@@ -2,3 +2,8 @@
 
 
 @Html.Partial("_InventoryEdit", Model)
+
+@section scripts
+{
+    <script src="@Url.Content("~/Scripts/app/inventory.validate.js")"></script>
+}

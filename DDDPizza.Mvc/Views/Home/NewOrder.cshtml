@@ -3,9 +3,133 @@
     ViewBag.Title = "Place a new Order";
 }
 <h2>@ViewBag.Title</h2>
+<hr />
+@using (Html.BeginForm())
+{
 
 
-@Html.DropDownList("Foo", new SelectList(Model.Breads.Select(x => new { Value = x.Id, Text = x.Name}), "Value", "Text"), "  -----Select List-----  ", new { @class = "form-control", @onchange = "this.form.submit();" })
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="Bread" class="control-label col-md-2">Country:</label>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Bread, (SelectList)ViewData["Breads"])
+
+                    <div class="custom-error">
+                        <i class="fa fa-times-circle"></i>
+                      
+                    </div>  
+       
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Cheese, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                   @Html.DropDownListFor(model => model.Cheese, ViewBag.Cheeses as IEnumerable<SelectListItem>, "Select", new { @class = "form-control" })
+
+                    <div class="custom-error">
+                        <i class="fa fa-times-circle"></i>
+                        @Html.ValidationMessageFor(model => model.Cheese)
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Sauce, new {@class = "control-label col-md-2"})
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Sauce, ViewBag.Sauces as IEnumerable<SelectListItem>, "Select", new { @class = "form-control" })
+             
+                    <div class="custom-error">
+                        <i class="fa fa-times-circle"></i>
+                        @Html.ValidationMessageFor(model => model.Sauce)
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Size, new {@class = "control-label col-md-2"})
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Size, ViewBag.Sizes as IEnumerable<SelectListItem>, "Select", new { @class = "form-control" })
+
+                    <div class="custom-error">
+                        <i class="fa fa-times-circle"></i>
+                        @Html.ValidationMessageFor(model => model.Size)
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12" id="toppingsRow">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Topping, new {@class = "control-label col-md-2"})
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Topping, ViewBag.Toppings as IEnumerable<SelectListItem>, "Select", new { @class = "form-control" })
+
+                    <div class="custom-error">
+                        <i class="fa fa-times-circle"></i>
+                        @Html.ValidationMessageFor(model => model.Topping)
+                    </div>
+
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-12" id="toppingsRow">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-10">
+                <button id="addTopping" type="button" class="btn btn-info">Add more toppings</button>
+                <button id="removeTopping" type="button" class="btn btn-danger">Remove last</button>
+                <br/>
+                <i>* Up to 5 Toppings</i>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-12">
+            <hr />
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-12" >
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-10">
+                <button id="addPizza" type="submit" class="btn btn-primary btn-lg">Finalize Order</button>
+       
+            </div>
+
+        </div>
+
+    </div>
+}
 
 
-
+@section scripts
+{
+    <script src="@Url.Content("~/Scripts/app/newOrder.js")"></script>
+}

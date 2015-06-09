@@ -1,4 +1,8 @@
 ﻿@model DDDPizza.ViewModels.CostInventory.EditPriceInventoryVm
 
-
 @Html.Partial("_PriceInventoryEdit", Model)
+
+@section scripts
+{
+    <script src="@Url.Content("~/Scripts/app/inventory.validate.js")"></script>
+}
