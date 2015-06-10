@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using DDDPizza.Mvc.App_Start;
 
 namespace DDDPizza.Api
 {
@@ -9,7 +10,7 @@ namespace DDDPizza.Api
     {
         protected void Application_Start()
         {
-
+            AutoMapperConfig.RegisterMappings();
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

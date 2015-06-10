@@ -5,7 +5,7 @@ using System.Web;
 
 namespace DDDPizza.Api.Models
 {
-    public class OrderVm
+    public class Order2Vm
     {
         public int Count { get; set; }
         public string Name { get; set; }
