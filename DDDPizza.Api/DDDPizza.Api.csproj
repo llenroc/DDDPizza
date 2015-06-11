@@ -163,8 +163,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InventoryController.cs" />
     <Compile Include="Controllers\PizzaController.cs" />
-    <Compile Include="Factories\IResponseEnricher.cs" />
     <Compile Include="Factories\IViewModelFactory.cs" />
     <Compile Include="Factories\ViewModelFactory.cs" />
     <Compile Include="Formatters\JsonContentNegotiator.cs" />
@@ -180,6 +180,14 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\angular-ui-router.js" />
+    <Content Include="Scripts\angular-ui-router.min.js" />
+    <Content Include="Scripts\app\app.js" />
+    <Content Include="Scripts\app\controllers\homeController.js" />
+    <Content Include="Scripts\app\directives\topping.js" />
+    <Content Include="Scripts\app\services\httpRepository.js" />
+    <Content Include="Scripts\app\services\inventoryRepository.js" />
+    <Content Include="Scripts\app\views\home.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />

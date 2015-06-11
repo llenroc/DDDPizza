@@ -1,0 +1,69 @@
+﻿﻿<div class="container" ng-controller="homeController as home" ng-init="home.init()">
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <h1>Place An Order</h1>
+            <hr/>
+            <form class="form-horizontal">
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Breads</label>
+                    <div class="col-md-10">
+                        <select ng-model="home.bread" class="form-control">
+                            <option value="">Choose Bread Type</option>
+                            <option ng-repeat="brd in home.breads" value="brd.id">{{brd.name}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Sauces</label>
+                    <div class="col-md-10">
+                        <select ng-model="home.sauce" class="form-control">
+                            <option value="">Choose Sauce Type</option>
+                            <option ng-repeat="sac in home.sauces" value="sac.id">{{sac.name}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Cheese</label>
+                    <div class="col-md-10">
+                        <select ng-model="home.cheese" class="form-control">
+                            <option value="">Choose Cheese Type</option>
+                            <option ng-repeat="che in home.cheeses" value="che.id">{{che.name}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Size</label>
+                    <div class="col-md-10">
+                        <select ng-model="home.size" class="form-control">
+                            <option value="">Choose Size Type</option>
+                            <option ng-repeat="siz in home.sizes" value="siz.id">{{siz.name}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Toppings</label>
+                    <div class="col-md-10">
+                        <select ng-model="home.topping" class="form-control">
+                            <option value="">Choose Topping Type</option>
+                            <option ng-repeat="top in home.toppings" value="top.id">{{top.name}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <toppings list="2">
+                    
+                </toppings>
+
+            </form>
+
+        </div>
+    </div>
+    ﻿
+</div>

@@ -23,6 +23,19 @@ namespace DDDPizza.Api
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/app").Include(
+                 "~/Scripts/app/app.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/app/controllers").Include(
+                "~/Scripts/app/controllers/*.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/app/directives").Include(
+                     "~/Scripts/app/directives/*.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/app/services").Include(
+                     "~/Scripts/app/services/*.js"));
+
         }
     }
 }
