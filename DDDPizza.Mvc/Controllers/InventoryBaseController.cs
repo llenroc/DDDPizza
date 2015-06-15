@@ -30,13 +30,13 @@ namespace DDDPizza.Mvc.Controllers
         {
       
             var vm = _vmFactory.Create(await _repositoryFactory.GetRepository<IInventoryRepository<T>>().GetAll(), EntityName);
-            return View(vm);
+            return View();
         }
 
         [HttpGet]
         public virtual async Task<ActionResult> Create()
         {
-            return View(_vmFactory.CreateNew(EntityName));
+            return View();
         }
 
         [HttpPost]
@@ -52,7 +52,7 @@ namespace DDDPizza.Mvc.Controllers
                 return RedirectToAction("Index");
             }
            
-            return View(_vmFactory.Create(item,EntityName));
+            return View();
 
         }
 
