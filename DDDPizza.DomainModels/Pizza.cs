@@ -39,14 +39,18 @@ namespace DDDPizza.DomainModels
 
         public void CalculateCost()
         {
-            if (_toppings[0] != null)
+            if (_toppings.Count > 0)
             {
-                foreach (var item in _toppings)
+                if (_toppings[0] != null)
                 {
-                    Total += item.Price;
+                    foreach (var item in _toppings)
+                    {
+                        Total += item.Price;
+                    }
                 }
-            }
         
+            }
+           
             Total += Size.Price;
 
             //DomainEvents.Raise<PizzaOrdered>(new PizzaOrdered(this));

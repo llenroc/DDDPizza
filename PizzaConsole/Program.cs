@@ -74,7 +74,7 @@ namespace PizzaConsole
 
             var pizzas = new List<Pizza> { newPizza };
 
-            var finalOrder = new Order(ServiceType.Delivery, pizzas);
+            var finalOrder = new Order(ServiceType.Delivery, pizzas,"fake name");
 
             Console.WriteLine("SubTotal: {0}", finalOrder.SubTotal);
             Console.WriteLine("Service Charge: {0}", finalOrder.ServiceCharge);

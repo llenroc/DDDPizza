@@ -3,6 +3,7 @@ using System.Linq;
 using AutoMapper;
 using DDDPizza.DomainModels;
 using DDDPizza.DomainModels.Enums;
+using DDDPizza.SharedKernel;
 using DDDPizza.ViewModels;
 
 namespace DDDPizza.Api.Factories
@@ -11,7 +12,11 @@ namespace DDDPizza.Api.Factories
     {
         public Order CreateOrder(OrderVm order)
         {
-            var result = new Order(new ServiceType.DeliveryType(), order.Pizzas.Select(CreatePizza).ToList(), order.Name);
+            //TODO: Fix ServiceType.DeliveryType()
+
+            var castTo = Enumeration.FromDisplayName<ServiceType>(order.ServiceType);
+
+            var result = new Order(castTo, order.Pizzas.Select(CreatePizza).ToList(), order.Name);
             return result;
         }
 

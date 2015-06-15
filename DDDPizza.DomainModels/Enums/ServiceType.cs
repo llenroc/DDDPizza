@@ -15,11 +15,17 @@ namespace DDDPizza.DomainModels.Enums
         {
         }
 
+        public ServiceType()
+        {
+            
+        }
+
         public static readonly ServiceType InRestaurant = new InRestaurantType();
         public static readonly ServiceType TakeOut = new TakeOutType();
         public static readonly ServiceType Delivery = new DeliveryType();
 
-
+     
+   
         public virtual Decimal CalculateTotal(ServiceType serviceType)
         {
             return 0.00m;
@@ -29,6 +35,8 @@ namespace DDDPizza.DomainModels.Enums
         {
             return base.DisplayName.ToString(CultureInfo.InvariantCulture);
         }
+
+      
 
         public sealed class InRestaurantType : ServiceType
         {
@@ -40,7 +48,7 @@ namespace DDDPizza.DomainModels.Enums
                 return 0.00m;
             }
 
-         
+           
         }
 
         public sealed class TakeOutType : ServiceType
