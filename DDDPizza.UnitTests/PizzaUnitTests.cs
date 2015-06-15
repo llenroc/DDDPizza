@@ -41,7 +41,7 @@ namespace DDDPizza.UnitTests
 
             var pizza = new Pizza(PizzaMocks.ToppingMocks().ToList(), PizzaMocks.SizeMocks().First(), PizzaMocks.BreadMocks().ElementAt(1), PizzaMocks.GetSauces().ElementAt(1), PizzaMocks.GetCheese().ElementAt(2));
             var pizzas = new List<Pizza>() {pizza};
-            var sut = new Order(ServiceType.Delivery, pizzas);
+            var sut = new Order(ServiceType.Delivery, pizzas,"Jose");
 
             Assert.IsInstanceOf<Order>(sut);
             Assert.Greater(sut.ServiceCharge, 0);
