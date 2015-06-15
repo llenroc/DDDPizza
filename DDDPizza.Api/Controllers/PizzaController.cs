@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
+using DDDPizza.Api.Factories;
 using DDDPizza.DomainModels;
 using DDDPizza.Interfaces;
+using DDDPizza.ViewModels;
 
 namespace DDDPizza.Api.Controllers
 {
@@ -10,17 +14,46 @@ namespace DDDPizza.Api.Controllers
     {
 
         private readonly IPizzaRepository _pizzaRepository;
+        private readonly IViewModelFactory _viewModelFactory;
 
-        public PizzaController(IPizzaRepository pizzaRepository)
+        public PizzaController(IPizzaRepository pizzaRepository, IViewModelFactory viewModelFactory)
         {
             _pizzaRepository = pizzaRepository;
+            _viewModelFactory = viewModelFactory;
+        }
+
+
+        [HttpPost]
+        [Route("api/place/order")]
+        public async Task<IHttpActionResult> PlacePizza([FromBody]OrderVm placeOrder)
+        {
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var vm = _viewModelFactory.CreateOrder(placeOrder);
+                    var result = _pizzaRepository.Add(vm);
+                    return Ok(result);
+                }
+                catch (Exception ex)
+                {
+
+                    return Ok(ex);
+                }
+           
+            }
+
+            return BadRequest();
         }
 
         [HttpGet]
         [Route("api/orders")]
         public async Task<IHttpActionResult> GetOrders()
         {
-            return Ok(await _pizzaRepository.GetAll());
+            var result = await _pizzaRepository.GetAll();
+            var vm = _viewModelFactory.CreateFromVm<List<Order>, List<OrderVm>>(result.OrderByDescending(x => x.DateTimeStamp).ToList());
+            return Ok(vm);
         }
 
         [HttpGet]
@@ -40,40 +73,7 @@ namespace DDDPizza.Api.Controllers
         }
 
 
-        [HttpGet]
-        [Route("api/toppings")]
-        public async Task<IHttpActionResult> GetToppings()
-        {
-            return Ok(await _pizzaRepository.GetAllToppings());
-        }
-
-        [HttpGet]
-        [Route("api/breads")]
-        public async Task<IHttpActionResult> GetBreads()
-        {
-            return Ok(await _pizzaRepository.GetAllBreads());
-        }
-
-        [HttpGet]
-        [Route("api/sauces")]
-        public async Task<IHttpActionResult> GetSauses()
-        {
-            return Ok(await _pizzaRepository.GetAllSauces());
-        }
-
-        [HttpGet]
-        [Route("api/sizes")]
-        public async Task<IHttpActionResult> GetSizes()
-        {
-            return Ok(await _pizzaRepository.GetAllSizes());
-        }
-
-        [HttpGet]
-        [Route("api/cheeses")]
-        public async Task<IHttpActionResult> GetCheeses()
-        {
-            return Ok(await _pizzaRepository.GetAllCheeses());
-        }
+     
 
     }
 }

@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Threading.Tasks;
 using DDDPizza.DomainModels;
 using DDDPizza.Interfaces;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace DDDPizza.Infrastructure.MongoDb
@@ -45,38 +46,38 @@ namespace DDDPizza.Infrastructure.MongoDb
 
         public async Task<List<Topping>> GetAllToppings()
         {
-            return await (await _mongoDatabase.GetCollection<Topping>("Toppings").FindAsync(_ => true)).ToListAsync();
+            return await (await _mongoDatabase.GetCollection<Topping>("Topping").FindAsync(_ => true)).ToListAsync();
         }
 
         public async Task<List<Size>> GetAllSizes()
         {
-            return await (await _mongoDatabase.GetCollection<Size>("Sizes").FindAsync(_ => true)).ToListAsync();
+            return await (await _mongoDatabase.GetCollection<Size>("Size").FindAsync(_ => true)).ToListAsync();
         }
 
         public async Task<List<Sauce>> GetAllSauces()
         {
-            return await (await _mongoDatabase.GetCollection<Sauce>("Sauces").FindAsync(_ => true)).ToListAsync();
+            return await (await _mongoDatabase.GetCollection<Sauce>("Sauce").FindAsync(_ => true)).ToListAsync();
         }
 
         public async Task<List<Cheese>> GetAllCheeses()
         {
-            return await (await _mongoDatabase.GetCollection<Cheese>("Cheeses").FindAsync(_ => true)).ToListAsync();
+            return await (await _mongoDatabase.GetCollection<Cheese>("Cheese").FindAsync(_ => true)).ToListAsync();
         }
 
         public async Task<List<Bread>> GetAllBreads()
         {
-            return await (await _mongoDatabase.GetCollection<Bread>("Breads").FindAsync(_ => true)).ToListAsync();
+            return await (await _mongoDatabase.GetCollection<Bread>("Bread").FindAsync(_ => true)).ToListAsync();
         }
 
         public async Task<Bread>GetBreadById(Guid id)
         {
-            return await _mongoDatabase.GetCollection<Bread>("Breads").Find(x => x.Id == id).SingleAsync();
+            return await _mongoDatabase.GetCollection<Bread>("Bread").Find(x => x.Id == id).SingleAsync();
         }
 
         public async Task SeedToppings()
         {
 
-            var mongoToppingsCollection = _mongoDatabase.GetCollection<Topping>("Toppings");
+            var mongoToppingsCollection = _mongoDatabase.GetCollection<Topping>("Topping");
             if (await mongoToppingsCollection.CountAsync(_ => true) == 0)
             {
                 var seedToppings = new Collection<Topping>

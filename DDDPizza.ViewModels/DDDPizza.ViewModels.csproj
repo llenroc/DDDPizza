@@ -49,6 +49,7 @@
     <Compile Include="CostInventory\ManagePriceInventoryVm.cs" />
     <Compile Include="Inventory\ManageInventoryVm.cs" />
     <Compile Include="OrderVm.cs" />
+    <Compile Include="PizzaVm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

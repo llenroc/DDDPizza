@@ -9,6 +9,7 @@ namespace DDDPizza.Interfaces
     {
 
         Task<Pizza> Add(Pizza pizza);
+ 
 
         Task<IEnumerable<Order>> GetAll();
         Task<Order> GetById(Guid id);

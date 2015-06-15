@@ -12,8 +12,10 @@ namespace DDDPizza.Mvc.App_Start
  
         public static void RegisterMappings()
         {
-            AutoMapper.Mapper.CreateMap<Order, OrderVm>().ForMember(x => x.ServiceType, y => y.MapFrom(src => src.ServiceType.ToString())).ReverseMap();
-            AutoMapper.Mapper.CreateMap<PizzaVm, Pizza>().ReverseMap();
+            Mapper.CreateMap<Order, OrderVm>().ForMember(x => x.ServiceType, y => y.MapFrom(src => src.ServiceType.ToString())).ReverseMap();
+            Mapper.CreateMap<OrderVm, Order>().ForMember(x => x.ServiceType.DisplayName, y => y.MapFrom(src => src.ServiceType)).ReverseMap();
+
+            Mapper.CreateMap<PizzaVm, Pizza>().ReverseMap();
 
             // Models with no price
             AutoMapper.Mapper.CreateMap<Bread, InventoryVm>()

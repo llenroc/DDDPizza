@@ -1,0 +1,44 @@
+﻿
+
+<div class="row">
+ 
+    <div class="col-md-12">
+
+   
+
+        <div class="form-group" ng-repeat="items in vm.range(vm.amount)">
+            <label class="control-label col-md-2">Toppings</label>
+            <div class="col-md-10">
+
+                <select ng-model="vm.passPizza.topping[$index]" class="form-control pull-left" name="toppingList" id="toppingList"
+                        ng-options="topping.name for topping in vm.toppings track by topping.id" ng-change="vm.updateAmount()">
+                    <option value="">Choose Topping Type</option>
+                </select>
+
+                <div ng-show="vm.passPizza.topping[$index].price > 0" class="price pull-left">
+                    <i class="fa fa-usd"></i>
+                    {{ vm.passPizza.topping[$index].price }}
+                </div> 
+
+                <div class="btn-group btn-group-sm toppings-btns pull-left" role="group" ng-show="$index+1==vm.amount">
+                    <button type="button" class="btn btn-info" ng-disabled="vm.amount > 4" ng-click="vm.add()">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        Add
+                    </button>
+                    <button type="button" class="btn btn-danger" ng-disabled="vm.amount < 2" ng-click="vm.remove()">
+                        <span class="glyphicon glyphicon-minus"></span>
+                        Remove
+                    </button>
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+</div>
+

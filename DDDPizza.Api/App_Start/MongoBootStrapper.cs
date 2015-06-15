@@ -1,3 +1,4 @@
+using DDDPizza.DomainModels;
 using DDDPizza.DomainModels.Enums;
 using MongoDB.Bson.Serialization;
 
@@ -17,6 +18,12 @@ namespace DDDPizza.Api
             BsonClassMap.RegisterClassMap<ServiceType.DeliveryType>();
             BsonClassMap.RegisterClassMap<ServiceType.InRestaurantType>();
             BsonClassMap.RegisterClassMap<ServiceType.TakeOutType>();
+
+            BsonClassMap.RegisterClassMap<Pizza>(cm =>
+            {
+                cm.AutoMap();
+                cm.GetMemberMap(c => c.Toppings).SetElementName("Topping");
+            });
         
         }
 

@@ -15,18 +15,20 @@ namespace DDDPizza.DomainModels
         {
             Id = Guid.NewGuid();
         }
-        public Order(ServiceType service, ICollection<Pizza> pizzas)
+        public Order(ServiceType service, List<Pizza> pizzas, string name)
         {
             ServiceType = service;
             Pizzas = pizzas;
+            Name = name;
             CalculateTotal();
+            DateTimeStamp = DateTime.UtcNow;
         }
 
         public Guid Id { get; set; }
-    
-        public ServiceType ServiceType { get; private set; }
-        public ICollection<Pizza> Pizzas { get; set; }
-
+        public string Name { get; private set; }
+        public ServiceType ServiceType { get;  set; }
+        public List<Pizza> Pizzas { get; set; }
+        public DateTime DateTimeStamp { get; private set; }
         public decimal SubTotal { get; private set; }
         public decimal ServiceCharge { get; private set; }
         public decimal TotalAmount { get; private set; }

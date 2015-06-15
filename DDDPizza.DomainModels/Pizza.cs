@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using DDDPizza.DomainModels.Events;
-using DDDPizza.DomainModels.Interfaces;
+﻿using System.Collections.Generic;
 
 namespace DDDPizza.DomainModels
 {
@@ -10,17 +7,21 @@ namespace DDDPizza.DomainModels
 
         private List<Topping> _toppings;
 
+        public Pizza()
+        {
+            
+        }
         public Pizza(List<Topping> toppings, Size size, Bread bread, Sauce sause, Cheese cheese)
         {
             _toppings = toppings;
             Size = size;
             Bread = bread;
-            Sause = sause;
+            Sauce = sause;
             Cheese = cheese;
             CalculateCost();
         }
 
-        public Order Order { get; set; }
+ 
 
         public List<Topping> Toppings
         {
@@ -31,17 +32,21 @@ namespace DDDPizza.DomainModels
             }
         }
         public Bread Bread { get; set; }
-        public Sauce Sause { get; set; }
+        public Sauce Sauce { get; set; }
         public Cheese Cheese { get; set; }
         public Size Size { get; set; }
-        public decimal Total { get; private set; }
+        public decimal Total { get; set; }
 
         public void CalculateCost()
         {
-            foreach (var item in _toppings)
+            if (_toppings[0] != null)
             {
-                Total += item.Price;
+                foreach (var item in _toppings)
+                {
+                    Total += item.Price;
+                }
             }
+        
             Total += Size.Price;
 
             //DomainEvents.Raise<PizzaOrdered>(new PizzaOrdered(this));

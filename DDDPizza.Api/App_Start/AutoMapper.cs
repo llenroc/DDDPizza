@@ -1,11 +1,9 @@
-﻿using System.Web.Razor.Generator;
-using AutoMapper;
-using DDDPizza.Api.Models;
+﻿using AutoMapper;
 using DDDPizza.DomainModels;
+using DDDPizza.DomainModels.Enums;
 using DDDPizza.ViewModels;
 using DDDPizza.ViewModels.CostInventory;
 using DDDPizza.ViewModels.Inventory;
-using Newtonsoft.Json.Serialization;
 
 namespace DDDPizza.Mvc.App_Start
 {
@@ -15,8 +13,12 @@ namespace DDDPizza.Mvc.App_Start
  
         public static void RegisterMappings()
         {
-            Mapper.CreateMap<Order, OrderVm>().ForMember(x => x.ServiceType, y => y.MapFrom(src => src.ServiceType.ToString())).ReverseMap();
-            Mapper.CreateMap<PizzaVm, Pizza>().ReverseMap();
+
+          
+
+        
+
+            
 
             // Models with no price
             Mapper.CreateMap<Bread, InventoryVm>()
@@ -38,8 +40,17 @@ namespace DDDPizza.Mvc.App_Start
 
             Mapper.CreateMap<Size, PriceInventoryVm>()
                 .ForMember(x => x.Type, dest => dest.MapFrom(src => InventoryTypeVm.Size))
-                .ReverseMap();    
-       
+                .ReverseMap();
+
+            Mapper.CreateMap<Pizza, PizzaVm>()
+                .ForMember(x => x.Topping, y => y.MapFrom(src => src.Toppings))
+                .ReverseMap();
+
+            Mapper.CreateMap<Order, OrderVm>()
+                .ForMember(x => x.Total, y => y.MapFrom(src => src.TotalAmount))
+                .ForMember(x => x.ServiceType, y => y.MapFrom(src => src.ServiceType.ToString()))
+                .ReverseMap();
+
        
         }
 

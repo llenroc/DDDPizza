@@ -62,13 +62,13 @@ namespace DDDPizza.Mvc.Controllers
             ViewBag.Sauces = new List<SelectListItem>(sauces.Select(w => new SelectListItem { Text = w.Name, Value = w.Id.ToString() }).ToList());
             ViewBag.Sizes = new List<SelectListItem>(sizes.Select(w => new SelectListItem { Text = w.Name, Value = w.Id.ToString() }).ToList());
 
-            var vm = new PlaceOrderVm();
+            var vm = new PizzaOrderVm();
             return View(vm);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> NewOrder(PlaceOrderVm vm, FormCollection form)
+        public async Task<ActionResult> NewOrder(PizzaOrderVm vm, FormCollection form)
         {
 
             var breads = Mapper.Map<List<InventoryVm>>(await _repositoryFactory().GetRepository<IInventoryRepository<Bread>>().GetAll());
@@ -83,15 +83,15 @@ namespace DDDPizza.Mvc.Controllers
             {
 
                 var pizzaOrder = new PizzaVm();
-                pizzaOrder.Cheese = cheeses.SingleOrDefault(x => x.Id.ToString() == vm.Cheese);
-                pizzaOrder.Bread = breads.SingleOrDefault(x => x.Id.ToString() == vm.Bread);
-                pizzaOrder.Sause = sauces.SingleOrDefault(x => x.Id.ToString() == vm.Sauce);
-                pizzaOrder.Size = sizes.SingleOrDefault(x => x.Id.ToString() == vm.Size);
+                //pizzaOrder.Cheese = cheeses.SingleOrDefault(x => x..Id.ToString() == vm.Cheese);
+                //pizzaOrder.Bread = breads.SingleOrDefault(x => x.Id.ToString() == vm.Bread);
+                //pizzaOrder.Sauce = sauces.SingleOrDefault(x => x.Id.ToString() == vm.Sauce);
+                //pizzaOrder.Size = sizes.SingleOrDefault(x => x.Id.ToString() == vm.Size);
                 //pizzaOrder.Bread = breads.SingleOrDefault(x => x.Id.ToString() == vm.Bread);
 
                 var cheeseDm = Mapper.Map<Cheese>(pizzaOrder.Cheese);
                 var breadDm = Mapper.Map<Bread>(pizzaOrder.Bread);
-                var sauceDm = Mapper.Map<Sauce>(pizzaOrder.Sause);
+                var sauceDm = Mapper.Map<Sauce>(pizzaOrder.Sauce);
                 var sizeDm = Mapper.Map<Size>(pizzaOrder.Size);
 
                 var pizzaDm = new Pizza(new List<Topping>(), sizeDm, breadDm, sauceDm, cheeseDm);

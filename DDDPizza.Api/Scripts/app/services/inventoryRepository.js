@@ -15,9 +15,31 @@
         };
 
 
+        var placePizza = function (pizza) {
+            var def = $q.defer();
+            httpRepository.postData("/api/temp/pizza", pizza).then(function (data) {
+                def.resolve(data);
+            }).catch(function (error) {
+                def.reject(error);
+            });
+            return def.promise;
+        };
+
+        var placeOrder = function (order) {
+            var def = $q.defer();
+            httpRepository.postData("/api/place/order", order).then(function (data) {
+                def.resolve(data);
+            }).catch(function (error) {
+                def.reject(error);
+            });
+            return def.promise;
+        };
+
 
         return {
-            getInventory: getInventory
+            getInventory: getInventory,
+            placePizza: placePizza,
+            placeOrder: placeOrder
         }
     };
 
