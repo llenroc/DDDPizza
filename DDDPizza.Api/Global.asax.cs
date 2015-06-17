@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using DDDPizza.Mvc.App_Start;
+using DDDPizza.Api.App_Start;
 
 namespace DDDPizza.Api
 {

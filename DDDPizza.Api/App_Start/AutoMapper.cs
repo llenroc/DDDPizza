@@ -1,21 +1,17 @@
 ﻿using AutoMapper;
+using DDDPizza.Api.Factories;
 using DDDPizza.DomainModels;
-using DDDPizza.DomainModels.Enums;
 using DDDPizza.ViewModels;
 using DDDPizza.ViewModels.CostInventory;
 using DDDPizza.ViewModels.Inventory;
 
-namespace DDDPizza.Mvc.App_Start
+namespace DDDPizza.Api.App_Start
 {
     public static class AutoMapperConfig
     {
 
- 
         public static void RegisterMappings()
         {
-
-        
-
             // Models with no price
             Mapper.CreateMap<Bread, InventoryVm>()
                 .ForMember(x => x.Type, dest => dest.MapFrom(src => InventoryTypeVm.Bread))
@@ -38,15 +34,19 @@ namespace DDDPizza.Mvc.App_Start
                 .ForMember(x => x.Type, dest => dest.MapFrom(src => InventoryTypeVm.Size))
                 .ReverseMap();
 
+            // Pizzas and Orders
             Mapper.CreateMap<Pizza, PizzaVm>()
-                .ForMember(x => x.Topping, y => y.MapFrom(src => src.Toppings))
-                .ReverseMap();
+                .ForMember(x => x.Topping, y => y.MapFrom(src => src.Toppings));
+
+            Mapper.CreateMap<PizzaVm, Pizza>()
+                .ConvertUsing<PizzaVmToPizzaDmConverter>();
 
             Mapper.CreateMap<Order, OrderVm>()
                 .ForMember(x => x.Total, y => y.MapFrom(src => src.TotalAmount))
-                .ForMember(x => x.ServiceType, y => y.MapFrom(src => src.ServiceType.ToString()))
-                .ReverseMap();
+                .ForMember(x => x.ServiceType, y => y.MapFrom(src => src.ServiceType.ToString()));
 
+            Mapper.CreateMap<OrderVm, Order>()
+                .ConvertUsing<OrderVmToOrderDmConverter>();
        
         }
 

@@ -170,6 +170,8 @@
     <Compile Include="Controllers\InventoryController.cs" />
     <Compile Include="Controllers\PizzaController.cs" />
     <Compile Include="Factories\IViewModelFactory.cs" />
+    <Compile Include="Factories\OrderVmToOrderDmConverter.cs" />
+    <Compile Include="Factories\PizzaVmToPizzaDmConverter.cs" />
     <Compile Include="Factories\ViewModelFactory.cs" />
     <Compile Include="Formatters\JsonContentNegotiator.cs" />
     <Compile Include="Global.asax.cs">

@@ -22,7 +22,6 @@ namespace DDDPizza.Api.Controllers
             _viewModelFactory = viewModelFactory;
         }
 
-
         [HttpPost]
         [Route("api/place/order")]
         public async Task<IHttpActionResult> PlacePizza([FromBody]OrderVm placeOrder)
@@ -32,16 +31,14 @@ namespace DDDPizza.Api.Controllers
             {
                 try
                 {
-                    var vm = _viewModelFactory.CreateOrder(placeOrder);
+                    var vm = _viewModelFactory.CreateFromVm<OrderVm, Order>(placeOrder);
                     var result = _pizzaRepository.Add(vm);
                     return Ok(result);
                 }
                 catch (Exception ex)
                 {
-
                     return Ok(ex);
-                }
-           
+                }    
             }
 
             return BadRequest();
@@ -71,9 +68,5 @@ namespace DDDPizza.Api.Controllers
             //return Created("", returnOrder);
             return Ok();
         }
-
-
-     
-
     }
 }
