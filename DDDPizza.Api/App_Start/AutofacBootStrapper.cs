@@ -26,10 +26,7 @@ namespace DDDPizza.Api
             builder.RegisterType<MongoInventoryRepository<Topping>>().As<IInventoryRepository<Topping>>();
             builder.RegisterType<MongoInventoryRepository<Size>>().As<IInventoryRepository<Size>>();
 
-
             builder.RegisterType<ViewModelFactory>().As<IViewModelFactory>();
-
-
 
             var container = builder.Build();
             return new AutofacWebApiDependencyResolver(container);
