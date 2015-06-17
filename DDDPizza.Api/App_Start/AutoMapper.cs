@@ -14,11 +14,7 @@ namespace DDDPizza.Mvc.App_Start
         public static void RegisterMappings()
         {
 
-          
-
         
-
-            
 
             // Models with no price
             Mapper.CreateMap<Bread, InventoryVm>()

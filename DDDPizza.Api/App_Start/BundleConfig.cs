@@ -32,16 +32,9 @@ namespace DDDPizza.Api
                       "~/Content/site.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
-                 "~/Scripts/app/app.js"));
+                 "~/Scripts/app/app.min.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/app/controllers").Include(
-                "~/Scripts/app/controllers/*.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/app/directives").Include(
-                     "~/Scripts/app/directives/*.js"));
-
-            bundles.Add(new ScriptBundle("~/bundles/app/services").Include(
-                     "~/Scripts/app/services/*.js"));
 
         }
     }

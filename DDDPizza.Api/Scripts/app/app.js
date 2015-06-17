@@ -1,27 +1,26 @@
-﻿(function() {
+﻿(function () {
     'use strict';
-    var app = angular.module('dddPizza', ['ngAnimate', 'ngSanitize', 'ui.router', 'toastr']);
 
-    app.config(function ($urlRouterProvider, $stateProvider, $locationProvider) {
+    var pizzaDetailsFn = function () {
+        return function (pizza) {
 
-        $stateProvider
-        .state('view', {
-            url: '/',
-            templateUrl: '/Scripts/app/views/view.html'
-        })
-        .state('add', {
-            url: '/add',
-            templateUrl: '/Scripts/app/views/home.html'
-        });
-        $urlRouterProvider.otherwise('/');
-        $locationProvider.html5Mode({
-            enabled: true,
-            requireBase: false
-        });
+            var returnString = '';
+            returnString += pizza.size.name + ", ";
+            returnString += pizza.bread.name + ", ";
+            returnString += pizza.sauce.name + ", ";
+            returnString += pizza.cheese.name + ", ";
 
-    });
+            if (pizza.topping.length > 0) {
+                pizza.topping.forEach(function (top) {
+                    if (top != null)
+                        returnString += top.name + ", ";
+                });
+            }
+            return returnString.substring(0, returnString.length - 2);
+        }
+    };
 
-    app.config(function (toastrConfig) {
+    var toaster = function (toastrConfig) {
         angular.extend(toastrConfig, {
             allowHtml: false,
             autoDismiss: false,
@@ -54,30 +53,33 @@
             titleClass: 'toast-title',
             toastClass: 'toast'
         });
-    });
+    }
 
+    toaster.$inject = ['toastrConfig'];
 
-    app.filter('pizzadetails', function () {
+    var routes = function ($urlRouterProvider, $stateProvider, $locationProvider) {
+        $stateProvider
+         .state('view', {
+             url: '/',
+             templateUrl: '/Scripts/app/views/view.html'
+         })
+         .state('add', {
+             url: '/add',
+             templateUrl: '/Scripts/app/views/home.html'
+         });
+        $urlRouterProvider.otherwise('/');
+        $locationProvider.html5Mode({
+            enabled: true,
+            requireBase: false
+        });
+    };
 
+    routes.$inject = ['$urlRouterProvider', '$stateProvider', '$locationProvider'];
 
-        return function (pizza) {
+    angular.module('dddPizza', ['ngAnimate', 'ngSanitize', 'ui.router', 'toastr'])
+        .config(routes)
+        .config(toaster)
+        .filter('pizzadetails', pizzaDetailsFn);
 
-            var returnString = '';
-            returnString += pizza.size.name + ", ";
-            returnString += pizza.bread.name + ", ";
-            returnString += pizza.sauce.name + ", ";
-            returnString += pizza.cheese.name + ", ";
-
-            if (pizza.topping.length > 0) {
-                pizza.topping.forEach(function (top) {
-                    if(top != null)
-                        returnString += top.name + ", ";
-                });
-            }
-            return returnString.substring(0, returnString.length - 2);
-
-        }
-        
-    });
 
 }());
