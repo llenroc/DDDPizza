@@ -24,6 +24,12 @@ namespace DDDPizza.Api
                 cm.AutoMap();
                 cm.GetMemberMap(c => c.Toppings).SetElementName("Topping");
             });
+
+            BsonClassMap.RegisterClassMap<Order>(cm =>
+            {
+                cm.AutoMap();
+                cm.SetIgnoreExtraElements(true);
+            });
         
         }
 
