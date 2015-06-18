@@ -147,9 +147,9 @@
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                         </td>
-                                        <td>{{pizza | pizzadetails}}</td>
+                                        <td>{{::pizza | pizzadetails}}</td>
 
-                                        <td>{{pizza.total | currency }}</td>
+                                        <td>{{::pizza.total | currency }}</td>
                                     </tr>
                                 </tbody>
                                 <tfoot>
@@ -159,7 +159,7 @@
                                                 Service Charge:
                                             </div>
                                         </td>
-                                        <td>{{ home.tempOrder.serviceCharge | currency }}</td>
+                                        <td>{{ ::home.tempOrder.serviceCharge | currency }}</td>
                                     </tr>
                                     <tr class="orderTotalsRow">
                                         <td colspan="3">

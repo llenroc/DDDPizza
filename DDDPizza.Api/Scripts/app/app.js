@@ -1,9 +1,24 @@
 ﻿(function () {
-    'use strict';
+    "use strict";
+
+    var serviceTypeFn = function () {
+        //TODO: ERIC Write a unit test
+        return function (value) {
+
+            if (value === "TakeOut") {
+                return "Take Out";
+            } else if (value === "InRestaurant") {
+                return "Dining In";
+            } else if (value === "Delivery") {
+                return "Delivery";
+            }
+            return "Unspecified";
+        }
+    };
 
     var pizzaDetailsFn = function () {
         return function (pizza) {
-
+            //TODO: ERIC Write a unit test
             var returnString = '';
             returnString += pizza.size.name + ", ";
             returnString += pizza.bread.name + ", ";
@@ -55,7 +70,13 @@
         });
     }
 
-    toaster.$inject = ['toastrConfig'];
+    toaster.$inject = ["toastrConfig"];
+
+    var disableScope = function ($compileProvider) {
+        $compileProvider.debugInfoEnabled(false);
+    }
+
+    disableScope.$inject = ["$compileProvider"];
 
     var routes = function ($urlRouterProvider, $stateProvider, $locationProvider) {
         $stateProvider
@@ -74,12 +95,13 @@
         });
     };
 
-    routes.$inject = ['$urlRouterProvider', '$stateProvider', '$locationProvider'];
+    routes.$inject = ["$urlRouterProvider", "$stateProvider", "$locationProvider"];
 
-    angular.module('dddPizza', ['ngAnimate', 'ngSanitize', 'ui.router', 'toastr'])
+    angular.module("dddPizza", ["ngAnimate", "ngSanitize", "ui.router", "toastr", "ui.bootstrap"])
         .config(routes)
         .config(toaster)
-        .filter('pizzadetails', pizzaDetailsFn);
-
+        .config(disableScope)
+        .filter("pizzadetails", pizzaDetailsFn)
+        .filter("servicetype", serviceTypeFn);
 
 }());

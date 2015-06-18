@@ -26,6 +26,10 @@ table > thead {
     font-weight: bold;
 }
 
+table#viewOrders > thead {
+      background-color: #E4E4E4;
+}
+
 table#order > thead {
     background-color: #511c39;
     color: #fff;
