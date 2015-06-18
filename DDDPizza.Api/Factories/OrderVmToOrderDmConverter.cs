@@ -12,7 +12,7 @@ namespace DDDPizza.Api.Factories
         public Order Convert(ResolutionContext context)
         {
             var src = (OrderVm)context.SourceValue;
-            var servType = Enumeration.FromDisplayName<ServiceType>(src.ServiceType);
+            var servType = Enumeration.FromDisplayName<ServiceType>(src.ServiceType.Replace(" ", ""));
             var result = new Order(servType, src.Pizzas.Select(Mapper.Map<Pizza>).ToList(), src.Name);
             return result;
         }

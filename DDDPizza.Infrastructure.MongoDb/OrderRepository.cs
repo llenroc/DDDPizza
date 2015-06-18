@@ -10,12 +10,12 @@ using MongoDB.Driver;
 
 namespace DDDPizza.Infrastructure.MongoDb
 {
-    public class PizzaRepository : IPizzaRepository
+    public class OrderRepository : IOrderRepository
     {
         private readonly IMongoCollection<Order> _mongoOrdersCollection;
         private readonly IMongoDatabase _mongoDatabase;
 
-        public PizzaRepository()
+        public OrderRepository()
         {
             IMongoClient mongoClient = new MongoClient(ConfigurationManager.AppSettings.Get("mongoConnection"));
             _mongoDatabase = mongoClient.GetDatabase("dddpizza");

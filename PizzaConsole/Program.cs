@@ -12,6 +12,7 @@ using DDDPizza.DomainModels.Handlers;
 using DDDPizza.DomainModels.Interfaces;
 using DDDPizza.Infrastructure.MongoDb;
 using DDDPizza.Mocks;
+using DDDPizza.SharedKernel;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
@@ -26,9 +27,14 @@ namespace PizzaConsole
         {
 
 
+            var list = Enumeration.GetAll<ServiceType>().Select(x => x.DisplayName);
+
+
+            Console.ReadLine();
+
             InitIoC();
 
-            var pizzaRepository = new PizzaRepository();
+            var pizzaRepository = new OrderRepository();
 
             var run = new Task(async () =>
             {

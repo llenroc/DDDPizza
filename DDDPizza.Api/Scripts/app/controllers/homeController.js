@@ -1,7 +1,7 @@
 ﻿(function (module) {
 
-    var injectParams = ['inventoryRepository', 'pizza', 'order', 'localStorage', 'toastr'];
-    var homeController = function (inventoryRepository, pizza, order, localStorage, toastr) {
+    var injectParams = ['inventoryRepository', 'orderRepository', 'pizza', 'order', 'localStorage', 'toastr'];
+    var homeController = function (inventoryRepository, orderRepository, pizza, order, localStorage, toastr) {
 
         var model = this;
 
@@ -9,6 +9,7 @@
         model.pizza = pizza;
         model.order = order;
         model.breads = [];
+        model.services = [];
         model.tempOrder = {};
 
 
@@ -20,6 +21,10 @@
                 model.cheeses = data.cheeses;
                 model.sizes = data.sizes;
                 model.toppings = data.toppings;
+            });
+
+            orderRepository.getServiceOptions().then(function (data) {
+                model.services = data;
             });
 
             if (localStorage.get(model.userkey) == null) {

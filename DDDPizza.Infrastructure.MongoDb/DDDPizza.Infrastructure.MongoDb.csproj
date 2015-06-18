@@ -59,7 +59,7 @@
     <Compile Include="Factories\RepositoryFactory.cs" />
     <Compile Include="MongoDataContext.cs" />
     <Compile Include="MongoInventoryRepository.cs" />
-    <Compile Include="PizzaRepository.cs" />
+    <Compile Include="OrderRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

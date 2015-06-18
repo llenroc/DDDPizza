@@ -60,6 +60,10 @@
       <Project>{54502586-2068-4fe0-b4f5-37bf59a553c4}</Project>
       <Name>DDDPizza.Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DDDPizza.SharedKernel\DDDPizza.SharedKernel.csproj">
+      <Project>{d585ea09-f249-4d86-b086-744d5cfedcd4}</Project>
+      <Name>DDDPizza.SharedKernel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DDDPizza.ViewModels\DDDPizza.ViewModels.csproj">
       <Project>{198a7742-f3d5-4ff7-a8ee-e53dfd7c0ffb}</Project>
       <Name>DDDPizza.ViewModels</Name>

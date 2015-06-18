@@ -168,7 +168,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventoryController.cs" />
-    <Compile Include="Controllers\PizzaController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Factories\IViewModelFactory.cs" />
     <Compile Include="Factories\OrderVmToOrderDmConverter.cs" />
     <Compile Include="Factories\PizzaVmToPizzaDmConverter.cs" />

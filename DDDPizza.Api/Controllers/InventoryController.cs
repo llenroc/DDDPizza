@@ -15,15 +15,16 @@ namespace DDDPizza.Api.Controllers
     public class InventoryController : ApiController
     {
 
-        private readonly IPizzaRepository _pizzaRepository;
+        private readonly IOrderRepository _orderRepository;
         private readonly IRepositoryFactory _repositoryFactory;
         private readonly IViewModelFactory _viewModelFactory;
 
-        public InventoryController(IPizzaRepository pizzaRepository, IRepositoryFactory repositoryFactory, IViewModelFactory viewModelFactory)
+        public InventoryController(IRepositoryFactory repositoryFactory, IViewModelFactory viewModelFactory, IOrderRepository orderRepository)
         {
-            _pizzaRepository = pizzaRepository;
+          
             _repositoryFactory = repositoryFactory;
             _viewModelFactory = viewModelFactory;
+            _orderRepository = orderRepository;
         }
 
         [HttpGet]

@@ -5,11 +5,11 @@ using DDDPizza.DomainModels;
 
 namespace DDDPizza.Interfaces
 {
-    public interface IPizzaRepository : IInventoryRepository
+    public interface IOrderRepository : IInventoryRepository
     {
 
         Task<Pizza> Add(Pizza pizza);
- 
+  
 
         Task<IEnumerable<Order>> GetAll();
         Task<Order> GetById(Guid id);

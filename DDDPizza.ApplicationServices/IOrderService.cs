@@ -6,8 +6,9 @@ namespace DDDPizza.ApplicationServices
 {
     public interface IOrderService
     {
-        Task<OrderVm> GetOrderById(string id);
-        Task<List<OrderVm>> GetAllOrders();
-        void PlaceOrder(OrderVm order);
+        Task<OrderVm> GetOrderByIdAsync(string id);
+        Task<List<OrderVm>> GetAllOrdersAsync();
+        Task<OrderVm> PlaceOrderAsync(OrderVm order);
+        IDictionary<string, string> GetServiceOptions();
     }
 }

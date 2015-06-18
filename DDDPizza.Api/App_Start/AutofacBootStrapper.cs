@@ -2,6 +2,7 @@ using System.Reflection;
 using Autofac;
 using Autofac.Integration.WebApi;
 using DDDPizza.Api.Factories;
+using DDDPizza.ApplicationServices;
 using DDDPizza.DomainModels;
 using DDDPizza.Infrastructure.MongoDb;
 using DDDPizza.Infrastructure.MongoDb.Factories;
@@ -17,7 +18,9 @@ namespace DDDPizza.Api
             var builder = new ContainerBuilder();
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
-            builder.RegisterType<PizzaRepository>().As<IPizzaRepository>();
+            builder.RegisterType<OrderService>().As<IOrderService>().InstancePerLifetimeScope();
+
+            builder.RegisterType<OrderRepository>().As<IOrderRepository>();
             builder.RegisterType<RepositoryFactory>().As<IRepositoryFactory>();
 
             builder.RegisterType<MongoInventoryRepository<Bread>>().As<IInventoryRepository<Bread>>();
