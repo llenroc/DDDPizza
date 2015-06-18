@@ -740,6 +740,10 @@
     <Content Include="Scripts\lib\angular-bootstrap\bower.json" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DDDPizza.ApplicationServices\DDDPizza.ApplicationServices.csproj">
+      <Project>{a81be998-b915-4796-9a21-e43b381f3726}</Project>
+      <Name>DDDPizza.ApplicationServices</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DDDPizza.DomainModels\DDDPizza.DomainModels.csproj">
       <Project>{8ae728bc-e430-4210-8131-9759adeb4e14}</Project>
       <Name>DDDPizza.DomainModels</Name>

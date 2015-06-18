@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
-using DDDPizza.Api.Factories;
-using DDDPizza.DomainModels;
-using DDDPizza.Interfaces;
+using DDDPizza.ApplicationServices;
 using DDDPizza.ViewModels;
 
 namespace DDDPizza.Api.Controllers
@@ -13,14 +9,13 @@ namespace DDDPizza.Api.Controllers
     public class PizzaController : ApiController
     {
 
-        private readonly IPizzaRepository _pizzaRepository;
-        private readonly IViewModelFactory _viewModelFactory;
+        private readonly IOrderService _orderService;
 
-        public PizzaController(IPizzaRepository pizzaRepository, IViewModelFactory viewModelFactory)
+        public PizzaController(IOrderService orderService)
         {
-            _pizzaRepository = pizzaRepository;
-            _viewModelFactory = viewModelFactory;
+            _orderService = orderService;
         }
+
 
         [HttpPost]
         [Route("api/place/order")]
@@ -31,14 +26,14 @@ namespace DDDPizza.Api.Controllers
             {
                 try
                 {
-                    var vm = _viewModelFactory.CreateFromVm<OrderVm, Order>(placeOrder);
-                    var result = _pizzaRepository.Add(vm);
-                    return Ok(result);
+                    _orderService.PlaceOrder(placeOrder);
+
+                    return Ok();
                 }
                 catch (Exception ex)
                 {
                     return Ok(ex);
-                }    
+                }
             }
 
             return BadRequest();
@@ -48,25 +43,16 @@ namespace DDDPizza.Api.Controllers
         [Route("api/orders")]
         public async Task<IHttpActionResult> GetOrders()
         {
-            var result = await _pizzaRepository.GetAll();
-            var vm = _viewModelFactory.CreateFromVm<List<Order>, List<OrderVm>>(result.OrderByDescending(x => x.DateTimeStamp).ToList());
-            return Ok(vm);
+            return Ok(_orderService.GetAllOrders());
         }
 
         [HttpGet]
         [Route("api/orders/{id}")]
         public async Task<IHttpActionResult> GetOrder(string id)
         {
-            return Ok(await _pizzaRepository.GetById(Guid.Parse(id)));
+            return Ok(await _orderService.GetOrderById(id));
         }
 
-        [HttpPost]
-        [Route("api/orders")]
-        public async Task<IHttpActionResult> InsertOrder([FromBody]Order order)
-        {
-            //var returnOrder = await _pizzaRepository.Add(order);
-            //return Created("", returnOrder);
-            return Ok();
-        }
+       
     }
 }
