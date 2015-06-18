@@ -9,6 +9,8 @@ Technologies being used a list below
 <li>Application: AutoMapper</li>
 <li>Persistance: MongoDb</li>
 <li>IoC: AutoFac</li>
+<li>Unit Testing: NUnit</li>
+<li>Mock Framework: Moq</li>
 </ol>
 
 Running CI on AppVeyor - https://ci.appveyor.com/project/bl1nkr/dddpizza/
