@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Net;
+using System.Net.Http;
+using System.Security;
 using System.Threading.Tasks;
 using System.Web.Http;
 using DDDPizza.ApplicationServices;
@@ -6,7 +9,7 @@ using DDDPizza.ViewModels;
 
 namespace DDDPizza.Api.Controllers
 {
-    public class OrderController : ApiController
+    public class OrderController : BaseApiController
     {
 
         private readonly IOrderService _orderService;
@@ -17,8 +20,8 @@ namespace DDDPizza.Api.Controllers
         }
 
         [HttpPost]
-        [Route("api/place/order")]
-        public async Task<IHttpActionResult> PlacePizza([FromBody]OrderVm placeOrder)
+        [Route("api/order")]
+        public async Task<IHttpActionResult> PlaceOrder([FromBody]OrderVm placeOrder)
         {
             if (!ModelState.IsValid) return BadRequest();
             try
@@ -44,6 +47,13 @@ namespace DDDPizza.Api.Controllers
         public async Task<IHttpActionResult> GetOrder(string id)
         {
             return Ok(await _orderService.GetOrderByIdAsync(id));
+        }
+
+        [HttpGet]
+        [Route("api/orders/service/{type}", Name = "OrdersByServiceType")]
+        public async Task<IHttpActionResult> GetOrdersByServiceType(string type)
+        {
+            return Ok(await _orderService.GetAllOrdersByServiceTypeAsync(type));
         }
 
         [HttpGet]

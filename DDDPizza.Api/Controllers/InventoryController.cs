@@ -12,19 +12,19 @@ using DDDPizza.ViewModels.Inventory;
 
 namespace DDDPizza.Api.Controllers
 {
-    public class InventoryController : ApiController
-    {
 
-        private readonly IOrderRepository _orderRepository;
+
+
+    public class InventoryController : BaseApiController
+    {
         private readonly IRepositoryFactory _repositoryFactory;
         private readonly IViewModelFactory _viewModelFactory;
 
-        public InventoryController(IRepositoryFactory repositoryFactory, IViewModelFactory viewModelFactory, IOrderRepository orderRepository)
+        public InventoryController(IRepositoryFactory repositoryFactory, IViewModelFactory viewModelFactory)
         {
           
             _repositoryFactory = repositoryFactory;
             _viewModelFactory = viewModelFactory;
-            _orderRepository = orderRepository;
         }
 
         [HttpGet]

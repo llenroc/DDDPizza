@@ -4,8 +4,8 @@ using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Threading.Tasks;
 using DDDPizza.DomainModels;
+using DDDPizza.DomainModels.Enums;
 using DDDPizza.Interfaces;
-using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace DDDPizza.Infrastructure.MongoDb
@@ -22,10 +22,10 @@ namespace DDDPizza.Infrastructure.MongoDb
             _mongoOrdersCollection = _mongoDatabase.GetCollection<Order>("Orders");
         }
 
-        public async Task<Pizza> Add(Pizza pizza)
+
+        public async Task<IEnumerable<Order>> GetAllByStatus(ServiceType type)
         {
-            await _mongoDatabase.GetCollection<Pizza>("Pizza").InsertOneAsync(pizza);
-            return pizza;
+            return await (await _mongoOrdersCollection.FindAsync(x => Equals(x.ServiceType, type))).ToListAsync();
         }
 
         public async Task<IEnumerable<Order>> GetAll()

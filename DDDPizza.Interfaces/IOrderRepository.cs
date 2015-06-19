@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using DDDPizza.DomainModels;
+using DDDPizza.DomainModels.Enums;
 
 namespace DDDPizza.Interfaces
 {
+
+  
+
     public interface IOrderRepository : IInventoryRepository
     {
 
-        Task<Pizza> Add(Pizza pizza);
-  
-
+        Task<IEnumerable<Order>> GetAllByStatus(ServiceType type);
         Task<IEnumerable<Order>> GetAll();
         Task<Order> GetById(Guid id);
         Task<Order> Add(Order order);
