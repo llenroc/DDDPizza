@@ -15,13 +15,23 @@ module.exports = function(config) {
     files: [
         'DDDPizza.Api/Scripts/lib/angular/angular.js',
         'DDDPizza.Api/Scripts/lib/angular-resource/angular-resource.js',
+        'DDDPizza.Api/Scripts/lib/angular-animate/angular-animate.js',
+        'DDDPizza.Api/Scripts/lib/angular-sanitize/angular-sanitize.js',
         'DDDPizza.Api/Scripts/lib/angular-ui-router/release/angular-ui-router.js',
+        'DDDPizza.Api/Scripts/lib/angular-toastr/dist/angular-toastr.js',
+        'DDDPizza.Api/Scripts/lib/angular-bootstrap/ui-bootstrap-tpls.js',
         'DDDPizza.Api/Scripts/lib/angular-mocks/angular-mocks.js',
         'DDDPizza.Api/Scripts/lib/sinon/lib/sinon.js',
         'DDDPizza.Api/Scripts/app/app.min.js',
         'DDDPizza.Api/Tests/*.js'
     ],
 
+    plugins : [
+      'karma-chrome-launcher',
+        'karma-phantomjs-launcher',
+        'karma-coverage',
+        'karma-jasmine'
+    ],
 
     // list of files to exclude
     exclude: [

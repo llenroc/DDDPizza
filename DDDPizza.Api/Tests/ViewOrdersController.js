@@ -1,28 +1,25 @@
 ﻿"use strict";
 
-describe("viewController", function () {
+describe("pizzaController", function () {
 
-    //basic mock lookup service which returns empty arrays
-    var mockOrderRepository = {
-        getOrders: function () {
-            return [
-               
-            ];
-        }
-    };
+    var scope, controller;
+    beforeEach(module("dddPizza"));
 
-    var scope, model, controller;
+    beforeEach(inject(function ($controller) {
+        scope = {};
+        controller = $controller("pizzaController", {});
+    }));
 
-   
-
-    it("should be true", function () {
-        expect(true).toBe(true);
+    it("has a working controller", function () {
+        expect(controller.value).toBeDefined();
     });
 
-    it("should be false", function () {
-        expect(false).toBe(false);
+    it("has correct initial values", function () {
+        expect(controller.pizzas).toBeDefined();
+
     });
 
 
+
    
-});
+}); 

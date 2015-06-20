@@ -199,6 +199,7 @@
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\controllers\homeController.js" />
     <Content Include="Scripts\app\controllers\navigationController.js" />
+    <Content Include="Scripts\app\controllers\pizzaController.js" />
     <Content Include="Scripts\app\controllers\viewController.js" />
     <Content Include="Scripts\app\directives\templates\dynamicDDL.html" />
     <Content Include="Scripts\app\directives\dynamicDDL.js" />

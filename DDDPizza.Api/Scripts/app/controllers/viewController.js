@@ -8,8 +8,7 @@
         model.init = function () {
 
             orderRepository.getOrders().then(function (data) {
-                model.orders = data;
-   
+                model.orders = data; 
             });
 
         };

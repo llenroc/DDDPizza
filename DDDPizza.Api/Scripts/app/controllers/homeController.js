@@ -97,7 +97,7 @@
             model.init();
         };
 
-        model.submitPizza = function (pizzaForm) {
+        model.submitPizza = function () {
 
             var obj = localStorage.get(model.userkey);
             obj.pizzas.push(model.pizza);
