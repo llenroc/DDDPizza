@@ -232,6 +232,10 @@
     <Content Include="Scripts\lib\angular-bootstrap\ui-bootstrap-tpls.min.js" />
     <Content Include="Scripts\lib\angular-bootstrap\ui-bootstrap.js" />
     <Content Include="Scripts\lib\angular-bootstrap\ui-bootstrap.min.js" />
+    <Content Include="Scripts\lib\angular-mocks\angular-mocks.js" />
+    <Content Include="Scripts\lib\angular-mocks\ngAnimateMock.js" />
+    <Content Include="Scripts\lib\angular-mocks\ngMock.js" />
+    <Content Include="Scripts\lib\angular-mocks\ngMockE2E.js" />
     <Content Include="Scripts\lib\angular-resource\angular-resource.js" />
     <Content Include="Scripts\lib\angular-resource\angular-resource.min.js" />
     <Content Include="Scripts\lib\angular-resource\index.js" />
@@ -542,7 +546,64 @@
     <Content Include="Scripts\lib\respond\src\matchmedia.addListener.js" />
     <Content Include="Scripts\lib\respond\src\matchmedia.polyfill.js" />
     <Content Include="Scripts\lib\respond\src\respond.js" />
+    <Content Include="Scripts\lib\sinon\.gitignore" />
+    <Content Include="Scripts\lib\sinon\Changelog.txt" />
+    <Content Include="Scripts\lib\sinon\lib\sinon.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\assert.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\behavior.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\call.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\collection.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\extend.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\format.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\log_error.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\match.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\mock.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\sandbox.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\spy.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\stub.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\test.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\test_case.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\times_in_words.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\typeOf.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\util\core.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\util\event.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\util\fake_server.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\util\fake_server_with_clock.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\util\fake_timers.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\util\fake_xdomain_request.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\util\fake_xml_http_request.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\util\timers_ie.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\util\xdr_ie.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\util\xhr_ie.js" />
+    <Content Include="Scripts\lib\sinon\test\assert-test.js" />
+    <Content Include="Scripts\lib\sinon\test\buster-packaged.js" />
+    <Content Include="Scripts\lib\sinon\test\buster.js" />
+    <Content Include="Scripts\lib\sinon\test\call-test.js" />
+    <Content Include="Scripts\lib\sinon\test\collection-test.js" />
+    <Content Include="Scripts\lib\sinon\test\extend-test.js" />
+    <Content Include="Scripts\lib\sinon\test\format-test.js" />
+    <Content Include="Scripts\lib\sinon\test\hello-world-test.js" />
+    <Content Include="Scripts\lib\sinon\test\issues\issues-test.js" />
+    <Content Include="Scripts\lib\sinon\test\log-error-test.js" />
+    <Content Include="Scripts\lib\sinon\test\match-test.js" />
+    <Content Include="Scripts\lib\sinon\test\mock-test.js" />
+    <Content Include="Scripts\lib\sinon\test\sandbox-test.js" />
+    <Content Include="Scripts\lib\sinon\test\sinon-test.js" />
+    <Content Include="Scripts\lib\sinon\test\spy-test.js" />
+    <Content Include="Scripts\lib\sinon\test\stub-test.js" />
+    <Content Include="Scripts\lib\sinon\test\test-case-test.js" />
+    <Content Include="Scripts\lib\sinon\test\test-helper.js" />
+    <Content Include="Scripts\lib\sinon\test\test-test.js" />
+    <Content Include="Scripts\lib\sinon\test\times-in-words-test.js" />
+    <Content Include="Scripts\lib\sinon\test\typeOf-test.js" />
+    <Content Include="Scripts\lib\sinon\test\util\event-test.js" />
+    <Content Include="Scripts\lib\sinon\test\util\fake-server-test.js" />
+    <Content Include="Scripts\lib\sinon\test\util\fake-server-with-clock-test.js" />
+    <Content Include="Scripts\lib\sinon\test\util\fake-timers-test.js" />
+    <Content Include="Scripts\lib\sinon\test\util\fake-xdomain-request-test.js" />
+    <Content Include="Scripts\lib\sinon\test\util\fake-xml-http-request-test.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Tests\ViewOrdersController.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -739,6 +800,23 @@
     <Content Include="Scripts\lib\font-awesome\scss\_variables.scss" />
     <Content Include="Scripts\lib\angular-bootstrap\.bower.json" />
     <Content Include="Scripts\lib\angular-bootstrap\bower.json" />
+    <Content Include="Scripts\lib\angular-mocks\.bower.json" />
+    <Content Include="Scripts\lib\angular-mocks\bower.json" />
+    <Content Include="Scripts\lib\angular-mocks\package.json" />
+    <Content Include="Scripts\lib\angular-mocks\README.md" />
+    <Content Include="Scripts\lib\sinon\.bower.json" />
+    <Content Include="Scripts\lib\sinon\.editorconfig" />
+    <Content Include="Scripts\lib\sinon\.jscsrc" />
+    <Content Include="Scripts\lib\sinon\.travis.yml" />
+    <Content Include="Scripts\lib\sinon\AUTHORS" />
+    <Content Include="Scripts\lib\sinon\build" />
+    <Content Include="Scripts\lib\sinon\CONTRIBUTING.md" />
+    <Content Include="Scripts\lib\sinon\LICENSE" />
+    <Content Include="Scripts\lib\sinon\package.json" />
+    <Content Include="Scripts\lib\sinon\README.md" />
+    <Content Include="Scripts\lib\sinon\RELEASE.md" />
+    <Content Include="Scripts\lib\sinon\release.sh" />
+    <Content Include="Scripts\lib\sinon\scripts\ci-test.sh" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DDDPizza.ApplicationServices\DDDPizza.ApplicationServices.csproj">
@@ -772,9 +850,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

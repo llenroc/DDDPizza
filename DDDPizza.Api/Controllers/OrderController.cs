@@ -24,15 +24,14 @@ namespace DDDPizza.Api.Controllers
         public async Task<IHttpActionResult> PlaceOrder([FromBody]OrderVm placeOrder)
         {
             if (!ModelState.IsValid) return BadRequest();
-            try
+
+            return GetIHttpActionResult(() =>
             {
                 var vm = await _orderService.PlaceOrderAsync(placeOrder);
                 return Created(Url.Route("OrderById",new{ id = vm.Id}), vm);
-            }
-            catch (Exception ex)
-            {
-                return InternalServerError(ex);
-            }
+            });
+
+          
         }
 
         [HttpGet]
