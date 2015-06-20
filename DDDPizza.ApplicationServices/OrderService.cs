@@ -45,6 +45,10 @@ namespace DDDPizza.ApplicationServices
         public async Task<OrderVm> PlaceOrderAsync(OrderVm order)
         {
             var vm = AutoMapper.Mapper.Map<OrderVm, Order>(order);
+            long existingOrder = 0;
+            var countTask = Task.Factory.StartNew(() => existingOrder = CountPendingOrders().Result);
+            countTask.Wait();
+            vm.SetEstimatedReadyTime(existingOrder);
             var dm = await _orderRepository.Add(vm);
             return AutoMapper.Mapper.Map<Order, OrderVm>(dm);
         }
@@ -56,6 +60,15 @@ namespace DDDPizza.ApplicationServices
                 Enumeration.GetAll<ServiceType>()
                     .ToDictionary(key => key.DisplayName, val => Regex.Replace(val.DisplayName, @"([a-z])([A-Z])", "$1 $2"));          
             return result;
+        }
+
+        /// <summary>
+        /// Get the current amout of pending orders the given date and time
+        /// </summary>
+        public async Task<long> CountPendingOrders()
+        {
+
+            return await _orderRepository.GetAllPending();
         }
     }
 }

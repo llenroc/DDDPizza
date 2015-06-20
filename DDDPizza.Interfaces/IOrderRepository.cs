@@ -6,14 +6,12 @@ using DDDPizza.DomainModels.Enums;
 
 namespace DDDPizza.Interfaces
 {
-
-  
-
     public interface IOrderRepository : IInventoryRepository
     {
 
         Task<IEnumerable<Order>> GetAllByStatus(ServiceType type);
         Task<IEnumerable<Order>> GetAll();
+        Task<long> GetAllPending();
         Task<Order> GetById(Guid id);
         Task<Order> Add(Order order);
 
@@ -25,11 +23,7 @@ namespace DDDPizza.Interfaces
         Task<Bread> GetBreadById(Guid id);
         Task<List<Bread>> GetAllBreads();
 
-        Task SeedToppings();
-        Task SeedSizes();
-        Task SeedSauces();
-        Task SeedCheeses();
-        Task SeedBreads();
+  
 
     }
 }

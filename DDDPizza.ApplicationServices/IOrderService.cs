@@ -11,5 +11,6 @@ namespace DDDPizza.ApplicationServices
         Task<IEnumerable<OrderVm>> GetAllOrdersByServiceTypeAsync(string type);
         Task<OrderVm> PlaceOrderAsync(OrderVm order);
         IDictionary<string, string> GetServiceOptions();
+        Task<long> CountPendingOrders();
     }
 }

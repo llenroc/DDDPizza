@@ -6,11 +6,7 @@ namespace DDDPizza.DomainModels
     {
 
         private List<Topping> _toppings;
-
-        public Pizza()
-        {
-            
-        }
+  
         public Pizza(List<Topping> toppings, Size size, Bread bread, Sauce sause, Cheese cheese)
         {
             _toppings = toppings;
@@ -20,8 +16,6 @@ namespace DDDPizza.DomainModels
             Cheese = cheese;
             CalculateCost();
         }
-
- 
 
         public List<Topping> Toppings
         {

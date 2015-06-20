@@ -27,7 +27,7 @@ namespace DDDPizza.Api.Controllers
 
             return GetIHttpActionResult(() =>
             {
-                var vm = await _orderService.PlaceOrderAsync(placeOrder);
+                var vm =  _orderService.PlaceOrderAsync(placeOrder);
                 return Created(Url.Route("OrderById",new{ id = vm.Id}), vm);
             });
 
@@ -62,6 +62,12 @@ namespace DDDPizza.Api.Controllers
             return Ok(_orderService.GetServiceOptions());
         }
 
+        [HttpGet]
+        [Route("api/orders/pending", Name = "PendingOrderCount")]
+        public async Task<IHttpActionResult> GetPendingOrderCount()
+        {
+            return Ok(await _orderService.CountPendingOrders());
+        }
 
        
     }

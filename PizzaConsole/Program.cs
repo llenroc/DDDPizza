@@ -1,23 +1,17 @@
 ﻿using System;
-using System.CodeDom;
 using System.Collections.Generic;
 using System.Configuration;
-using System.IO.Pipes;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using DDDPizza.DomainModels;
 using DDDPizza.DomainModels.Enums;
 using DDDPizza.DomainModels.Handlers;
 using DDDPizza.DomainModels.Interfaces;
 using DDDPizza.Infrastructure.MongoDb;
-using DDDPizza.Mocks;
 using DDDPizza.SharedKernel;
-using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using StructureMap;
-using StructureMap.Graph;
 
 namespace PizzaConsole
 {
@@ -25,30 +19,29 @@ namespace PizzaConsole
     {
         static void Main(string[] args)
         {
+            
+       
 
 
-            var list = Enumeration.GetAll<ServiceType>().Select(x => x.DisplayName);
-
-
-            Console.ReadLine();
 
             InitIoC();
 
             var pizzaRepository = new OrderRepository();
 
-            var run = new Task(async () =>
+            try
             {
-                await pizzaRepository.SeedSizes();
-            });
-            run.Start();
-            
+                var read = pizzaRepository.GetAllPending().Result;
+                Console.WriteLine();
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex);
+            }
+           
             Console.ReadLine();
 
-            BsonClassMap.RegisterClassMap<Pizza>(cm =>
-            {
-                cm.AutoMap();
-                cm.GetMemberMap(c => c.Toppings).SetElementName("Topping");
-            });
+          
 
             Console.WriteLine("---------------------");
             Console.WriteLine("Welcome to DDD Pizza!");

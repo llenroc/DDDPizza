@@ -1,30 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using DDDPizza.DomainModels.Enums;
-
+using DDDPizza.SharedKernel;
 
 namespace DDDPizza.DomainModels
 {
 
-
-
-
-    public class  Order
+    public class Order : Entity
     {
-        public Order()
+        
+        public Order(ServiceType service, List<Pizza> pizzas, string name) 
         {
-            Id = Guid.NewGuid();
-        }
-        public Order(ServiceType service, List<Pizza> pizzas, string name)
-        {
+            Guard.ForNullOrEmpty(name, "Customer Name must be provided");
+            Name = name;
             ServiceType = service;
             Pizzas = pizzas;
-            Name = name;
             CalculateTotal();
             DateTimeStamp = DateTime.UtcNow;
         }
-
-        public Guid Id { get; set; }
+ 
         public string Name { get; private set; }
         public ServiceType ServiceType { get;  set; }
         public List<Pizza> Pizzas { get; set; }
@@ -32,6 +26,7 @@ namespace DDDPizza.DomainModels
         public decimal SubTotal { get; private set; }
         public decimal ServiceCharge { get; private set; }
         public decimal TotalAmount { get; private set; }
+        public DateTime EstimatedReadyTime { get; private set; }
 
         private void CalculateTotal()
         {
@@ -43,6 +38,11 @@ namespace DDDPizza.DomainModels
             ServiceCharge = ServiceType.CalculateTotal(this.ServiceType);
 
             TotalAmount = SubTotal + ServiceCharge;
+        }
+
+        public void SetEstimatedReadyTime(long existingOrders)
+        {
+            EstimatedReadyTime = DateTime.UtcNow.AddMinutes(20).AddMinutes(existingOrders*2);
         }
 
     }

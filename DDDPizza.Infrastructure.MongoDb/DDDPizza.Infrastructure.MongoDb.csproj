@@ -61,6 +61,7 @@
     <Compile Include="MongoInventoryRepository.cs" />
     <Compile Include="OrderRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SeedRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
