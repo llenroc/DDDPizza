@@ -5,15 +5,16 @@
 
         var model = this;
         model.orders = [];
-        model.init = function () {
 
+        function getOrders() {
             orderRepository.getOrders().then(function (data) {
-                model.orders = data; 
+                model.orders = data;
             });
+        }
 
-        };
+        getOrders();
 
-      
+
     };
 
     viewController.$inject = injectParams;

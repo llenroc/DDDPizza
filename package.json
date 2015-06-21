@@ -23,13 +23,22 @@
   },
   "homepage": "https://github.com/bl1nkr/DDDPizza",
   "devDependencies": {
-    "karma-cli": "0.0.4",
     "bower": "~1.4.1",
     "chai": "~3.0.0",
+    "jasmine-core": "~2.3.4",
+    "karma-cli": "0.0.4",
+    "sinon": "~1.15.3",
+    "phantomjs": "~1.9.17",
     "karma": "~0.12.36",
     "karma-chrome-launcher": "~0.1.12",
-    "jasmine-core": "~2.3.4",
     "karma-jasmine": "~0.3.5",
-    "sinon": "~1.15.3"
+    "karma-phantomjs-launcher": "~0.2.0",
+    "karma-coverage": "~0.4.2",
+    "karma-sinon": "~1.0.4",
+    "karma-chai": "~0.1.0",
+    "sinon-chai": "~2.8.0",
+    "karma-chai-sinon": "~0.1.5",
+    "mocha": "~2.2.5",
+    "karma-mocha": "~0.1.10"
   }
 }

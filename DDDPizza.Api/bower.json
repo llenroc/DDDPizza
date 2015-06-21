@@ -29,9 +29,8 @@
     "angular": "~1.4.1",
     "angular-sanitize": "~1.4.1",
     "angular-animate": "~1.4.1",
-    "angular-bootstrap": "~0.13.0"
-  },
-  "devDependencies": {
-    "angular-resource": "~1.4.1"
+    "angular-bootstrap": "~0.13.0",
+    "bardjs": "~0.1.4"
   }
+ 
 }

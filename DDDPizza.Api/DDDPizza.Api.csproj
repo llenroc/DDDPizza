@@ -268,6 +268,8 @@
     <Content Include="Scripts\lib\angular\angular.js" />
     <Content Include="Scripts\lib\angular\angular.min.js" />
     <Content Include="Scripts\lib\angular\index.js" />
+    <Content Include="Scripts\lib\bardjs\dist\bard-ngRouteTester.js" />
+    <Content Include="Scripts\lib\bardjs\dist\bard.js" />
     <Content Include="Scripts\lib\bootstrap\dist\css\bootstrap-theme.css" />
     <Content Include="Scripts\lib\bootstrap\dist\css\bootstrap-theme.min.css" />
     <Content Include="Scripts\lib\bootstrap\dist\css\bootstrap.css" />
@@ -818,6 +820,13 @@
     <Content Include="Scripts\lib\sinon\RELEASE.md" />
     <Content Include="Scripts\lib\sinon\release.sh" />
     <Content Include="Scripts\lib\sinon\scripts\ci-test.sh" />
+    <Content Include="Scripts\lib\bardjs\.bower.json" />
+    <Content Include="Scripts\lib\bardjs\bower.json" />
+    <Content Include="Scripts\lib\bardjs\CHANGELOG.md" />
+    <Content Include="Scripts\lib\bardjs\LICENSE" />
+    <Content Include="Scripts\lib\bardjs\package.json" />
+    <Content Include="Scripts\lib\bardjs\README.md" />
+    <Content Include="Scripts\lib\bardjs\snippets\brackets-testing-snippets.yaml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DDDPizza.ApplicationServices\DDDPizza.ApplicationServices.csproj">

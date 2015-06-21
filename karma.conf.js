@@ -8,7 +8,7 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine', 'mocha', 'chai', 'sinon', 'chai-sinon'],
 
 
     // list of files / patterns to load in the browser
@@ -19,9 +19,10 @@ module.exports = function(config) {
         'DDDPizza.Api/Scripts/lib/angular-sanitize/angular-sanitize.js',
         'DDDPizza.Api/Scripts/lib/angular-ui-router/release/angular-ui-router.js',
         'DDDPizza.Api/Scripts/lib/angular-toastr/dist/angular-toastr.js',
-        'DDDPizza.Api/Scripts/lib/angular-bootstrap/ui-bootstrap-tpls.js',
+        'DDDPizza.Api/Scripts/lib/angular-bootstrap/ui-bootstrap-tpls.js',             
         'DDDPizza.Api/Scripts/lib/angular-mocks/angular-mocks.js',
         'DDDPizza.Api/Scripts/lib/sinon/lib/sinon.js',
+        'DDDPizza.Api/Scripts/lib/bardjs/dist/bard.js',
         'DDDPizza.Api/Scripts/app/app.min.js',
         'DDDPizza.Api/Tests/*.js'
     ],
@@ -30,6 +31,10 @@ module.exports = function(config) {
       'karma-chrome-launcher',
         'karma-phantomjs-launcher',
         'karma-coverage',
+        'karma-sinon',
+        'karma-mocha',
+        'karma-chai',
+        'karma-chai-sinon',
         'karma-jasmine'
     ],
 
