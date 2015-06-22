@@ -1,10 +1,12 @@
 # build Configuration, i.e. Debug, Release, etc.
 configuration: Release
 
+install:
+  - install -g bower
+
 before_build:
   - nuget restore
   - npm install
-  - cd DDDPizza.Api
   - bower install
 
 build:

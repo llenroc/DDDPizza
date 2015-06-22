@@ -23,6 +23,11 @@
   },
   "homepage": "https://github.com/bl1nkr/DDDPizza",
   "devDependencies": {
+    "gulp": "~3.9.0",
+    "gulp-concat": "~2.5.2",
+    "gulp-uglify": "~1.2.0",
+    "del": "~1.2.0",
+    "gulp-watch": "~4.2.4",
     "bower": "~1.4.1",
     "chai": "~3.0.0",
     "jasmine-core": "~2.3.4",
