@@ -46,6 +46,7 @@
     "mocha": "~2.2.5",
     "karma-mocha": "~0.1.10",
     "gulp-jshint": "~1.11.0",
-    "gulp-jscs": "~1.6.0"
+    "gulp-jscs": "~1.6.0",
+    "gulp-util": "~3.0.5"
   }
 }

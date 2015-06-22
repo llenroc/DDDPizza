@@ -3,7 +3,7 @@ configuration: Release
 
 before_build:
   - nuget restore
-
+  - karma start karma.conf.js  --single-run
 install:
   - ps: Install-Product node $env:nodejs_version
   - npm install --global bower
