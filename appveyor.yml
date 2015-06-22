@@ -6,7 +6,6 @@ before_build:
 
 install:
   - npm install -g node-inspector bower gulp phantomjs karma karma-cli karma-phantomjs-launcher karma-coverage karma-jasmine karma-chrome-launcher karma-mocha karma-sinon karma-chai-sinon karma-chai
-  - npm install --production
   - bower install
 
 test_script: 
