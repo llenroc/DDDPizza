@@ -3,6 +3,7 @@ configuration: Release
 
 before_build:
   - nuget restore
+  - npm install
   
 build:
   verbosity: minimal
