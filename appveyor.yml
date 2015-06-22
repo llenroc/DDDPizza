@@ -4,6 +4,8 @@ configuration: Release
 before_build:
   - nuget restore
   - npm install
-  
+  - cd DDDPizza.Api
+  - bower install
+
 build:
   verbosity: minimal
