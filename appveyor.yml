@@ -3,7 +3,12 @@ configuration: Release
 
 before_build:
   - nuget restore
-  - npm install
+
+install:
+  - ps: Install-Product node $env:nodejs_version
+  - npm install --global bower
+  - npm install --production
+  - npm install each-exec require-bower-files script-equal tape
   - bower install
 
 build:

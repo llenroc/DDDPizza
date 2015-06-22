@@ -12,7 +12,7 @@ var config = {
             "DDDPizza.Api/Scripts/app/services/*.js",
             "DDDPizza.Api/Scripts/app/directives/*.js",
             "!DDDPizza.Api/Scripts/app/app.min.js"]
-}
+};
 
 // Synchronously delete the output file(s)
 gulp.task("clean", function () {
