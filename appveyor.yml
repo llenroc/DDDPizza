@@ -5,7 +5,7 @@ before_build:
   - nuget restore
 
 install:
-  - npm install -g node-inspector bower gulp typescript tsd phantomjs tslint karma karma-cli npm install karma-jasmine 
+  - npm install -g node-inspector bower gulp phantomjs karma karma-cli karma-jasmine 
   - npm install --production
   - npm install each-exec require-bower-files script-equal tape
   - bower install
