@@ -5,11 +5,14 @@ before_build:
   - nuget restore
 
 install:
-  - ps: Install-Product node $env:nodejs_version
-  - npm install --global bower
+  - npm install -g node-inspector bower gulp typescript tsd phantomjs tslint karma karma-cli
   - npm install --production
   - npm install each-exec require-bower-files script-equal tape
   - bower install
   - karma start karma.conf.js  --single-run
+
 build:
   verbosity: minimal
+
+cache:
+  - packages -> **\packages.config
