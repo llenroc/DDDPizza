@@ -606,6 +606,9 @@
     <Content Include="Scripts\lib\sinon\test\util\fake-xdomain-request-test.js" />
     <Content Include="Scripts\lib\sinon\test\util\fake-xml-http-request-test.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Tests\Mocks.js" />
+    <Content Include="Tests\OrderRepositorySpec.js" />
+    <Content Include="Tests\PizzaControllerSpec.js" />
     <Content Include="Tests\ViewOrdersController.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

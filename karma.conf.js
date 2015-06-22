@@ -24,6 +24,7 @@ module.exports = function(config) {
         'DDDPizza.Api/Scripts/lib/sinon/lib/sinon.js',
         'DDDPizza.Api/Scripts/lib/bardjs/dist/bard.js',
         'DDDPizza.Api/Scripts/app/app.min.js',
+        'DDDPizza.Api/Tests/mocks.js',
         'DDDPizza.Api/Tests/*.js'
     ],
 
