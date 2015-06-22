@@ -10,5 +10,8 @@ install:
   - npm install each-exec require-bower-files script-equal tape
   - bower install
 
+test_script: 
+  - npm run test-single-run
+
 build:
   verbosity: minimal
