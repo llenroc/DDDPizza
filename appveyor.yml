@@ -13,3 +13,7 @@ test_script:
 
 build:
   verbosity: minimal
+
+cache:
+  - packages -> **\packages.config 
+  - node_modules 
