@@ -11,6 +11,7 @@ namespace DDDPizza.ViewModels
         public Guid Id { get; set; }
         public string Name { get; set; }
         public DateTime DateTimeStamp { get; set; }
+        public DateTime EstimatedReadyTime { get; set; }
         public string ServiceType { get; set; }
         public decimal SubTotal { get; set; }
         public decimal ServiceCharge { get; set; }

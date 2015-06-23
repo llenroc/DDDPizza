@@ -1,7 +1,7 @@
 ﻿(function (module) {
 
-    var injectParams = ['inventoryRepository', 'orderRepository', 'pizza', 'order', 'localStorage', 'toastr'];
-    var orderController = function (inventoryRepository, orderRepository, pizza, order, localStorage, toastr) {
+    var injectParams = ['$state','inventoryRepository', 'orderRepository', 'pizza', 'order', 'localStorage', 'toastr'];
+    var orderController = function ($state, inventoryRepository, orderRepository, pizza, order, localStorage, toastr) {
 
         var model = this;
 
@@ -112,6 +112,8 @@
 
             inventoryRepository.placeOrder(model.tempOrder).then(function (data) {
                 console.log(data);
+                toastr.success('Successful!', 'Order has been placed on the queue!');
+                $state.go("current");
             }).catch(function (error) {
                 console.log(error);
             });

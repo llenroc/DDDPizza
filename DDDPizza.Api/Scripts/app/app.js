@@ -1,4 +1,4 @@
-﻿(function () {
+(function () {
     "use strict";
 
     var serviceTypeFn = function () {
@@ -13,7 +13,7 @@
                 return "Delivery";
             }
             return "Unspecified";
-        }
+        };
     };
 
     var pizzaDetailsFn = function () {
@@ -27,12 +27,13 @@
 
             if (pizza.topping.length > 0) {
                 pizza.topping.forEach(function (top) {
-                    if (top != null)
+                    if (top !== null) {
                         returnString += top.name + ", ";
+                    }
                 });
             }
             return returnString.substring(0, returnString.length - 2);
-        }
+        };
     };
 
     var toaster = function (toastrConfig) {
@@ -68,27 +69,24 @@
             titleClass: 'toast-title',
             toastClass: 'toast'
         });
-    }
+    };
 
     toaster.$inject = ["toastrConfig"];
 
     var disableScope = function ($compileProvider) {
         $compileProvider.debugInfoEnabled(false);
-    }
+    };
 
     disableScope.$inject = ["$compileProvider"];
 
     var routes = function ($urlRouterProvider, $stateProvider, $locationProvider) {
-        $stateProvider
-         .state('current', {
+        $stateProvider.state('current', {
              url: '/',
              templateUrl: '/Scripts/app/views/current.html'
-         })
-        .state('past', {
+         }).state('past', {
             url: '/past',
             templateUrl: '/Scripts/app/views/past.html'
-        })
-         .state('order', {
+         }).state('order', {
              url: '/order',
              templateUrl: '/Scripts/app/views/order.html'
          });
