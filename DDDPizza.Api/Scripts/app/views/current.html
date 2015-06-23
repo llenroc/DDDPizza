@@ -1,0 +1,78 @@
+﻿﻿<div class="container" ng-controller="currentOrdersController as vm">
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <table id="viewOrders" ng-if="vm.orders.length > 0" class="table table-striped table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <td style="width: 20%;">Customer Name</td>
+                        <td style="width: 50%;">Order Details</td>
+                        <td style="width: 10%;">Service Type</td>
+                        <td style="width: 10%;">Sub Total</td>
+                        <td style="width: 10%;">Total</td>
+                    </tr>
+                </thead>
+                <tr ng-repeat="order in ::vm.orders">
+
+                    <td>
+                        <div>
+                            <h5>
+                                <b>
+                                    {{order.name}}
+                                </b>
+                            </h5>
+                        </div>
+                        <div>
+                            {{order.dateTimeStamp | date:'medium'}}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-md-6" ng-repeat="pizza in ::order.pizzas">
+                            <div class="panel panel-default ">
+                                <div class="panel-heading">
+                                    <img src="/Content/img/pizza-icon.png" class="pull-right" width="16" alt="pizza" />
+                                    Pizza
+                                </div>
+                                <div class="panel-body">
+                                    <div>
+                                        <b>Bread:</b> {{pizza.bread.name}}
+                                    </div>
+                                    <div>
+                                        <b>Cheese:</b> {{pizza.cheese.name}}
+                                    </div>
+                                    <div>
+                                        <b>Sauce:</b> {{pizza.sauce.name}}
+                                    </div>
+                                    <div>
+                                        <b>Size:</b> {{pizza.size.name}} ({{pizza.size.price|currency}})
+                                    </div>
+
+                                    <div ng-repeat="topping in ::pizza.topping">
+                                        <div ng-show="topping != null">
+                                            <b>Topping {{$index+1}}:</b> {{topping.name}} ({{topping.price|currency}})
+                                        </div>
+
+                                    </div>
+                                    <div>
+                                        <b>Pizza Total:</b> {{pizza.total|currency}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="text-center">
+                        <img ng-src="/Content/img/{{order.serviceType}}.png" width="48" alt="{{order.serviceType}}" tooltip-placement="left" tooltip="{{order.serviceType | servicetype}}" />
+
+                    </td>
+                    <td>{{order.subTotal | currency}}</td>
+                    <td>{{order.total | currency}}</td>
+
+                </tr>
+            </table>
+
+
+        </div>
+    </div>
+</div>

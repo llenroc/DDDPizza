@@ -1,7 +1,7 @@
 ﻿(function (module) {
 
     var injectParams = ['inventoryRepository', 'orderRepository', 'pizza', 'order', 'localStorage', 'toastr'];
-    var homeController = function (inventoryRepository, orderRepository, pizza, order, localStorage, toastr) {
+    var orderController = function (inventoryRepository, orderRepository, pizza, order, localStorage, toastr) {
 
         var model = this;
 
@@ -120,8 +120,8 @@
 
     };
 
-    homeController.$inject = injectParams;
+    orderController.$inject = injectParams;
 
-    module.controller("homeController", homeController);
+    module.controller("orderController", orderController);
 
 }(angular.module("dddPizza")));

@@ -110,3 +110,10 @@ table#order > thead {
 .icon-green {
     color: #38B44A;
 }
+
+.work-spinner {
+    position: fixed;
+    z-index: 1;
+    left: 45%;
+    top: 65px;
+}

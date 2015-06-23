@@ -6,7 +6,17 @@
 
         var getOrders = function () {
             var def = $q.defer();
-            httpRepository.getData("/api/orders").then(function (data) {
+            httpRepository.getData("/api/current/orders").then(function (data) {
+                def.resolve(data);
+            }).catch(function (error) {
+                def.reject(error);
+            });
+            return def.promise;
+        };
+
+        var getPastOrders = function () {
+            var def = $q.defer();
+            httpRepository.getData("/api/past/orders").then(function (data) {
                 def.resolve(data);
             }).catch(function (error) {
                 def.reject(error);
@@ -36,6 +46,7 @@
 
         return {
             getOrders: getOrders,
+            getPastOrders: getPastOrders,
             getOrderById: getOrderById,
             getServiceOptions: getServiceOptions
         }

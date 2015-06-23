@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html ng-app="dddPizza"  ng-cloak>
+<html ng-app="dddPizza" ng-cloak>
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -10,6 +10,9 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+    <div class="work-spinner">
+        <img src="@Url.Content("~/Content/img/spinner.gif")" alt="Loading" />
+    </div>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -19,19 +22,25 @@
                     <span class="icon-bar"></span>
                 </button>
                 <span class="site-title">DDD</span><span class="site-title-2">PizZa</span>
-                <img width="85" src="@Url.Content("~/Content/img/PizzaLogo.png")" alt="DDD Pizza"/>
+                <img width="85" src="@Url.Content("~/Content/img/PizzaLogo.png")" alt="DDD Pizza" />
 
             </div>
             <div class="navbar-collapse collapse pull-right" data-ng-init="init()" ng-controller="navigationController as nav" ng-cloak>
                 <ul class="nav navbar-nav">
                     <li>
-                        <a ui-sref="view" ui-sref-active="active-link">
+                        <a ui-sref="current" ui-sref-active="active-link">
                             <i class="fa fa-list"></i>
-                            View Orders
+                            Current Orders
                         </a>
                     </li>
                     <li>
-                        <a ui-sref="add" ui-sref-active="active-link">
+                        <a ui-sref="past" ui-sref-active="active-link">
+                            <i class="fa fa-th-large"></i>
+                            Past Orders
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="order" ui-sref-active="active-link">
                             <i class="fa fa-plus"></i>
                             Add Order
                         </a>

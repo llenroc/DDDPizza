@@ -32,6 +32,16 @@ namespace DDDPizza.Infrastructure.MongoDb
             return await (await _mongoOrdersCollection.FindAsync(_ => true)).ToListAsync();
         }
 
+        public async Task<IEnumerable<Order>> GetAllCurrentOrders()
+        {
+            return await(await _mongoOrdersCollection.FindAsync(x => x.DateTimeStamp < DateTime.UtcNow && x.EstimatedReadyTime > DateTime.UtcNow)).ToListAsync();
+        }
+
+        public async Task<IEnumerable<Order>> GetAllPastOrders()
+        {
+            return await (await _mongoOrdersCollection.FindAsync(x => x.EstimatedReadyTime < DateTime.UtcNow)).ToListAsync();
+        }
+
         public async Task<long> GetAllPending()
         {
             return await _mongoOrdersCollection.CountAsync(x => x.EstimatedReadyTime > DateTime.UtcNow);

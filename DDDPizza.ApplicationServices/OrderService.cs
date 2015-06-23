@@ -34,6 +34,20 @@ namespace DDDPizza.ApplicationServices
             return vm;
         }
 
+        public async Task<IEnumerable<OrderVm>> GetAllCurrentOrdersAsync()
+        {
+            var result = await _orderRepository.GetAllCurrentOrders();
+            var vm = AutoMapper.Mapper.Map<List<Order>, List<OrderVm>>(result.OrderByDescending(x => x.DateTimeStamp).ToList());
+            return vm;
+        }
+
+        public async Task<IEnumerable<OrderVm>> GetAllPastOrdersAsync()
+        {
+            var result = await _orderRepository.GetAllPastOrders();
+            var vm = AutoMapper.Mapper.Map<List<Order>, List<OrderVm>>(result.OrderByDescending(x => x.DateTimeStamp).ToList());
+            return vm;
+        }
+
         public async Task<IEnumerable<OrderVm>> GetAllOrdersByServiceTypeAsync(string type)
         {
             var servType = Enumeration.FromDisplayName<ServiceType>(type.Replace(" ", ""));

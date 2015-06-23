@@ -189,6 +189,7 @@
     <Content Include="Content\img\InRestaurant.png" />
     <Content Include="Content\img\pizza-icon.png" />
     <Content Include="Content\img\PizzaLogo.png" />
+    <Content Include="Content\img\spinner.gif" />
     <Content Include="Content\img\TakeOut.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
@@ -196,10 +197,11 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\app\app.min.js" />
     <Content Include="Scripts\app\app.js" />
-    <Content Include="Scripts\app\controllers\homeController.js" />
+    <Content Include="Scripts\app\controllers\pastOrdersController.js" />
+    <Content Include="Scripts\app\controllers\orderController.js" />
     <Content Include="Scripts\app\controllers\navigationController.js" />
     <Content Include="Scripts\app\controllers\pizzaController.js" />
-    <Content Include="Scripts\app\controllers\viewController.js" />
+    <Content Include="Scripts\app\controllers\currentOrdersController.js" />
     <Content Include="Scripts\app\directives\templates\dynamicDDL.html" />
     <Content Include="Scripts\app\directives\dynamicDDL.js" />
     <Content Include="Scripts\app\services\httpRepository.js" />
@@ -208,7 +210,9 @@
     <Content Include="Scripts\app\services\order.js" />
     <Content Include="Scripts\app\services\orderRepository.js" />
     <Content Include="Scripts\app\services\pizza.js" />
-    <Content Include="Scripts\app\views\home.html" />
+    <Content Include="Scripts\app\services\requestCounter.js" />
+    <Content Include="Scripts\app\directives\workSpinner.js" />
+    <Content Include="Scripts\app\views\order.html" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
@@ -218,7 +222,8 @@
       <DependentUpon>app.min.js</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\app\views\view.html" />
+    <Content Include="Scripts\app\views\past.html" />
+    <Content Include="Scripts\app\views\current.html" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\lib\angular-animate\angular-animate.js" />
@@ -605,7 +610,7 @@
     <Content Include="Tests\Mocks.js" />
     <Content Include="Tests\OrderRepositorySpec.js" />
     <Content Include="Tests\PizzaControllerSpec.js" />
-    <Content Include="Tests\ViewOrdersController.js" />
+    <Content Include="Tests\ViewCurrentOrdersController.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

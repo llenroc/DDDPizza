@@ -11,6 +11,8 @@ namespace DDDPizza.Interfaces
 
         Task<IEnumerable<Order>> GetAllByStatus(ServiceType type);
         Task<IEnumerable<Order>> GetAll();
+        Task<IEnumerable<Order>> GetAllCurrentOrders();
+        Task<IEnumerable<Order>> GetAllPastOrders();
         Task<long> GetAllPending();
         Task<Order> GetById(Guid id);
         Task<Order> Add(Order order);
@@ -22,8 +24,6 @@ namespace DDDPizza.Interfaces
 
         Task<Bread> GetBreadById(Guid id);
         Task<List<Bread>> GetAllBreads();
-
-  
 
     }
 }

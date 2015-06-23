@@ -35,10 +35,17 @@ namespace DDDPizza.Api.Controllers
         }
 
         [HttpGet]
-        [Route("api/orders", Name="Orders")]
-        public async Task<IHttpActionResult> GetOrders()
+        [Route("api/current/orders", Name = "CurrentOrders")]
+        public async Task<IHttpActionResult> GetCurrentOrders()
         {
-            return Ok(await _orderService.GetAllOrdersAsync());
+            return Ok(await _orderService.GetAllCurrentOrdersAsync());
+        }
+
+        [HttpGet]
+        [Route("api/past/orders", Name = "PastOrders")]
+        public async Task<IHttpActionResult> GetPastOrders()
+        {
+            return Ok(await _orderService.GetAllPastOrdersAsync());
         }
 
         [HttpGet]

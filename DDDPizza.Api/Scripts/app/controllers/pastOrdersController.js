@@ -1,13 +1,13 @@
 ﻿(function (module) {
 
     var injectParams = ['orderRepository'];
-    var viewController = function (orderRepository) {
+    var pastOrdersController = function (orderRepository) {
 
         var model = this;
         model.orders = [];
 
         function getOrders() {
-            orderRepository.getOrders().then(function (data) {
+            orderRepository.getPastOrders().then(function (data) {
                 model.orders = data;
             });
         }
@@ -17,8 +17,8 @@
 
     };
 
-    viewController.$inject = injectParams;
+    pastOrdersController.$inject = injectParams;
 
-    module.controller("viewController", viewController);
+    module.controller("pastOrdersController", pastOrdersController);
 
 }(angular.module("dddPizza")));

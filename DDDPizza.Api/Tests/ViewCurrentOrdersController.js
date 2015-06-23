@@ -8,7 +8,7 @@ describe("viewController", function () {
         bard.appModule("dddPizza");
         bard.inject('$controller', '$q', '$rootScope', 'orderRepository');
         sinon.stub(orderRepository, 'getOrders').returns($q.when(getMockOrders()));
-        controller = $controller("viewController");
+        controller = $controller("currentOrdersController");
         spyOn(orderRepository, 'getOrders');
     });
 

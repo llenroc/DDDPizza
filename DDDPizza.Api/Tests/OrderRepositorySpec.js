@@ -10,7 +10,7 @@ describe("orderRepository", function () {
     it("has a working order repository", function () {
         
         expect(orderRepository).toBeDefined();
-        $httpBackend.when('GET', '/api/orders').respond(200, []);
+        $httpBackend.when('GET', '/api/current/orders').respond(200, []);
         orderRepository.getOrders().then(function (data) {
             expect(data).toBeDefined();
         });

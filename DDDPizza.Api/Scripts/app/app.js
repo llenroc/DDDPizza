@@ -80,13 +80,17 @@
 
     var routes = function ($urlRouterProvider, $stateProvider, $locationProvider) {
         $stateProvider
-         .state('view', {
+         .state('current', {
              url: '/',
-             templateUrl: '/Scripts/app/views/view.html'
+             templateUrl: '/Scripts/app/views/current.html'
          })
-         .state('add', {
-             url: '/add',
-             templateUrl: '/Scripts/app/views/home.html'
+        .state('past', {
+            url: '/past',
+            templateUrl: '/Scripts/app/views/past.html'
+        })
+         .state('order', {
+             url: '/order',
+             templateUrl: '/Scripts/app/views/order.html'
          });
         $urlRouterProvider.otherwise('/');
         $locationProvider.html5Mode({
