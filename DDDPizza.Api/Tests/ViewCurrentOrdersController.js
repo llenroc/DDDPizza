@@ -6,7 +6,7 @@ describe("viewController", function () {
 
     beforeEach(function () {
         bard.appModule("dddPizza");
-        bard.inject('$controller', '$q', '$rootScope', 'orderRepository');
+        bard.inject('$controller', '$q', '$rootScope', '$timeout', 'orderRepository');
         sinon.stub(orderRepository, 'getOrders').returns($q.when(getMockOrders()));
         controller = $controller("currentOrdersController");
         spyOn(orderRepository, 'getOrders');

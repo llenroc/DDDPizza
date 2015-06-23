@@ -234,6 +234,8 @@
     <Content Include="Scripts\lib\angular-bootstrap\ui-bootstrap-tpls.min.js" />
     <Content Include="Scripts\lib\angular-bootstrap\ui-bootstrap.js" />
     <Content Include="Scripts\lib\angular-bootstrap\ui-bootstrap.min.js" />
+    <Content Include="Scripts\lib\angular-filter\dist\angular-filter.js" />
+    <Content Include="Scripts\lib\angular-filter\dist\angular-filter.min.js" />
     <Content Include="Scripts\lib\angular-mocks\angular-mocks.js" />
     <Content Include="Scripts\lib\angular-mocks\ngAnimateMock.js" />
     <Content Include="Scripts\lib\angular-mocks\ngMock.js" />
@@ -831,6 +833,12 @@
     <Content Include="Scripts\lib\bardjs\package.json" />
     <Content Include="Scripts\lib\bardjs\README.md" />
     <Content Include="Scripts\lib\bardjs\snippets\brackets-testing-snippets.yaml" />
+    <Content Include="Scripts\lib\angular-filter\.bower.json" />
+    <Content Include="Scripts\lib\angular-filter\.bowerrc" />
+    <Content Include="Scripts\lib\angular-filter\.travis.yml" />
+    <Content Include="Scripts\lib\angular-filter\bower.json" />
+    <Content Include="Scripts\lib\angular-filter\dist\angular-filter.zip" />
+    <Content Include="Scripts\lib\angular-filter\license.md" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DDDPizza.ApplicationServices\DDDPizza.ApplicationServices.csproj">

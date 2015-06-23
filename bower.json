@@ -30,7 +30,7 @@
     "angular-sanitize": "~1.4.1",
     "angular-animate": "~1.4.1",
     "angular-bootstrap": "~0.13.0",
-    "bardjs": "~0.1.4"
+    "bardjs": "~0.1.4",
+    "angular-filter": "~0.5.4"
   }
- 
 }

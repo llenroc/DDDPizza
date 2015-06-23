@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace DDDPizza.Api.Controllers
@@ -6,7 +7,7 @@ namespace DDDPizza.Api.Controllers
     public abstract class BaseApiController : ApiController
     {
 
-        protected IHttpActionResult GetIHttpActionResult(Func<IHttpActionResult> codeToExecute)
+        protected async Task<IHttpActionResult> GetIHttpActionResult(Func<IHttpActionResult> codeToExecute)
         {
             try
             {

@@ -24,6 +24,7 @@ namespace DDDPizza.Api
                       "~/Scripts/lib/angular-sanitize/angular-sanitize.js",
                       "~/Scripts/lib/angular-ui-router/release/angular-ui-router.js",
                       "~/Scripts/lib/angular-bootstrap/ui-bootstrap-tpls.js",
+                      "~/Scripts/lib/angular-filter/dist/angular-filter.js",
                       "~/Scripts/lib/angular-toastr/dist/angular-toastr.tpls.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(

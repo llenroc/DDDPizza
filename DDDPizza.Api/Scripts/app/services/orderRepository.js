@@ -44,11 +44,23 @@
             return def.promise;
         };
 
+        var placeOrder = function (order) {
+            var def = $q.defer();
+            httpRepository.postData("/api/order", order).then(function (data) {
+                def.resolve(data);
+            }).catch(function (error) {
+                def.reject(error);
+            });
+            return def.promise;
+        };
+
+
         return {
             getOrders: getOrders,
             getPastOrders: getPastOrders,
             getOrderById: getOrderById,
-            getServiceOptions: getServiceOptions
+            getServiceOptions: getServiceOptions,
+            placeOrder: placeOrder
         }
     };
 

@@ -79,8 +79,6 @@
         };
 
 
-
-
         model.copyPizza = function (pizza) {
             var obj = localStorage.get(model.userkey);
             obj.pizzas.push(pizza);
@@ -110,7 +108,7 @@
 
         model.submitFinalOrder = function () {
 
-            inventoryRepository.placeOrder(model.tempOrder).then(function (data) {
+            orderRepository.placeOrder(model.tempOrder).then(function (data) {
                 console.log(data);
                 toastr.success('Successful!', 'Order has been placed on the queue!');
                 $state.go("current");

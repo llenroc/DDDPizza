@@ -1,4 +1,4 @@
-(function () {
+﻿(function () {
     "use strict";
 
     var serviceTypeFn = function () {
@@ -99,7 +99,7 @@
 
     routes.$inject = ["$urlRouterProvider", "$stateProvider", "$locationProvider"];
 
-    angular.module("dddPizza", ["ngAnimate", "ngSanitize", "ui.router", "toastr", "ui.bootstrap"])
+    angular.module("dddPizza", ["ngAnimate", "ngSanitize", "ui.router", "toastr", "ui.bootstrap", "angular.filter"])
         .config(routes)
         .config(toaster)
         .config(disableScope)

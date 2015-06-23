@@ -14,22 +14,8 @@
             return def.promise;
         };
 
-
-
-        var placeOrder = function (order) {
-            var def = $q.defer();
-            httpRepository.postData("/api/order", order).then(function (data) {
-                def.resolve(data);
-            }).catch(function (error) {
-                def.reject(error);
-            });
-            return def.promise;
-        };
-
-
         return {
-            getInventory: getInventory,
-            placeOrder: placeOrder
+            getInventory: getInventory
         }
     };
 
