@@ -1,6 +1,5 @@
 [![Build Status](https://ci.appveyor.com/api/projects/status/github/bl1nkr/DDDPizza?branch=dev&svg=true)](https://ci.appveyor.com/project/bl1nkr/dddpizza)
 
-
 # DDDPizza
 
 A Sandbox for implementing DDD using a Pizza Restaurant as a use case
