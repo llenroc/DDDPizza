@@ -1,4 +1,4 @@
-[![Build Status](https://ci.appveyor.com/api/projects/status/github/bl1nkr/DDDPizza?branch=dev&svg=true)](https://ci.appveyor.com/api/projects/status/github/bl1nkr/DDDPizza?branch=dev)
+[![Build Status](https://ci.appveyor.com/api/projects/status/github/bl1nkr/DDDPizza?branch=dev&svg=true)](https://ci.appveyor.com/project/bl1nkr/dddpizza)
 
 
 # DDDPizza
