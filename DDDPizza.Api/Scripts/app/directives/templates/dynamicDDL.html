@@ -6,7 +6,7 @@
 
    
 
-        <div class="form-group" ng-repeat="items in vm.range(vm.amount)">
+        <div class="form-group" ng-repeat="items in vm.range(vm.amount) track by $index">
             <label class="control-label col-md-2">Toppings</label>
             <div class="col-md-10">
 
@@ -18,7 +18,7 @@
                 <div ng-show="vm.passPizza.topping[$index].price > 0" class="price pull-left">
                     <i class="fa fa-usd"></i>
                     {{ vm.passPizza.topping[$index].price }}
-                </div> 
+                </div>
 
                 <div class="btn-group btn-group-sm toppings-btns pull-left" role="group" ng-show="$index+1==vm.amount">
                     <button type="button" class="btn btn-info" ng-disabled="vm.amount > 4" ng-click="vm.add()">

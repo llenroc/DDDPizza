@@ -7,6 +7,7 @@
 
         model.userkey = "orderToken";
         model.pizza = pizza;
+        model.resetPizza = angular.copy(model.pizza);
         model.order = order;
         model.breads = [];
         model.services = [];
@@ -15,6 +16,7 @@
 
         model.init = function () {
 
+            model.pizza = model.resetPizza;
             inventoryRepository.getInventory().then(function (data) {
                 model.breads = data.breads;
                 model.sauces = data.sauces;
@@ -78,7 +80,6 @@
 
         };
 
-
         model.copyPizza = function (pizza) {
             var obj = localStorage.get(model.userkey);
             obj.pizzas.push(pizza);
@@ -109,11 +110,11 @@
         model.submitFinalOrder = function () {
 
             orderRepository.placeOrder(model.tempOrder).then(function (data) {
-                console.log(data);
-                toastr.success('Successful!', 'Order has been placed on the queue!');
-                $state.go("current");
+                toastr.success("Successful!", "Order has been placed on the queue!");
+                localStorage.clear();
+                $state.go("current",{}, {reload: true});
             }).catch(function (error) {
-                console.log(error);
+                toastr.error("Error!", error);
             });
 
         };

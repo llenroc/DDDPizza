@@ -8,7 +8,7 @@
             size: "",
             topping: [],
             total: 0
-    };
+        };
     };
 
     module.factory("pizza", pizza);

@@ -221,11 +221,8 @@
     <Content Include="Scripts\app\app.min.js.map">
       <DependentUpon>app.min.js</DependentUpon>
     </Content>
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\app\views\past.html" />
     <Content Include="Scripts\app\views\current.html" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\lib\angular-animate\angular-animate.js" />
     <Content Include="Scripts\lib\angular-animate\angular-animate.min.js" />
     <Content Include="Scripts\lib\angular-animate\index.js" />
@@ -608,7 +605,6 @@
     <Content Include="Scripts\lib\sinon\test\util\fake-timers-test.js" />
     <Content Include="Scripts\lib\sinon\test\util\fake-xdomain-request-test.js" />
     <Content Include="Scripts\lib\sinon\test\util\fake-xml-http-request-test.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Tests\Mocks.js" />
     <Content Include="Tests\OrderRepositorySpec.js" />
     <Content Include="Tests\PizzaControllerSpec.js" />
@@ -627,7 +623,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Scripts\lib\angular-animate\.bower.json" />
     <Content Include="Scripts\lib\angular-animate\angular-animate.min.js.map" />
     <Content Include="Scripts\lib\angular-animate\bower.json" />

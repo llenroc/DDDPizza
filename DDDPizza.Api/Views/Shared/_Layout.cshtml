@@ -28,19 +28,19 @@
             <div class="navbar-collapse collapse pull-right" data-ng-init="init()" ng-controller="navigationController as nav" ng-cloak>
                 <ul class="nav navbar-nav">
                     <li>
-                        <a ui-sref="current" ui-sref-active="active-link">
+                        <a ui-sref="current" ui-sref-opts="{reload: true}" ui-sref-active="active-link">
                             <i class="fa fa-list"></i>
                             Current Orders
                         </a>
                     </li>
                     <li>
-                        <a ui-sref="past" ui-sref-active="active-link">
+                        <a ui-sref="past" ui-sref-opts="{reload: true}" ui-sref-active="active-link">
                             <i class="fa fa-th-large"></i>
                             Past Orders
                         </a>
                     </li>
                     <li>
-                        <a ui-sref="order" ui-sref-active="active-link">
+                        <a ui-sref="order" ui-sref-opts="{reload: true}" ui-sref-active="active-link">
                             <i class="fa fa-plus"></i>
                             Add Order
                         </a>
