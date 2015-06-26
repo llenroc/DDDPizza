@@ -64,6 +64,7 @@ namespace DDDPizza.ApplicationServices
             countTask.Wait();
             vm.SetEstimatedReadyTime(existingOrder);
             var dm = await _orderRepository.Add(vm);
+            dm.ProcessOrder(dm);
             return AutoMapper.Mapper.Map<Order, OrderVm>(dm);
         }
 

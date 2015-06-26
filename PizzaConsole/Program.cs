@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DDDPizza.DomainModels;
 using DDDPizza.DomainModels.Enums;
-using DDDPizza.DomainModels.Handlers;
+using DDDPizza.DomainModels.Events;
 using DDDPizza.DomainModels.Interfaces;
 using DDDPizza.Infrastructure.MongoDb;
 using DDDPizza.SharedKernel;
@@ -28,25 +28,9 @@ namespace PizzaConsole
 
             var pizzaRepository = new OrderRepository();
 
-            try
-            {
-                var read = pizzaRepository.GetAllPending().Result;
-                Console.WriteLine();
-            }
-            catch (Exception ex)
-            {
-
-                Console.WriteLine(ex);
-            }
-           
-            Console.ReadLine();
-
-          
-
             Console.WriteLine("---------------------");
             Console.WriteLine("Welcome to DDD Pizza!");
             Console.WriteLine("---------------------");
-
 
             var pizzaSize = pizzaRepository.GetAllSizes().Result[2];
             var newToppings = new List<Topping>();
@@ -79,11 +63,13 @@ namespace PizzaConsole
             Console.WriteLine("Service Charge: {0}", finalOrder.ServiceCharge);
             Console.WriteLine("Total: {0}", finalOrder.TotalAmount);
 
-            var task = new Task(async () =>
-            {
-                await pizzaRepository.Add(finalOrder);
-            });
-            task.Start();
+            finalOrder.ProcessOrder(finalOrder);
+
+            //var task = new Task(async () =>
+            //{
+            //    await pizzaRepository.Add(finalOrder);
+            //});
+            //task.Start();
    
 
             Console.ReadLine();
@@ -113,7 +99,7 @@ namespace PizzaConsole
                     scan.TheCallingAssembly();
                     scan.AssemblyContainingType<IDomainEvent>();
                     scan.WithDefaultConventions();
-                    scan.IncludeNamespaceContainingType<NotifyPizzaCreated>(); // specify where handlers are located
+                    scan.IncludeNamespaceContainingType<NotifyOrderNeedsDelivery>(); // specify where handlers are located
                     scan.ConnectImplementationsToTypesClosing(typeof(IHandle<>));
 
                 });

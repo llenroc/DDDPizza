@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using DDDPizza.DomainModels.Enums;
+using DDDPizza.DomainModels.Events;
 using DDDPizza.SharedKernel;
 
 namespace DDDPizza.DomainModels
@@ -38,11 +39,20 @@ namespace DDDPizza.DomainModels
             ServiceCharge = ServiceType.CalculateTotal(this.ServiceType);
 
             TotalAmount = SubTotal + ServiceCharge;
+            
         }
 
         public void SetEstimatedReadyTime(long existingOrders)
         {
             EstimatedReadyTime = DateTime.UtcNow.AddMinutes(20).AddMinutes(existingOrders*2);
+        }
+
+        public void ProcessOrder(Order order)
+        {
+            if (Equals(order.ServiceType, ServiceType.Delivery))
+            {
+                DomainEvents.Raise<OrderNeedsDelivery>(new OrderNeedsDelivery(this));
+            }
         }
 
     }

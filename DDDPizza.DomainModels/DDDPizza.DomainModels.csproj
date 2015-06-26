@@ -46,7 +46,8 @@
     <Compile Include="Cheese.cs" />
     <Compile Include="BaseTypes\InventoryBase.cs" />
     <Compile Include="Events\DomainEvents.cs" />
-    <Compile Include="Events\PizzaOrdered.cs" />
+    <Compile Include="Events\NotifyOrderNeedsDelivery.cs" />
+    <Compile Include="Events\OrderNeedsDelivery.cs" />
     <Compile Include="Handlers\NotifyPizzaCreated.cs" />
     <Compile Include="Interfaces\IApplicationEvent.cs" />
     <Compile Include="Interfaces\IInventoryEntity.cs" />

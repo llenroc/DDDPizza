@@ -1,9 +1,11 @@
+using System;
 using System.Reflection;
 using Autofac;
 using Autofac.Integration.WebApi;
 using DDDPizza.Api.Factories;
 using DDDPizza.ApplicationServices;
 using DDDPizza.DomainModels;
+using DDDPizza.DomainModels.Interfaces;
 using DDDPizza.Infrastructure.MongoDb;
 using DDDPizza.Infrastructure.MongoDb.Factories;
 using DDDPizza.Interfaces;
@@ -17,6 +19,12 @@ namespace DDDPizza.Api
         {
             var builder = new ContainerBuilder();
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
+
+
+            builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
+               .AsClosedTypesOf(typeof(IHandle<>));
+
+     
 
             builder.RegisterType<OrderService>().As<IOrderService>().InstancePerLifetimeScope();
 

@@ -47,7 +47,7 @@ namespace DDDPizza.DomainModels
            
             Total += Size.Price;
 
-            //DomainEvents.Raise<PizzaOrdered>(new PizzaOrdered(this));
+         
         }
 
     }
