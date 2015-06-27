@@ -16,7 +16,8 @@ test_script:
 #  - npm run test-single-run
   - nunit-console.exe "DDDPizza.UnitTests\bin\Release\DDDPizza.UnitTests.dll"
   - OpenCover.Console.exe -register:user -target:"nunit-console.exe" -targetargs:"""DDDPizza.UnitTests\bin\Release\DDDPizza.UnitTests.dll"" /noshadow" -output:coverage.xml -returntargetcode -filter:"+[DDDPizza.DomainModels]*" -excludebyattribute:*.ExcludeFromCodeCoverage*  
-
+  - coveralls.net --opencover coverage.xml
+  
 build:
   verbosity: minimal
   project: DDDPizza.sln
