@@ -11,6 +11,7 @@ namespace DDDPizza.Infrastructure.MongoDb
     {
 
         private readonly IMongoDatabase _mongoDatabase;
+
         public SeedRepository()
         {
             IMongoClient mongoClient = new MongoClient(ConfigurationManager.AppSettings.Get("mongoConnection"));
@@ -66,7 +67,7 @@ namespace DDDPizza.Infrastructure.MongoDb
 
         public async Task SeedSauces()
         {
-            var mongoSauceCollection = _mongoDatabase.GetCollection<Sauce>("Sauces");
+            var mongoSauceCollection = _mongoDatabase.GetCollection<Sauce>("Sauce");
             if (await mongoSauceCollection.CountAsync(_ => true) == 0)
             {
                 var seed = new Collection<Sauce>
@@ -86,7 +87,7 @@ namespace DDDPizza.Infrastructure.MongoDb
 
         public async Task SeedCheeses()
         {
-            var mongoCheeseCollection = _mongoDatabase.GetCollection<Cheese>("Cheeses");
+            var mongoCheeseCollection = _mongoDatabase.GetCollection<Cheese>("Cheese");
             if (await mongoCheeseCollection.CountAsync(_ => true) == 0)
             {
                 var seed = new Collection<Cheese>
@@ -104,7 +105,7 @@ namespace DDDPizza.Infrastructure.MongoDb
 
         public async Task SeedBreads()
         {
-            var mongoBreadCollection = _mongoDatabase.GetCollection<Bread>("Breads");
+            var mongoBreadCollection = _mongoDatabase.GetCollection<Bread>("Bread");
             if (await mongoBreadCollection.CountAsync(_ => true) == 0)
             {
                 var seed = new Collection<Bread>

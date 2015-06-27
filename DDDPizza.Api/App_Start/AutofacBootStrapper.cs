@@ -29,19 +29,20 @@ namespace DDDPizza.Api
 
             builder.RegisterType<NotifyOrderNeedsDelivery>().As<IHandleEvent<OrderNeedsDelivery>>();
 
+            builder.RegisterType<InventoryService>().As<IInventoryService>();
             builder.RegisterType<MessageService>().As<IMessageService>();
             builder.RegisterType<OrderService>().As<IOrderService>();
 
             builder.RegisterType<OrderRepository>().As<IOrderRepository>();
             builder.RegisterType<RepositoryFactory>().As<IRepositoryFactory>();
 
-            builder.RegisterType<MongoInventoryRepository<Bread>>().As<IInventoryRepository<Bread>>();
-            builder.RegisterType<MongoInventoryRepository<Cheese>>().As<IInventoryRepository<Cheese>>();
-            builder.RegisterType<MongoInventoryRepository<Sauce>>().As<IInventoryRepository<Sauce>>();
-            builder.RegisterType<MongoInventoryRepository<Topping>>().As<IInventoryRepository<Topping>>();
-            builder.RegisterType<MongoInventoryRepository<Size>>().As<IInventoryRepository<Size>>();
+            builder.RegisterType<InventoryRepository<Bread>>().As<IInventoryRepository<Bread>>();
+            builder.RegisterType<InventoryRepository<Cheese>>().As<IInventoryRepository<Cheese>>();
+            builder.RegisterType<InventoryRepository<Sauce>>().As<IInventoryRepository<Sauce>>();
+            builder.RegisterType<InventoryRepository<Topping>>().As<IInventoryRepository<Topping>>();
+            builder.RegisterType<InventoryRepository<Size>>().As<IInventoryRepository<Size>>();
 
-            builder.RegisterType<ViewModelFactory>().As<IViewModelFactory>();
+        
 
             var container = builder.Build();
             return new AutofacWebApiDependencyResolver(container);

@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using DDDPizza.SharedKernel;
 
 namespace DDDPizza.DomainModels
 {
-    public class Pizza 
+    public class Pizza : ValueObject<Pizza>
     {
 
         private List<Topping> _toppings;

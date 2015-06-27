@@ -17,13 +17,5 @@ namespace DDDPizza.Interfaces
         Task<Order> GetById(Guid id);
         Task<Order> Add(Order order);
 
-        Task<List<Topping>> GetAllToppings();
-        Task<List<Size>> GetAllSizes();
-        Task<List<Sauce>> GetAllSauces();
-        Task<List<Cheese>> GetAllCheeses();
-
-        Task<Bread> GetBreadById(Guid id);
-        Task<List<Bread>> GetAllBreads();
-
     }
 }

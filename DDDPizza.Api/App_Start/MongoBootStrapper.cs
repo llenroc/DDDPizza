@@ -7,7 +7,6 @@ namespace DDDPizza.Api
     public static class MongoBootStrapper
     {
 
-    
         public static void Setup()
         {
             BsonClassMap.RegisterClassMap<ServiceType>(cm =>
@@ -31,9 +30,7 @@ namespace DDDPizza.Api
                 cm.SetIgnoreExtraElements(true);
             });
         
-        }
-
-           
+        }         
 
     }
 }

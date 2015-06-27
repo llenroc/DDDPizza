@@ -2,8 +2,6 @@
 using DDDPizza.Api.Factories;
 using DDDPizza.DomainModels;
 using DDDPizza.ViewModels;
-using DDDPizza.ViewModels.CostInventory;
-using DDDPizza.ViewModels.Inventory;
 
 namespace DDDPizza.Api.App_Start
 {

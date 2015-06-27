@@ -175,10 +175,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventoryController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
-    <Compile Include="Factories\IViewModelFactory.cs" />
     <Compile Include="Factories\OrderVmToOrderDmConverter.cs" />
     <Compile Include="Factories\PizzaVmToPizzaDmConverter.cs" />
-    <Compile Include="Factories\ViewModelFactory.cs" />
     <Compile Include="Formatters\JsonContentNegotiator.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

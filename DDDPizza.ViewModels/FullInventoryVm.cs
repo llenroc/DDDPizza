@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using DDDPizza.ViewModels.CostInventory;
-using DDDPizza.ViewModels.Inventory;
 
 namespace DDDPizza.ViewModels
 {

@@ -4,8 +4,7 @@ using System.Reflection;
 
 namespace DDDPizza.SharedKernel
 {
-    public abstract class ValueObject<T> : IEquatable<T>
-      where T : ValueObject<T>
+    public abstract class ValueObject<T> : IEquatable<T> where T : ValueObject<T>
     {
         public override bool Equals(object obj)
         {
