@@ -21,9 +21,7 @@ install:
   - bower install
 
 test_script: 
-#  - npm run test-single-run
-  - nunit-console.exe "DDDPizza.UnitTests\bin\Release\DDDPizza.UnitTests.dll"
-
-after_test: 
-  - packages\OpenCover.4.5.3522\OpenCover.Console.exe -register:user -target:"nunit-console.exe" -targetargs:"""DDDPizza.UnitTests\bin\Release\DDDPizza.UnitTests.dll"" /noshadow" -output:opencovertests.xml -returntargetcode -filter:"+[DDDPizza.DomainModels]*" 
-  - packages\coveralls.net.0.5.0\csmacnz.Coveralls.exe --opencover -i opencovertests.xml --repoToken %COVERALLS_REPO_TOKEN% --commitId %APPVEYOR_REPO_COMMIT% --commitBranch %APPVEYOR_REPO_BRANCH% --commitAuthor %APPVEYOR_REPO_COMMIT_AUTHOR% --commitEmail %APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL% --commitMessage %APPVEYOR_REPO_COMMIT_MESSAGE% --jobId %APPVEYOR_JOB_ID%
+  #- npm run test-single-run
+  #- nunit-console.exe "DDDPizza.UnitTests\bin\Release\DDDPizza.UnitTests.dll"
+  - ps: packages\OpenCover.4.5.3723\OpenCover.Console.exe -register:user -target:nunit-console.exe "-targetargs:""DDDPizza.UnitTests\bin\Release\DDDPizza.UnitTests.dll"" /noshadow" -output:opencoverCoverage.xml -returntargetcode -filter:"+[DDDPizza.DomainModels]*" 
+  - ps: packages\coveralls.net.0.5.0\csmacnz.Coveralls.exe --opencover -i opencoverCoverage.xml --repoToken $env:COVERALLS_REPO_TOKEN --commitId $env:APPVEYOR_REPO_COMMIT --commitBranch $env:APPVEYOR_REPO_BRANCH --commitAuthor $env:APPVEYOR_REPO_COMMIT_AUTHOR --commitEmail $env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL --commitMessage $env:APPVEYOR_REPO_COMMIT_MESSAGE --jobId $env:APPVEYOR_JOB_ID
