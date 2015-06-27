@@ -1,8 +1,7 @@
-[![Build Status](https://ci.appveyor.com/api/projects/status/github/bl1nkr/DDDPizza?branch=dev&svg=true)](https://ci.appveyor.com/project/bl1nkr/dddpizza)
-
-[![Coverage Status](https://coveralls.io/repos/bl1nkr/DDDPizza/badge.svg)](https://coveralls.io/r/bl1nkr/DDDPizza)
-
 # DDDPizza
+
+[![Build Status](https://ci.appveyor.com/api/projects/status/github/bl1nkr/DDDPizza?branch=dev&svg=true)](https://ci.appveyor.com/project/bl1nkr/dddpizza)
+[![Coverage Status](https://coveralls.io/repos/bl1nkr/DDDPizza/badge.svg)](https://coveralls.io/r/bl1nkr/DDDPizza)
 
 A Sandbox for implementing DDD using a Pizza Restaurant as a use case
 
