@@ -15,5 +15,4 @@ build:
   verbosity: minimal
 
 cache:
-  - packages 
   - node_modules 
