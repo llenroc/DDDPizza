@@ -18,6 +18,7 @@ install:
 
 build:
   verbosity: minimal
+  project: DDDPizza.sln
 
 cache:
   - node_modules 
