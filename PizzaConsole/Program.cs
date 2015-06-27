@@ -62,8 +62,8 @@ namespace PizzaConsole
             Console.WriteLine("SubTotal: {0}", finalOrder.SubTotal);
             Console.WriteLine("Service Charge: {0}", finalOrder.ServiceCharge);
             Console.WriteLine("Total: {0}", finalOrder.TotalAmount);
-
-            finalOrder.ProcessOrder(finalOrder);
+            
+           // finalOrder.ProcessOrder(finalOrder, IEventPublisher eventPublisher);
 
             //var task = new Task(async () =>
             //{
@@ -99,8 +99,8 @@ namespace PizzaConsole
                     scan.TheCallingAssembly();
                     scan.AssemblyContainingType<IDomainEvent>();
                     scan.WithDefaultConventions();
-                    scan.IncludeNamespaceContainingType<NotifyOrderNeedsDelivery>(); // specify where handlers are located
-                    scan.ConnectImplementationsToTypesClosing(typeof(IHandle<>));
+                    //scan.IncludeNamespaceContainingType<NotifyOrderNeedsDelivery>(); // specify where handlers are located
+                    //scan.ConnectImplementationsToTypesClosing(typeof(IHandle<>));
 
                 });
 

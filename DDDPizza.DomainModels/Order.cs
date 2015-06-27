@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Autofac.Events;
 using DDDPizza.DomainModels.Enums;
 using DDDPizza.DomainModels.Events;
 using DDDPizza.SharedKernel;
@@ -9,7 +10,7 @@ namespace DDDPizza.DomainModels
 
     public class Order : Entity
     {
-        
+
         public Order(ServiceType service, List<Pizza> pizzas, string name) 
         {
             Guard.ForNullOrEmpty(name, "Customer Name must be provided");
@@ -28,6 +29,7 @@ namespace DDDPizza.DomainModels
         public decimal ServiceCharge { get; private set; }
         public decimal TotalAmount { get; private set; }
         public DateTime EstimatedReadyTime { get; private set; }
+       
 
         private void CalculateTotal()
         {
@@ -47,11 +49,12 @@ namespace DDDPizza.DomainModels
             EstimatedReadyTime = DateTime.UtcNow.AddMinutes(20).AddMinutes(existingOrders*2);
         }
 
-        public void ProcessOrder(Order order)
+        public void ProcessOrder(Order order, IEventPublisher eventPublisher)
         {
+        
             if (Equals(order.ServiceType, ServiceType.Delivery))
             {
-                DomainEvents.Raise<OrderNeedsDelivery>(new OrderNeedsDelivery(this));
+                eventPublisher.Publish(new OrderNeedsDelivery(this));
             }
         }
 

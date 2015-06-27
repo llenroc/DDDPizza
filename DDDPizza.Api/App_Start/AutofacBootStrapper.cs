@@ -1,11 +1,13 @@
-using System;
 using System.Reflection;
 using Autofac;
+using Autofac.Events;
+using Autofac.Features.Variance;
 using Autofac.Integration.WebApi;
 using DDDPizza.Api.Factories;
 using DDDPizza.ApplicationServices;
 using DDDPizza.DomainModels;
-using DDDPizza.DomainModels.Interfaces;
+using DDDPizza.DomainModels.Events;
+using DDDPizza.DomainModels.Handlers;
 using DDDPizza.Infrastructure.MongoDb;
 using DDDPizza.Infrastructure.MongoDb.Factories;
 using DDDPizza.Interfaces;
@@ -20,11 +22,10 @@ namespace DDDPizza.Api
             var builder = new ContainerBuilder();
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
+            builder.RegisterSource(new ContravariantRegistrationSource());
+            builder.RegisterEventing();
 
-            builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
-               .AsClosedTypesOf(typeof(IHandle<>));
-
-     
+            builder.RegisterType<NotifyOrderNeedsDelivery>().As<IHandleEvent<OrderNeedsDelivery>>();
 
             builder.RegisterType<OrderService>().As<IOrderService>().InstancePerLifetimeScope();
 

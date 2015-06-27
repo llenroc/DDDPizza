@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Autofac.Events;
 using DDDPizza.DomainModels;
 using DDDPizza.DomainModels.Enums;
 using DDDPizza.Interfaces;
@@ -14,10 +15,12 @@ namespace DDDPizza.ApplicationServices
     public class OrderService : IOrderService
     {
         private readonly IOrderRepository _orderRepository;
+        private readonly IEventPublisher _eventPublisher;
 
-        public OrderService(IOrderRepository orderRepository)
+        public OrderService(IOrderRepository orderRepository, IEventPublisher eventPublisher)
         {
             _orderRepository = orderRepository;
+            _eventPublisher = eventPublisher;
         }
 
         public async Task<OrderVm> GetOrderByIdAsync(string id)
@@ -64,7 +67,7 @@ namespace DDDPizza.ApplicationServices
             countTask.Wait();
             vm.SetEstimatedReadyTime(existingOrder);
             var dm = await _orderRepository.Add(vm);
-            dm.ProcessOrder(dm);
+            dm.ProcessOrder(dm, _eventPublisher);
             return AutoMapper.Mapper.Map<Order, OrderVm>(dm);
         }
 
