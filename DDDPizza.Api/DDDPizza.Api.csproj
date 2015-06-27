@@ -853,6 +853,10 @@
       <Project>{254be57b-45fd-40f6-814b-6522828c1e40}</Project>
       <Name>DDDPizza.Infrastructure.MongoDb</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DDDPizza.Infrastructure\DDDPizza.Infrastructure.csproj">
+      <Project>{A0D1B870-73D2-4E71-9AB1-72E6220C6B76}</Project>
+      <Name>DDDPizza.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DDDPizza.Interfaces\DDDPizza.Interfaces.csproj">
       <Project>{54502586-2068-4fe0-b4f5-37bf59a553c4}</Project>
       <Name>DDDPizza.Interfaces</Name>

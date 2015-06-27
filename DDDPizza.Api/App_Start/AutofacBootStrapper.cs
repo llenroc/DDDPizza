@@ -8,6 +8,8 @@ using DDDPizza.ApplicationServices;
 using DDDPizza.DomainModels;
 using DDDPizza.DomainModels.Events;
 using DDDPizza.DomainModels.Handlers;
+using DDDPizza.DomainModels.Interfaces;
+using DDDPizza.Infrastructure;
 using DDDPizza.Infrastructure.MongoDb;
 using DDDPizza.Infrastructure.MongoDb.Factories;
 using DDDPizza.Interfaces;
@@ -27,7 +29,8 @@ namespace DDDPizza.Api
 
             builder.RegisterType<NotifyOrderNeedsDelivery>().As<IHandleEvent<OrderNeedsDelivery>>();
 
-            builder.RegisterType<OrderService>().As<IOrderService>().InstancePerLifetimeScope();
+            builder.RegisterType<MessageService>().As<IMessageService>();
+            builder.RegisterType<OrderService>().As<IOrderService>();
 
             builder.RegisterType<OrderRepository>().As<IOrderRepository>();
             builder.RegisterType<RepositoryFactory>().As<IRepositoryFactory>();
