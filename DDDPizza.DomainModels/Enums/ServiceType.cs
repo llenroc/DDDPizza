@@ -43,7 +43,7 @@ namespace DDDPizza.DomainModels.Enums
 
             public override decimal CalculateTotal(ServiceType serviceType)
             {
-                return 0.50m;
+                return 0.00m;
             }
           
         }

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using Autofac.Events;
+﻿using Autofac.Events;
 using DDDPizza.DomainModels.Events;
 using DDDPizza.DomainModels.Interfaces;
 
@@ -10,7 +8,7 @@ namespace DDDPizza.DomainModels.Handlers
     public class NotifyOrderNeedsDelivery : IHandleEvent<OrderNeedsDelivery>
     {
 
-        private IMessageService _messageService;
+        private readonly IMessageService _messageService;
 
         public NotifyOrderNeedsDelivery(IMessageService messageService)
         {
