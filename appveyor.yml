@@ -10,7 +10,7 @@ install:
 
 test_script: 
   - npm run test-single-run
-  - bin\Release\nunit-console DDDPizza.UnitTests --config=Release
+  - bin\Release\nunit-console DDDPizza.UnitTests\bin\Release\DDDPizza.UnitTests.dll
 
 build:
   verbosity: minimal
