@@ -22,9 +22,9 @@ environment:
 before_build:
   - nuget restore "DDDPizza.sln"
 
-cache:
-  - node_modules 
-  - packages
+#cache:
+#  - node_modules 
+ # - packages
   
 build:
   verbosity: minimal
