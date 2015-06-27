@@ -12,9 +12,10 @@ install:
   - npm install -g bower karma karma-cli karma-phantomjs-launcher karma-coverage karma-jasmine karma-chrome-launcher karma-mocha karma-sinon karma-chai-sinon karma-chai
   - bower install
 
-#test_script: 
+test_script: 
 #  - npm run test-single-run
-#  - nunit-console.exe "DDDPizza.UnitTests\bin\Release\DDDPizza.UnitTests.dll"
+  - nunit-console.exe "DDDPizza.UnitTests\bin\Release\DDDPizza.UnitTests.dll"
+  - OpenCover.Console.exe -register:user -target:nunit-console.exe -targetargs:"""DDDPizza.UnitTests\bin\Release\DDDPizza.UnitTests.dll"" /noshadow /appveyor" -output:coverage.xml -returntargetcode -filter:"+[DDDPizza.DomainModels]*" -excludebyattribute:*.ExcludeFromCodeCoverage*  
 
 build:
   verbosity: minimal
