@@ -7,7 +7,6 @@ using DDDPizza.DomainModels.Enums;
 using DDDPizza.DomainModels.Events;
 using DDDPizza.DomainModels.Interfaces;
 using DDDPizza.Mocks;
-using Microsoft.SqlServer.Server;
 using Moq;
 using NUnit.Framework;
 
@@ -42,10 +41,40 @@ namespace DDDPizza.UnitTests
         }
 
         [Test]
+        public void Should_Create_Instance_Of_Bread_With_Guid()
+        {
+            const string name = "Double Crust";
+            var id = Guid.NewGuid();
+            var sut = new Bread(id, name);
+            var serialize = sut.ShouldSerializePrice();
+            Assert.IsInstanceOf<Bread>(sut);
+            Assert.IsNotNull(sut.Id);
+            Assert.IsInstanceOf<Guid>(sut.Id);
+            Assert.AreEqual(0, sut.Price);
+            Assert.AreEqual(name, sut.Name);
+            Assert.AreEqual(false, serialize);
+        }
+
+        [Test]
         public void Should_Create_Instance_Of_Cheese()
         {
             const string name = "Mozzarella";
             var sut = new Cheese(name);
+            var serialize = sut.ShouldSerializePrice();
+            Assert.IsInstanceOf<Cheese>(sut);
+            Assert.IsNotNull(sut.Id);
+            Assert.IsInstanceOf<Guid>(sut.Id);
+            Assert.AreEqual(0, sut.Price);
+            Assert.AreEqual(name, sut.Name);
+            Assert.AreEqual(false, serialize);
+        }
+
+        [Test]
+        public void Should_Create_Instance_Of_Cheese_With_Guid()
+        {
+            const string name = "Mozzarella";
+            var id = Guid.NewGuid();
+            var sut = new Cheese(id, name);
             var serialize = sut.ShouldSerializePrice();
             Assert.IsInstanceOf<Cheese>(sut);
             Assert.IsNotNull(sut.Id);
@@ -70,6 +99,21 @@ namespace DDDPizza.UnitTests
         }
 
         [Test]
+        public void Should_Create_Instance_Of_Sauce_With_Guid()
+        {
+            var id = Guid.NewGuid();
+            const string name = "Pesto";
+            var sut = new Sauce(id, name);
+            var serialize = sut.ShouldSerializePrice();
+            Assert.IsInstanceOf<Sauce>(sut);
+            Assert.IsNotNull(sut.Id);
+            Assert.IsInstanceOf<Guid>(sut.Id);
+            Assert.AreEqual(0, sut.Price);
+            Assert.AreEqual(name, sut.Name);
+            Assert.AreEqual(false, serialize);
+        }
+
+        [Test]
         public void Should_Create_Instance_Of_Size()
         {
             const decimal price = 23.11m;
@@ -83,10 +127,38 @@ namespace DDDPizza.UnitTests
         }
 
         [Test]
+        public void Should_Create_Instance_Of_Size_With_Guid()
+        {
+            var id = Guid.NewGuid();
+            const decimal price = 23.11m;
+            var sut = new Size(id,"reallyBig!", price);
+            var serialize = sut.ShouldSerializePrice();
+            Assert.IsInstanceOf<Size>(sut);
+            Assert.NotNull(sut.Id);
+            Assert.IsInstanceOf<Guid>(sut.Id);
+            Assert.AreEqual(price, sut.Price);
+            Assert.AreEqual(true, serialize);
+        }
+
+        [Test]
         public void Should_Create_Instance_Of_Topping()
         {
             const decimal price = 1.1m;
             var sut = new Size("Mushrooms", price);
+            var serialize = sut.ShouldSerializePrice();
+            Assert.IsInstanceOf<Size>(sut);
+            Assert.NotNull(sut.Id);
+            Assert.IsInstanceOf<Guid>(sut.Id);
+            Assert.AreEqual(price, sut.Price);
+            Assert.AreEqual(true, serialize);
+        }
+
+        [Test]
+        public void Should_Create_Instance_Of_Topping_With_Guid()
+        {
+            var id = Guid.NewGuid();
+            const decimal price = 1.1m;
+            var sut = new Size(id, "Mushrooms", price);
             var serialize = sut.ShouldSerializePrice();
             Assert.IsInstanceOf<Size>(sut);
             Assert.NotNull(sut.Id);
