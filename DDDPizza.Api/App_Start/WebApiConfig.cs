@@ -7,11 +7,16 @@ using Newtonsoft.Json.Serialization;
 
 namespace DDDPizza.Api
 {
+
+
+
     public static class WebApiConfig
     {
+
+      
         public static void Register(HttpConfiguration config)
         {
-            
+
             RaygunWebApiClient.Attach(config);
 
             // Web API configuration and services

@@ -1,16 +1,15 @@
 ﻿using System;
-using System.Net;
-using System.Net.Http;
-using System.Security;
 using System.Threading.Tasks;
 using System.Web.Http;
 using DDDPizza.ApplicationServices;
 using DDDPizza.ViewModels;
+using Mindscape.Raygun4Net.WebApi;
 
 namespace DDDPizza.Api.Controllers
 {
     public class OrderController : BaseApiController
     {
+
 
         private readonly IOrderService _orderService;
 
@@ -35,10 +34,9 @@ namespace DDDPizza.Api.Controllers
             }
             catch (Exception ex)
             {
-                return InternalServerError(new Exception(string.Format("exception: {0}", ex)));
+                new RaygunWebApiClient().SendInBackground(ex);
+                return InternalServerError();
             }
-
-
          
         }
 

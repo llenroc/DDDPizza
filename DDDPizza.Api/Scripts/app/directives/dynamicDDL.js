@@ -6,11 +6,10 @@
         return {
             restrict: "AE",
             require: "^form",     
-            bindToController: { amount: "@", passPizza: "=", updateAmount: "&" },
+            bindToController: true,
             templateUrl: "/Scripts/app/directives/templates/dynamicDDL.html",
             controllerAs: "vm",
-            scope: true,
-
+            scope: {  amount: "@", passPizza: "=", updateAmount: "&" },
             controller: ["inventoryRepository", function (inventoryRepository) {
 
                 var vm = this;
@@ -18,8 +17,6 @@
                 inventoryRepository.getInventory().then(function (data) {
                     vm.toppings = data.toppings;
                 });
-
-
        
                 vm.add = function () {
                     vm.amount++;
@@ -28,6 +25,7 @@
                 vm.remove = function () {
                     vm.amount--;
                     delete vm.passPizza.topping[vm.amount];
+                    vm.updateAmount();
                 };
 
                 vm.range = function (count) {

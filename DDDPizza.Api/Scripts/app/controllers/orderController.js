@@ -67,6 +67,7 @@
 
         model.updateTotal = function () {
 
+            
             model.pizza.total = 0;
             if (!isNaN(model.pizza.size.price))
                 model.pizza.total = parseFloat(model.pizza.size.price);
@@ -100,6 +101,7 @@
 
             var obj = localStorage.get(model.userkey);
             obj.pizzas.push(model.pizza);
+            console.log(model.pizza);
             localStorage.add(model.userkey, obj);
             toastr.success('Successful!', 'Pizza was added to Order!');
             model.init();

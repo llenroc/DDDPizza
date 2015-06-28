@@ -13,7 +13,8 @@ namespace DDDPizza.Api.Factories
         {
             var src = (OrderVm)context.SourceValue;
             var servType = Enumeration.FromDisplayName<ServiceType>(src.ServiceType.Replace(" ", ""));
-            var result = new Order(servType, src.Pizzas.Select(Mapper.Map<Pizza>).ToList(), src.Name);
+            var pizzas = src.Pizzas.Select(x => Mapper.Map<PizzaVm, Pizza>(x)).ToList();
+            var result = new Order(servType, pizzas, src.Name);
             return result;
         }
     }
