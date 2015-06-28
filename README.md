@@ -1,6 +1,6 @@
 # DDDPizza
 
-[![Build Status](https://ci.appveyor.com/api/projects/status/github/bl1nkr/DDDPizza?branch=dev&svg=true)](https://ci.appveyor.com/project/bl1nkr/dddpizza)
+[![Build Status](https://ci.appveyor.com/api/projects/status/github/bl1nkr/DDDPizza?branch=master&svg=true)](https://ci.appveyor.com/project/bl1nkr/dddpizza)
 [![Build Status](https://travis-ci.org/bl1nkr/DDDPizza.svg?branch=dev)](https://travis-ci.org/bl1nkr/DDDPizza)
 [![Coverage Status](https://coveralls.io/repos/bl1nkr/DDDPizza/badge.svg?branch=dev)](https://coveralls.io/r/bl1nkr/DDDPizza?branch=dev)
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
