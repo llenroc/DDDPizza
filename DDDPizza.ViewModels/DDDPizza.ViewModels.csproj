@@ -40,11 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EditInventoryVm.cs" />
+    <Compile Include="PriceInventoryVm.cs" />
+    <Compile Include="FullInventoryVm.cs" />
     <Compile Include="InventoryTypeVm.cs" />
     <Compile Include="InventoryVm.cs" />
-    <Compile Include="ManageInventoryVm.cs" />
     <Compile Include="OrderVm.cs" />
+    <Compile Include="PizzaVm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

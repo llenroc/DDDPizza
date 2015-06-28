@@ -1,21 +1,22 @@
 ﻿using System;
 using DDDPizza.DomainModels.BaseTypes;
+using DDDPizza.DomainModels.Interfaces;
 
 namespace DDDPizza.DomainModels
 {
-    public class Size : InventoryBase
+    public class Size : InventoryBase, IInventoryEntity
     {
 
-        public decimal Cost { get; private set; }
-
-        public Size(string name, decimal cost) : base(name)
+        public Size(string name, decimal price)
+            : base(name, price)
         {
-            Cost = cost;
+        
         }
 
-        public Size(Guid id, string name, decimal cost) :  base(id, name) 
+        public Size(Guid id, string name, decimal price)
+            : base(id, name, price)
         {
-            Cost = cost;
+
         }
 
 

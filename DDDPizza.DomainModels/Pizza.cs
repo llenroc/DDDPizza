@@ -1,49 +1,54 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using DDDPizza.DomainModels.Events;
+﻿using System.Collections.Generic;
+using DDDPizza.SharedKernel;
 
 namespace DDDPizza.DomainModels
 {
-    public class Pizza
+    public class Pizza : ValueObject<Pizza>
     {
 
-        private List<Toppings> _toppings;
-
-        public Pizza(List<Toppings> toppings, Size size, Bread bread, Sauce sause, Cheese cheese)
+        private List<Topping> _toppings;
+  
+        public Pizza(List<Topping> toppings, Size size, Bread bread, Sauce sause, Cheese cheese)
         {
             _toppings = toppings;
             Size = size;
             Bread = bread;
-            Sause = sause;
+            Sauce = sause;
             Cheese = cheese;
             CalculateCost();
         }
 
-        public Order Order { get; set; }
-
-        public List<Toppings> Toppings
+        public List<Topping> Toppings
         {
-            get { return new List<Toppings>(_toppings); }
+            get { return new List<Topping>(_toppings); }
             protected set
             {
                 _toppings = value;
             }
         }
         public Bread Bread { get; set; }
-        public Sauce Sause { get; set; }
+        public Sauce Sauce { get; set; }
         public Cheese Cheese { get; set; }
         public Size Size { get; set; }
-        public decimal Total { get; private set; }
+        public decimal Total { get; set; }
 
         public void CalculateCost()
         {
-            foreach (var item in _toppings)
+            if (_toppings.Count > 0)
             {
-                Total += item.Cost;
+                if (_toppings[0] != null)
+                {
+                    foreach (var item in _toppings)
+                    {
+                        Total += item.Price;
+                    }
+                }
+        
             }
-            Total += Size.Cost;
+           
+            Total += Size.Price;
 
-            DomainEvents.Raise<PizzaOrdered>(new PizzaOrdered(this));
+         
         }
 
     }

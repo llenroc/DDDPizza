@@ -1,8 +1,41 @@
 # build Configuration, i.e. Debug, Release, etc.
+version: 1.0.{build}
+branches:
+  only:
+  - master
+  - dev
 configuration: Release
+skip_tags: true
+platform: Any CPU
+
+assembly_info:
+  patch: true
+  file: '**\AssemblyInfo.*'
+  assembly_version: '{version}'
+  assembly_file_version: '{version}'
+  assembly_informational_version: '{version}'
+  
+environment:
+  COVERALLS_REPO_TOKEN:
+    secure: 3B40BeTn3+cKtb67HRbEYRI1Eo7n471MlmkDc7+Nh8ic3EzFVv3tKHV9rxOAWPNx
 
 before_build:
-  - nuget restore
+  - nuget restore "DDDPizza.sln"
+
+cache:
+  - node_modules 
+  - packages
   
 build:
   verbosity: minimal
+  project: DDDPizza.sln
+  
+install:
+  - npm install -g bower karma karma-cli karma-phantomjs-launcher karma-coverage karma-jasmine karma-chrome-launcher karma-mocha karma-sinon karma-chai-sinon karma-chai
+  - bower install
+
+test_script: 
+  - npm run test-single-run
+  - nunit-console.exe "DDDPizza.UnitTests\bin\Release\DDDPizza.UnitTests.dll"
+  - ps: packages\OpenCover.4.5.3723\OpenCover.Console.exe -register:user -target:nunit-console.exe "-targetargs:""DDDPizza.UnitTests\bin\Release\DDDPizza.UnitTests.dll"" /noshadow" -output:opencoverCoverage.xml -returntargetcode -filter:"+[DDDPizza.DomainModels]*" 
+  - ps: packages\coveralls.net.0.5.0\csmacnz.Coveralls.exe --opencover -i opencoverCoverage.xml --repoToken $env:COVERALLS_REPO_TOKEN --commitId $env:APPVEYOR_REPO_COMMIT --commitBranch $env:APPVEYOR_REPO_BRANCH --commitAuthor $env:APPVEYOR_REPO_COMMIT_AUTHOR --commitEmail $env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL --commitMessage $env:APPVEYOR_REPO_COMMIT_MESSAGE --jobId $env:APPVEYOR_JOB_ID

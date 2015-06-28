@@ -1,35 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
+using Autofac.Events;
 using DDDPizza.DomainModels.Enums;
-
+using DDDPizza.DomainModels.Events;
+using DDDPizza.SharedKernel;
 
 namespace DDDPizza.DomainModels
 {
 
-
-
-
-    public class  Order
+    public class Order : Entity
     {
-        public Order()
+
+        public Order(ServiceType service, List<Pizza> pizzas, string name) 
         {
-            Id = Guid.NewGuid();
-        }
-        public Order(ServiceType service, ICollection<Pizza> pizzas)
-        {
+            Guard.ForNullOrEmpty(name, "Customer Name must be provided");
+            Name = name;
             ServiceType = service;
             Pizzas = pizzas;
             CalculateTotal();
+            DateTimeStamp = DateTime.UtcNow;
         }
-
-        public Guid Id { get; set; }
-    
-        public ServiceType ServiceType { get; private set; }
-        public ICollection<Pizza> Pizzas { get; set; }
-
+ 
+        public string Name { get; private set; }
+        public ServiceType ServiceType { get;  set; }
+        public List<Pizza> Pizzas { get; set; }
+        public DateTime DateTimeStamp { get; private set; }
         public decimal SubTotal { get; private set; }
         public decimal ServiceCharge { get; private set; }
         public decimal TotalAmount { get; private set; }
+        public DateTime EstimatedReadyTime { get; private set; }
+       
 
         private void CalculateTotal()
         {
@@ -41,6 +41,21 @@ namespace DDDPizza.DomainModels
             ServiceCharge = ServiceType.CalculateTotal(this.ServiceType);
 
             TotalAmount = SubTotal + ServiceCharge;
+            
+        }
+
+        public void SetEstimatedReadyTime(long existingOrders)
+        {
+            EstimatedReadyTime = DateTime.UtcNow.AddMinutes(20).AddMinutes(existingOrders*2);
+        }
+
+        public void ProcessOrder(Order order, IEventPublisher eventPublisher)
+        {
+        
+            if (Equals(order.ServiceType, ServiceType.Delivery))
+            {
+                eventPublisher.Publish(new OrderNeedsDelivery(this));
+            }
         }
 
     }

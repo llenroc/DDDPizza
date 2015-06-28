@@ -52,19 +52,19 @@ namespace DDDPizza.Mocks
         }
 
 
-        public static ICollection<Toppings> ToppingMocks()
+        public static ICollection<Topping> ToppingMocks()
         {
-            return new Collection<Toppings>
+            return new Collection<Topping>
             {
-                new Toppings("Pepperoni", 0.99m),
-                new Toppings("Mushrooms", 0.99m),
-                new Toppings("Bacon", 1.99m),
-                new Toppings("Extra cheese", 1.99m),
-                new Toppings("Black olives", 1.99m),
-                new Toppings("Green peppers", 1.99m),
-                new Toppings("Sausage", 0.99m),
-                new Toppings("Pineapple", 0.99m),
-                new Toppings("Spinach", 0.99m)
+                new Topping("Pepperoni", 0.99m),
+                new Topping("Mushrooms", 0.99m),
+                new Topping("Bacon", 1.99m),
+                new Topping("Extra cheese", 1.99m),
+                new Topping("Black olives", 1.99m),
+                new Topping("Green peppers", 1.99m),
+                new Topping("Sausage", 0.99m),
+                new Topping("Pineapple", 0.99m),
+                new Topping("Spinach", 0.99m)
             };
         }
 

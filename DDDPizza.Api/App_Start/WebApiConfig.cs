@@ -1,15 +1,24 @@
 ﻿using System.Net.Http.Formatting;
 using System.Web.Http;
 using DDDPizza.Api.Formatters;
+using Mindscape.Raygun4Net.WebApi;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
 namespace DDDPizza.Api
 {
+
+
+
     public static class WebApiConfig
     {
+
+      
         public static void Register(HttpConfiguration config)
         {
+
+            RaygunWebApiClient.Attach(config);
+
             // Web API configuration and services
 
             var jsonFormatter = new JsonMediaTypeFormatter();

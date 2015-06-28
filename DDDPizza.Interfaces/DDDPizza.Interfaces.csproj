@@ -40,7 +40,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IInventoryRepository.cs" />
-    <Compile Include="IPizzaRepository.cs" />
+    <Compile Include="IOrderRepository.cs" />
+    <Compile Include="IRepositoryFactory.cs" />
+    <Compile Include="ISeedRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

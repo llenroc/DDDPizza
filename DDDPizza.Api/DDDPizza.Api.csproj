@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -20,6 +21,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <TypeScriptToolsVersion>1.0</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,8 +41,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac">
-      <HintPath>..\packages\Autofac.3.5.0\lib\net40\Autofac.dll</HintPath>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Autofac.Events, Version=3.5.2.15056, Culture=neutral, PublicKeyToken=9f9ffdb810b9e463, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Events.3.5.2.0\lib\portable-net45+win+wpa81\Autofac.Events.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Autofac.Integration.Owin">
       <HintPath>..\packages\Autofac.Owin.3.1.0\lib\net45\Autofac.Integration.Owin.dll</HintPath>
@@ -51,9 +58,25 @@
     <Reference Include="Autofac.Integration.WebApi.Owin">
       <HintPath>..\packages\Autofac.WebApi2.Owin.3.2.0\lib\net45\Autofac.Integration.WebApi.Owin.dll</HintPath>
     </Reference>
+    <Reference Include="AutoMapper, Version=3.3.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AutoMapper.Net4, Version=3.3.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Owin">
       <HintPath>..\packages\Microsoft.Owin.3.0.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Mindscape.Raygun4Net, Version=5.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mindscape.Raygun4Net.Core.5.1.0\lib\net40\Mindscape.Raygun4Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Mindscape.Raygun4Net.WebApi, Version=5.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mindscape.Raygun4Net.WebApi.5.1.0\lib\net45\Mindscape.Raygun4Net.WebApi.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="MongoDB.Bson, Version=2.0.0.828, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MongoDB.Bson.2.0.0\lib\net45\MongoDB.Bson.dll</HintPath>
@@ -145,37 +168,458 @@
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\lib\angular-ui-router\api\angular-ui-router.d.ts" />
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\AutofacBootStrapper.cs" />
+    <Compile Include="App_Start\AutoMapper.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\MongoBootStrapper.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PizzaController.cs" />
+    <Compile Include="Controllers\InventoryController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Factories\OrderVmToOrderDmConverter.cs" />
+    <Compile Include="Factories\PizzaVmToPizzaDmConverter.cs" />
     <Compile Include="Formatters\JsonContentNegotiator.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\OrderVm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\img\Delivery.png" />
+    <Content Include="Content\img\InRestaurant.png" />
+    <Content Include="Content\img\pizza-icon.png" />
+    <Content Include="Content\img\PizzaLogo.png" />
+    <Content Include="Content\img\spinner.gif" />
+    <Content Include="Content\img\TakeOut.png" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\app\app.min.js" />
+    <Content Include="Scripts\app\app.js" />
+    <Content Include="Scripts\app\controllers\pastOrdersController.js" />
+    <Content Include="Scripts\app\controllers\orderController.js" />
+    <Content Include="Scripts\app\controllers\navigationController.js" />
+    <Content Include="Scripts\app\controllers\pizzaController.js" />
+    <Content Include="Scripts\app\controllers\currentOrdersController.js" />
+    <Content Include="Scripts\app\directives\templates\dynamicDDL.html" />
+    <Content Include="Scripts\app\directives\dynamicDDL.js" />
+    <Content Include="Scripts\app\services\httpRepository.js" />
+    <Content Include="Scripts\app\services\inventoryRepository.js" />
+    <Content Include="Scripts\app\services\localStorage.js" />
+    <Content Include="Scripts\app\services\order.js" />
+    <Content Include="Scripts\app\services\orderRepository.js" />
+    <Content Include="Scripts\app\services\pizza.js" />
+    <Content Include="Scripts\app\services\requestCounter.js" />
+    <Content Include="Scripts\app\directives\workSpinner.js" />
+    <Content Include="Scripts\app\views\order.html" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="Scripts\app\app.min.js.map">
+      <DependentUpon>app.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\app\views\past.html" />
+    <Content Include="Scripts\app\views\current.html" />
+    <Content Include="Scripts\lib\angular-animate\angular-animate.js" />
+    <Content Include="Scripts\lib\angular-animate\angular-animate.min.js" />
+    <Content Include="Scripts\lib\angular-animate\index.js" />
+    <Content Include="Scripts\lib\angular-bootstrap\ui-bootstrap-csp.css" />
+    <Content Include="Scripts\lib\angular-bootstrap\ui-bootstrap-tpls.js" />
+    <Content Include="Scripts\lib\angular-bootstrap\ui-bootstrap-tpls.min.js" />
+    <Content Include="Scripts\lib\angular-bootstrap\ui-bootstrap.js" />
+    <Content Include="Scripts\lib\angular-bootstrap\ui-bootstrap.min.js" />
+    <Content Include="Scripts\lib\angular-filter\dist\angular-filter.js" />
+    <Content Include="Scripts\lib\angular-filter\dist\angular-filter.min.js" />
+    <Content Include="Scripts\lib\angular-mocks\angular-mocks.js" />
+    <Content Include="Scripts\lib\angular-mocks\ngAnimateMock.js" />
+    <Content Include="Scripts\lib\angular-mocks\ngMock.js" />
+    <Content Include="Scripts\lib\angular-mocks\ngMockE2E.js" />
+    <Content Include="Scripts\lib\angular-resource\angular-resource.js" />
+    <Content Include="Scripts\lib\angular-resource\angular-resource.min.js" />
+    <Content Include="Scripts\lib\angular-resource\index.js" />
+    <Content Include="Scripts\lib\angular-sanitize\angular-sanitize.js" />
+    <Content Include="Scripts\lib\angular-sanitize\angular-sanitize.min.js" />
+    <Content Include="Scripts\lib\angular-sanitize\index.js" />
+    <Content Include="Scripts\lib\angular-toastr\dist\angular-toastr.css" />
+    <Content Include="Scripts\lib\angular-toastr\dist\angular-toastr.js" />
+    <Content Include="Scripts\lib\angular-toastr\dist\angular-toastr.min.css" />
+    <Content Include="Scripts\lib\angular-toastr\dist\angular-toastr.min.js" />
+    <Content Include="Scripts\lib\angular-toastr\dist\angular-toastr.tpls.js" />
+    <Content Include="Scripts\lib\angular-toastr\dist\angular-toastr.tpls.min.js" />
+    <Content Include="Scripts\lib\angular-toastr\gulpfile.js" />
+    <Content Include="Scripts\lib\angular-toastr\index.js" />
+    <Content Include="Scripts\lib\angular-ui-router\release\angular-ui-router.js" />
+    <Content Include="Scripts\lib\angular-ui-router\release\angular-ui-router.min.js" />
+    <Content Include="Scripts\lib\angular-ui-router\src\common.js" />
+    <Content Include="Scripts\lib\angular-ui-router\src\resolve.js" />
+    <Content Include="Scripts\lib\angular-ui-router\src\state.js" />
+    <Content Include="Scripts\lib\angular-ui-router\src\stateDirectives.js" />
+    <Content Include="Scripts\lib\angular-ui-router\src\stateFilters.js" />
+    <Content Include="Scripts\lib\angular-ui-router\src\templateFactory.js" />
+    <Content Include="Scripts\lib\angular-ui-router\src\urlMatcherFactory.js" />
+    <Content Include="Scripts\lib\angular-ui-router\src\urlRouter.js" />
+    <Content Include="Scripts\lib\angular-ui-router\src\view.js" />
+    <Content Include="Scripts\lib\angular-ui-router\src\viewDirective.js" />
+    <Content Include="Scripts\lib\angular-ui-router\src\viewScroll.js" />
+    <Content Include="Scripts\lib\angular\angular-csp.css" />
+    <Content Include="Scripts\lib\angular\angular.js" />
+    <Content Include="Scripts\lib\angular\angular.min.js" />
+    <Content Include="Scripts\lib\angular\index.js" />
+    <Content Include="Scripts\lib\bardjs\dist\bard-ngRouteTester.js" />
+    <Content Include="Scripts\lib\bardjs\dist\bard.js" />
+    <Content Include="Scripts\lib\bootstrap\dist\css\bootstrap-theme.css" />
+    <Content Include="Scripts\lib\bootstrap\dist\css\bootstrap-theme.min.css" />
+    <Content Include="Scripts\lib\bootstrap\dist\css\bootstrap.css" />
+    <Content Include="Scripts\lib\bootstrap\dist\css\bootstrap.min.css" />
+    <Content Include="Scripts\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Scripts\lib\bootstrap\dist\js\bootstrap.js" />
+    <Content Include="Scripts\lib\bootstrap\dist\js\bootstrap.min.js" />
+    <Content Include="Scripts\lib\bootstrap\dist\js\npm.js" />
+    <Content Include="Scripts\lib\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Scripts\lib\bootstrap\Gruntfile.js" />
+    <Content Include="Scripts\lib\bootstrap\grunt\bs-commonjs-generator.js" />
+    <Content Include="Scripts\lib\bootstrap\grunt\bs-glyphicons-data-generator.js" />
+    <Content Include="Scripts\lib\bootstrap\grunt\bs-lessdoc-parser.js" />
+    <Content Include="Scripts\lib\bootstrap\grunt\bs-raw-files-generator.js" />
+    <Content Include="Scripts\lib\bootstrap\js\affix.js" />
+    <Content Include="Scripts\lib\bootstrap\js\alert.js" />
+    <Content Include="Scripts\lib\bootstrap\js\button.js" />
+    <Content Include="Scripts\lib\bootstrap\js\carousel.js" />
+    <Content Include="Scripts\lib\bootstrap\js\collapse.js" />
+    <Content Include="Scripts\lib\bootstrap\js\dropdown.js" />
+    <Content Include="Scripts\lib\bootstrap\js\modal.js" />
+    <Content Include="Scripts\lib\bootstrap\js\popover.js" />
+    <Content Include="Scripts\lib\bootstrap\js\scrollspy.js" />
+    <Content Include="Scripts\lib\bootstrap\js\tab.js" />
+    <Content Include="Scripts\lib\bootstrap\js\tooltip.js" />
+    <Content Include="Scripts\lib\bootstrap\js\transition.js" />
+    <Content Include="Scripts\lib\bootstrap\package.js" />
+    <Content Include="Scripts\lib\font-awesome\.gitignore" />
+    <Content Include="Scripts\lib\font-awesome\css\font-awesome.css" />
+    <Content Include="Scripts\lib\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Scripts\lib\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Scripts\lib\jquery\dist\jquery.js" />
+    <Content Include="Scripts\lib\jquery\dist\jquery.min.js" />
+    <Content Include="Scripts\lib\jquery\MIT-LICENSE.txt" />
+    <Content Include="Scripts\lib\jquery\src\ajax.js" />
+    <Content Include="Scripts\lib\jquery\src\ajax\jsonp.js" />
+    <Content Include="Scripts\lib\jquery\src\ajax\load.js" />
+    <Content Include="Scripts\lib\jquery\src\ajax\parseJSON.js" />
+    <Content Include="Scripts\lib\jquery\src\ajax\parseXML.js" />
+    <Content Include="Scripts\lib\jquery\src\ajax\script.js" />
+    <Content Include="Scripts\lib\jquery\src\ajax\var\nonce.js" />
+    <Content Include="Scripts\lib\jquery\src\ajax\var\rquery.js" />
+    <Content Include="Scripts\lib\jquery\src\ajax\xhr.js" />
+    <Content Include="Scripts\lib\jquery\src\attributes.js" />
+    <Content Include="Scripts\lib\jquery\src\attributes\attr.js" />
+    <Content Include="Scripts\lib\jquery\src\attributes\classes.js" />
+    <Content Include="Scripts\lib\jquery\src\attributes\prop.js" />
+    <Content Include="Scripts\lib\jquery\src\attributes\support.js" />
+    <Content Include="Scripts\lib\jquery\src\attributes\val.js" />
+    <Content Include="Scripts\lib\jquery\src\callbacks.js" />
+    <Content Include="Scripts\lib\jquery\src\core.js" />
+    <Content Include="Scripts\lib\jquery\src\core\access.js" />
+    <Content Include="Scripts\lib\jquery\src\core\init.js" />
+    <Content Include="Scripts\lib\jquery\src\core\parseHTML.js" />
+    <Content Include="Scripts\lib\jquery\src\core\ready.js" />
+    <Content Include="Scripts\lib\jquery\src\core\var\rsingleTag.js" />
+    <Content Include="Scripts\lib\jquery\src\css.js" />
+    <Content Include="Scripts\lib\jquery\src\css\addGetHookIf.js" />
+    <Content Include="Scripts\lib\jquery\src\css\curCSS.js" />
+    <Content Include="Scripts\lib\jquery\src\css\defaultDisplay.js" />
+    <Content Include="Scripts\lib\jquery\src\css\hiddenVisibleSelectors.js" />
+    <Content Include="Scripts\lib\jquery\src\css\support.js" />
+    <Content Include="Scripts\lib\jquery\src\css\swap.js" />
+    <Content Include="Scripts\lib\jquery\src\css\var\cssExpand.js" />
+    <Content Include="Scripts\lib\jquery\src\css\var\getStyles.js" />
+    <Content Include="Scripts\lib\jquery\src\css\var\isHidden.js" />
+    <Content Include="Scripts\lib\jquery\src\css\var\rmargin.js" />
+    <Content Include="Scripts\lib\jquery\src\css\var\rnumnonpx.js" />
+    <Content Include="Scripts\lib\jquery\src\data.js" />
+    <Content Include="Scripts\lib\jquery\src\data\accepts.js" />
+    <Content Include="Scripts\lib\jquery\src\data\Data.js" />
+    <Content Include="Scripts\lib\jquery\src\data\var\data_priv.js" />
+    <Content Include="Scripts\lib\jquery\src\data\var\data_user.js" />
+    <Content Include="Scripts\lib\jquery\src\deferred.js" />
+    <Content Include="Scripts\lib\jquery\src\deprecated.js" />
+    <Content Include="Scripts\lib\jquery\src\dimensions.js" />
+    <Content Include="Scripts\lib\jquery\src\effects.js" />
+    <Content Include="Scripts\lib\jquery\src\effects\animatedSelector.js" />
+    <Content Include="Scripts\lib\jquery\src\effects\Tween.js" />
+    <Content Include="Scripts\lib\jquery\src\event.js" />
+    <Content Include="Scripts\lib\jquery\src\event\ajax.js" />
+    <Content Include="Scripts\lib\jquery\src\event\alias.js" />
+    <Content Include="Scripts\lib\jquery\src\event\support.js" />
+    <Content Include="Scripts\lib\jquery\src\exports\amd.js" />
+    <Content Include="Scripts\lib\jquery\src\exports\global.js" />
+    <Content Include="Scripts\lib\jquery\src\intro.js" />
+    <Content Include="Scripts\lib\jquery\src\jquery.js" />
+    <Content Include="Scripts\lib\jquery\src\manipulation.js" />
+    <Content Include="Scripts\lib\jquery\src\manipulation\support.js" />
+    <Content Include="Scripts\lib\jquery\src\manipulation\var\rcheckableType.js" />
+    <Content Include="Scripts\lib\jquery\src\manipulation\_evalUrl.js" />
+    <Content Include="Scripts\lib\jquery\src\offset.js" />
+    <Content Include="Scripts\lib\jquery\src\outro.js" />
+    <Content Include="Scripts\lib\jquery\src\queue.js" />
+    <Content Include="Scripts\lib\jquery\src\queue\delay.js" />
+    <Content Include="Scripts\lib\jquery\src\selector-native.js" />
+    <Content Include="Scripts\lib\jquery\src\selector-sizzle.js" />
+    <Content Include="Scripts\lib\jquery\src\selector.js" />
+    <Content Include="Scripts\lib\jquery\src\serialize.js" />
+    <Content Include="Scripts\lib\jquery\src\sizzle\dist\sizzle.js" />
+    <Content Include="Scripts\lib\jquery\src\sizzle\dist\sizzle.min.js" />
+    <Content Include="Scripts\lib\jquery\src\traversing.js" />
+    <Content Include="Scripts\lib\jquery\src\traversing\findFilter.js" />
+    <Content Include="Scripts\lib\jquery\src\traversing\var\rneedsContext.js" />
+    <Content Include="Scripts\lib\jquery\src\var\arr.js" />
+    <Content Include="Scripts\lib\jquery\src\var\class2type.js" />
+    <Content Include="Scripts\lib\jquery\src\var\concat.js" />
+    <Content Include="Scripts\lib\jquery\src\var\hasOwn.js" />
+    <Content Include="Scripts\lib\jquery\src\var\indexOf.js" />
+    <Content Include="Scripts\lib\jquery\src\var\pnum.js" />
+    <Content Include="Scripts\lib\jquery\src\var\push.js" />
+    <Content Include="Scripts\lib\jquery\src\var\rnotwhite.js" />
+    <Content Include="Scripts\lib\jquery\src\var\slice.js" />
+    <Content Include="Scripts\lib\jquery\src\var\strundefined.js" />
+    <Content Include="Scripts\lib\jquery\src\var\support.js" />
+    <Content Include="Scripts\lib\jquery\src\var\toString.js" />
+    <Content Include="Scripts\lib\jquery\src\wrap.js" />
+    <Content Include="Scripts\lib\modernizr\.gitignore" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\a-download.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\audio-audiodata-api.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\audio-webaudio-api.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\battery-api.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\battery-level.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\blob-constructor.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\canvas-todataurl-type.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\contenteditable.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\contentsecuritypolicy.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\contextmenu.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\cookies.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\cors.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\css-backgroundposition-shorthand.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\css-backgroundposition-xy.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\css-backgroundrepeat.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\css-backgroundsizecover.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\css-boxsizing.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\css-calc.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\css-cubicbezierrange.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\css-displayrunin.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\css-displaytable.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\css-filters.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\css-hyphens.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\css-lastchild.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\css-mask.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\css-mediaqueries.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\css-objectfit.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\css-overflow-scrolling.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\css-pointerevents.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\css-positionsticky.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\css-regions.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\css-remunit.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\css-resize.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\css-scrollbars.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\css-shapes.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\css-subpixelfont.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\css-supports.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\css-userselect.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\css-vhunit.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\css-vmaxunit.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\css-vminunit.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\css-vwunit.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\custom-protocol-handler.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\dart.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\dataview-api.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\dom-classlist.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\dom-createElement-attrs.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\dom-dataset.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\dom-microdata.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\elem-datalist.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\elem-details.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\elem-output.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\elem-progress-meter.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\elem-ruby.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\elem-time.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\elem-track.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\emoji.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\es5-strictmode.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\event-deviceorientation-motion.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\exif-orientation.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\file-api.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\file-filesystem.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\forms-fileinput.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\forms-formattribute.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\forms-inputnumber-l10n.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\forms-placeholder.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\forms-speechinput.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\forms-validation.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\fullscreen-api.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\gamepad.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\getusermedia.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\ie8compat.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\iframe-sandbox.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\iframe-seamless.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\iframe-srcdoc.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\img-apng.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\img-webp.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\json.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\lists-reversed.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\mathml.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\network-connection.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\network-eventsource.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\network-xhr2.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\notification.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\performance.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\pointerlock-api.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\quota-management-api.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\requestanimationframe.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\script-async.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\script-defer.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\style-scoped.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\svg-filters.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\unicode.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\url-data-uri.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\userdata.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\vibration.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\web-intents.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\webgl-extensions.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\websockets-binary.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\window-framed.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\workers-blobworkers.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\workers-dataworkers.js" />
+    <Content Include="Scripts\lib\modernizr\feature-detects\workers-sharedworkers.js" />
+    <Content Include="Scripts\lib\modernizr\grunt.js" />
+    <Content Include="Scripts\lib\modernizr\media\Modernizr 2 Logo.png" />
+    <Content Include="Scripts\lib\modernizr\media\Modernizr 2 Logo.svg" />
+    <Content Include="Scripts\lib\modernizr\modernizr.js" />
+    <Content Include="Scripts\lib\modernizr\test\basic.html" />
+    <Content Include="Scripts\lib\modernizr\test\caniuse.html" />
+    <Content Include="Scripts\lib\modernizr\test\caniuse_files\alpha.png" />
+    <Content Include="Scripts\lib\modernizr\test\caniuse_files\apng_test.png" />
+    <Content Include="Scripts\lib\modernizr\test\caniuse_files\before-after.png" />
+    <Content Include="Scripts\lib\modernizr\test\caniuse_files\form_validation.html" />
+    <Content Include="Scripts\lib\modernizr\test\caniuse_files\ga.js" />
+    <Content Include="Scripts\lib\modernizr\test\caniuse_files\green5x5.png" />
+    <Content Include="Scripts\lib\modernizr\test\caniuse_files\hashchange.html" />
+    <Content Include="Scripts\lib\modernizr\test\caniuse_files\jquery.min.js" />
+    <Content Include="Scripts\lib\modernizr\test\caniuse_files\mathml.html" />
+    <Content Include="Scripts\lib\modernizr\test\caniuse_files\mathml_ref.png" />
+    <Content Include="Scripts\lib\modernizr\test\caniuse_files\modernizr-1.7.min.js" />
+    <Content Include="Scripts\lib\modernizr\test\caniuse_files\png_alpha_result.png" />
+    <Content Include="Scripts\lib\modernizr\test\caniuse_files\pushstate.html" />
+    <Content Include="Scripts\lib\modernizr\test\caniuse_files\red30x30.png" />
+    <Content Include="Scripts\lib\modernizr\test\caniuse_files\ruby.png" />
+    <Content Include="Scripts\lib\modernizr\test\caniuse_files\stroked-text.png" />
+    <Content Include="Scripts\lib\modernizr\test\caniuse_files\style.css" />
+    <Content Include="Scripts\lib\modernizr\test\caniuse_files\svg-html-blur.png" />
+    <Content Include="Scripts\lib\modernizr\test\caniuse_files\svg-img.svg" />
+    <Content Include="Scripts\lib\modernizr\test\caniuse_files\svg_blur.png" />
+    <Content Include="Scripts\lib\modernizr\test\caniuse_files\table.png" />
+    <Content Include="Scripts\lib\modernizr\test\caniuse_files\text-shadow1.png" />
+    <Content Include="Scripts\lib\modernizr\test\caniuse_files\text-shadow2.png" />
+    <Content Include="Scripts\lib\modernizr\test\caniuse_files\Windsong-webfont.svg" />
+    <Content Include="Scripts\lib\modernizr\test\caniuse_files\windsong_font.png" />
+    <Content Include="Scripts\lib\modernizr\test\caniuse_files\xhtml.html" />
+    <Content Include="Scripts\lib\modernizr\test\index.html" />
+    <Content Include="Scripts\lib\modernizr\test\js\basic.html" />
+    <Content Include="Scripts\lib\modernizr\test\js\dumpdata.js" />
+    <Content Include="Scripts\lib\modernizr\test\js\lib\detect-global.js" />
+    <Content Include="Scripts\lib\modernizr\test\js\lib\jquery-1.7b2.js" />
+    <Content Include="Scripts\lib\modernizr\test\js\lib\jsonselect.js" />
+    <Content Include="Scripts\lib\modernizr\test\js\lib\polyfills.js" />
+    <Content Include="Scripts\lib\modernizr\test\js\lib\uaparser.js" />
+    <Content Include="Scripts\lib\modernizr\test\js\setup.js" />
+    <Content Include="Scripts\lib\modernizr\test\js\unit-caniuse.js" />
+    <Content Include="Scripts\lib\modernizr\test\js\unit.js" />
+    <Content Include="Scripts\lib\modernizr\test\qunit\qunit.css" />
+    <Content Include="Scripts\lib\modernizr\test\qunit\qunit.js" />
+    <Content Include="Scripts\lib\modernizr\test\qunit\run-qunit.js" />
+    <Content Include="Scripts\lib\respond\cross-domain\example.html" />
+    <Content Include="Scripts\lib\respond\cross-domain\respond-proxy.html" />
+    <Content Include="Scripts\lib\respond\cross-domain\respond.proxy.gif" />
+    <Content Include="Scripts\lib\respond\cross-domain\respond.proxy.js" />
+    <Content Include="Scripts\lib\respond\dest\respond.matchmedia.addListener.min.js" />
+    <Content Include="Scripts\lib\respond\dest\respond.matchmedia.addListener.src.js" />
+    <Content Include="Scripts\lib\respond\dest\respond.min.js" />
+    <Content Include="Scripts\lib\respond\dest\respond.src.js" />
+    <Content Include="Scripts\lib\respond\Gruntfile.js" />
+    <Content Include="Scripts\lib\respond\src\matchmedia.addListener.js" />
+    <Content Include="Scripts\lib\respond\src\matchmedia.polyfill.js" />
+    <Content Include="Scripts\lib\respond\src\respond.js" />
+    <Content Include="Scripts\lib\sinon\.gitignore" />
+    <Content Include="Scripts\lib\sinon\Changelog.txt" />
+    <Content Include="Scripts\lib\sinon\lib\sinon.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\assert.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\behavior.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\call.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\collection.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\extend.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\format.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\log_error.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\match.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\mock.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\sandbox.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\spy.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\stub.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\test.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\test_case.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\times_in_words.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\typeOf.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\util\core.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\util\event.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\util\fake_server.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\util\fake_server_with_clock.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\util\fake_timers.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\util\fake_xdomain_request.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\util\fake_xml_http_request.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\util\timers_ie.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\util\xdr_ie.js" />
+    <Content Include="Scripts\lib\sinon\lib\sinon\util\xhr_ie.js" />
+    <Content Include="Scripts\lib\sinon\test\assert-test.js" />
+    <Content Include="Scripts\lib\sinon\test\buster-packaged.js" />
+    <Content Include="Scripts\lib\sinon\test\buster.js" />
+    <Content Include="Scripts\lib\sinon\test\call-test.js" />
+    <Content Include="Scripts\lib\sinon\test\collection-test.js" />
+    <Content Include="Scripts\lib\sinon\test\extend-test.js" />
+    <Content Include="Scripts\lib\sinon\test\format-test.js" />
+    <Content Include="Scripts\lib\sinon\test\hello-world-test.js" />
+    <Content Include="Scripts\lib\sinon\test\issues\issues-test.js" />
+    <Content Include="Scripts\lib\sinon\test\log-error-test.js" />
+    <Content Include="Scripts\lib\sinon\test\match-test.js" />
+    <Content Include="Scripts\lib\sinon\test\mock-test.js" />
+    <Content Include="Scripts\lib\sinon\test\sandbox-test.js" />
+    <Content Include="Scripts\lib\sinon\test\sinon-test.js" />
+    <Content Include="Scripts\lib\sinon\test\spy-test.js" />
+    <Content Include="Scripts\lib\sinon\test\stub-test.js" />
+    <Content Include="Scripts\lib\sinon\test\test-case-test.js" />
+    <Content Include="Scripts\lib\sinon\test\test-helper.js" />
+    <Content Include="Scripts\lib\sinon\test\test-test.js" />
+    <Content Include="Scripts\lib\sinon\test\times-in-words-test.js" />
+    <Content Include="Scripts\lib\sinon\test\typeOf-test.js" />
+    <Content Include="Scripts\lib\sinon\test\util\event-test.js" />
+    <Content Include="Scripts\lib\sinon\test\util\fake-server-test.js" />
+    <Content Include="Scripts\lib\sinon\test\util\fake-server-with-clock-test.js" />
+    <Content Include="Scripts\lib\sinon\test\util\fake-timers-test.js" />
+    <Content Include="Scripts\lib\sinon\test\util\fake-xdomain-request-test.js" />
+    <Content Include="Scripts\lib\sinon\test\util\fake-xml-http-request-test.js" />
+    <Content Include="Tests\Mocks.js" />
+    <Content Include="Tests\OrderRepositorySpec.js" />
+    <Content Include="Tests\PizzaControllerSpec.js" />
+    <Content Include="Tests\ViewCurrentOrdersController.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -190,9 +634,223 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Scripts\lib\angular-animate\.bower.json" />
+    <Content Include="Scripts\lib\angular-animate\angular-animate.min.js.map" />
+    <Content Include="Scripts\lib\angular-animate\bower.json" />
+    <Content Include="Scripts\lib\angular-animate\package.json" />
+    <Content Include="Scripts\lib\angular-animate\README.md" />
+    <Content Include="Scripts\lib\angular-sanitize\.bower.json" />
+    <Content Include="Scripts\lib\angular-sanitize\angular-sanitize.min.js.map" />
+    <Content Include="Scripts\lib\angular-sanitize\bower.json" />
+    <Content Include="Scripts\lib\angular-sanitize\package.json" />
+    <Content Include="Scripts\lib\angular-sanitize\README.md" />
+    <Content Include="Scripts\lib\angular\.bower.json" />
+    <Content Include="Scripts\lib\angular\angular.min.js.gzip" />
+    <Content Include="Scripts\lib\angular\angular.min.js.map" />
+    <Content Include="Scripts\lib\angular\bower.json" />
+    <Content Include="Scripts\lib\angular\package.json" />
+    <Content Include="Scripts\lib\angular\README.md" />
+    <Content Include="Scripts\lib\angular-ui-router\.bower.json" />
+    <Content Include="Scripts\lib\angular-ui-router\bower.json" />
+    <Content Include="Scripts\lib\angular-ui-router\CHANGELOG.md" />
+    <Content Include="Scripts\lib\angular-ui-router\CONTRIBUTING.md" />
+    <Content Include="Scripts\lib\angular-ui-router\LICENSE" />
+    <Content Include="Scripts\lib\angular-ui-router\README.md" />
+    <Content Include="Scripts\lib\angular-resource\.bower.json" />
+    <Content Include="Scripts\lib\angular-resource\angular-resource.min.js.map" />
+    <Content Include="Scripts\lib\angular-resource\bower.json" />
+    <Content Include="Scripts\lib\angular-resource\package.json" />
+    <Content Include="Scripts\lib\angular-resource\README.md" />
+    <Content Include="Scripts\lib\angular-toastr\.bower.json" />
+    <Content Include="Scripts\lib\angular-toastr\.npmignore" />
+    <Content Include="Scripts\lib\angular-toastr\bower.json" />
+    <Content Include="Scripts\lib\angular-toastr\README.md" />
+    <Content Include="Scripts\lib\bootstrap\.bower.json" />
+    <Content Include="Scripts\lib\bootstrap\bower.json" />
+    <Content Include="Scripts\lib\bootstrap\dist\css\bootstrap-theme.css.map" />
+    <Content Include="Scripts\lib\bootstrap\dist\css\bootstrap.css.map" />
+    <Content Include="Scripts\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Scripts\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Scripts\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Scripts\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Scripts\lib\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Scripts\lib\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Scripts\lib\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Scripts\lib\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Scripts\lib\bootstrap\grunt\.jshintrc" />
+    <Content Include="Scripts\lib\bootstrap\grunt\configBridge.json" />
+    <Content Include="Scripts\lib\bootstrap\grunt\sauce_browsers.yml" />
+    <Content Include="Scripts\lib\bootstrap\js\.jscsrc" />
+    <Content Include="Scripts\lib\bootstrap\js\.jshintrc" />
+    <Content Include="Scripts\lib\bootstrap\less\.csscomb.json" />
+    <Content Include="Scripts\lib\bootstrap\less\.csslintrc" />
+    <Content Include="Scripts\lib\bootstrap\less\alerts.less" />
+    <Content Include="Scripts\lib\bootstrap\less\badges.less" />
+    <Content Include="Scripts\lib\bootstrap\less\bootstrap.less" />
+    <Content Include="Scripts\lib\bootstrap\less\breadcrumbs.less" />
+    <Content Include="Scripts\lib\bootstrap\less\button-groups.less" />
+    <Content Include="Scripts\lib\bootstrap\less\buttons.less" />
+    <Content Include="Scripts\lib\bootstrap\less\carousel.less" />
+    <Content Include="Scripts\lib\bootstrap\less\close.less" />
+    <Content Include="Scripts\lib\bootstrap\less\code.less" />
+    <Content Include="Scripts\lib\bootstrap\less\component-animations.less" />
+    <Content Include="Scripts\lib\bootstrap\less\dropdowns.less" />
+    <Content Include="Scripts\lib\bootstrap\less\forms.less" />
+    <Content Include="Scripts\lib\bootstrap\less\glyphicons.less" />
+    <Content Include="Scripts\lib\bootstrap\less\grid.less" />
+    <Content Include="Scripts\lib\bootstrap\less\input-groups.less" />
+    <Content Include="Scripts\lib\bootstrap\less\jumbotron.less" />
+    <Content Include="Scripts\lib\bootstrap\less\labels.less" />
+    <Content Include="Scripts\lib\bootstrap\less\list-group.less" />
+    <Content Include="Scripts\lib\bootstrap\less\media.less" />
+    <Content Include="Scripts\lib\bootstrap\less\mixins.less" />
+    <Content Include="Scripts\lib\bootstrap\less\mixins\alerts.less" />
+    <Content Include="Scripts\lib\bootstrap\less\mixins\background-variant.less" />
+    <Content Include="Scripts\lib\bootstrap\less\mixins\border-radius.less" />
+    <Content Include="Scripts\lib\bootstrap\less\mixins\buttons.less" />
+    <Content Include="Scripts\lib\bootstrap\less\mixins\center-block.less" />
+    <Content Include="Scripts\lib\bootstrap\less\mixins\clearfix.less" />
+    <Content Include="Scripts\lib\bootstrap\less\mixins\forms.less" />
+    <Content Include="Scripts\lib\bootstrap\less\mixins\gradients.less" />
+    <Content Include="Scripts\lib\bootstrap\less\mixins\grid-framework.less" />
+    <Content Include="Scripts\lib\bootstrap\less\mixins\grid.less" />
+    <Content Include="Scripts\lib\bootstrap\less\mixins\hide-text.less" />
+    <Content Include="Scripts\lib\bootstrap\less\mixins\image.less" />
+    <Content Include="Scripts\lib\bootstrap\less\mixins\labels.less" />
+    <Content Include="Scripts\lib\bootstrap\less\mixins\list-group.less" />
+    <Content Include="Scripts\lib\bootstrap\less\mixins\nav-divider.less" />
+    <Content Include="Scripts\lib\bootstrap\less\mixins\nav-vertical-align.less" />
+    <Content Include="Scripts\lib\bootstrap\less\mixins\opacity.less" />
+    <Content Include="Scripts\lib\bootstrap\less\mixins\pagination.less" />
+    <Content Include="Scripts\lib\bootstrap\less\mixins\panels.less" />
+    <Content Include="Scripts\lib\bootstrap\less\mixins\progress-bar.less" />
+    <Content Include="Scripts\lib\bootstrap\less\mixins\reset-filter.less" />
+    <Content Include="Scripts\lib\bootstrap\less\mixins\resize.less" />
+    <Content Include="Scripts\lib\bootstrap\less\mixins\responsive-visibility.less" />
+    <Content Include="Scripts\lib\bootstrap\less\mixins\size.less" />
+    <Content Include="Scripts\lib\bootstrap\less\mixins\tab-focus.less" />
+    <Content Include="Scripts\lib\bootstrap\less\mixins\table-row.less" />
+    <Content Include="Scripts\lib\bootstrap\less\mixins\text-emphasis.less" />
+    <Content Include="Scripts\lib\bootstrap\less\mixins\text-overflow.less" />
+    <Content Include="Scripts\lib\bootstrap\less\mixins\vendor-prefixes.less" />
+    <Content Include="Scripts\lib\bootstrap\less\modals.less" />
+    <Content Include="Scripts\lib\bootstrap\less\navbar.less" />
+    <Content Include="Scripts\lib\bootstrap\less\navs.less" />
+    <Content Include="Scripts\lib\bootstrap\less\normalize.less" />
+    <Content Include="Scripts\lib\bootstrap\less\pager.less" />
+    <Content Include="Scripts\lib\bootstrap\less\pagination.less" />
+    <Content Include="Scripts\lib\bootstrap\less\panels.less" />
+    <Content Include="Scripts\lib\bootstrap\less\popovers.less" />
+    <Content Include="Scripts\lib\bootstrap\less\print.less" />
+    <Content Include="Scripts\lib\bootstrap\less\progress-bars.less" />
+    <Content Include="Scripts\lib\bootstrap\less\responsive-embed.less" />
+    <Content Include="Scripts\lib\bootstrap\less\responsive-utilities.less" />
+    <Content Include="Scripts\lib\bootstrap\less\scaffolding.less" />
+    <Content Include="Scripts\lib\bootstrap\less\tables.less" />
+    <Content Include="Scripts\lib\bootstrap\less\theme.less" />
+    <Content Include="Scripts\lib\bootstrap\less\thumbnails.less" />
+    <Content Include="Scripts\lib\bootstrap\less\tooltip.less" />
+    <Content Include="Scripts\lib\bootstrap\less\type.less" />
+    <Content Include="Scripts\lib\bootstrap\less\utilities.less" />
+    <Content Include="Scripts\lib\bootstrap\less\variables.less" />
+    <Content Include="Scripts\lib\bootstrap\less\wells.less" />
+    <Content Include="Scripts\lib\bootstrap\LICENSE" />
+    <Content Include="Scripts\lib\bootstrap\package.json" />
+    <Content Include="Scripts\lib\bootstrap\README.md" />
+    <Content Include="Scripts\lib\jquery\.bower.json" />
+    <Content Include="Scripts\lib\jquery\bower.json" />
+    <Content Include="Scripts\lib\jquery\dist\jquery.min.map" />
+    <Content Include="Scripts\lib\jquery\src\sizzle\dist\sizzle.min.map" />
+    <Content Include="Scripts\lib\respond\.bower.json" />
+    <Content Include="Scripts\lib\respond\bower.json" />
+    <Content Include="Scripts\lib\respond\LICENSE-MIT" />
+    <Content Include="Scripts\lib\respond\package.json" />
+    <Content Include="Scripts\lib\respond\README.md" />
+    <Content Include="Scripts\lib\modernizr\.bower.json" />
+    <Content Include="Scripts\lib\modernizr\.editorconfig" />
+    <Content Include="Scripts\lib\modernizr\.travis.yml" />
+    <Content Include="Scripts\lib\modernizr\media\Modernizr 2 Logo.ai" />
+    <Content Include="Scripts\lib\modernizr\media\Modernizr 2 Logo.eps" />
+    <Content Include="Scripts\lib\modernizr\media\Modernizr 2 Logo.pdf" />
+    <Content Include="Scripts\lib\modernizr\readme.md" />
+    <Content Include="Scripts\lib\modernizr\test\caniuse_files\svg-img.svg.1" />
+    <Content Include="Scripts\lib\modernizr\test\caniuse_files\Windsong-webfont.eot" />
+    <Content Include="Scripts\lib\modernizr\test\caniuse_files\Windsong-webfont.otf" />
+    <Content Include="Scripts\lib\modernizr\test\caniuse_files\Windsong-webfont.ttf" />
+    <Content Include="Scripts\lib\modernizr\test\caniuse_files\Windsong-webfont.woff" />
+    <Content Include="Scripts\lib\font-awesome\.bower.json" />
+    <Content Include="Scripts\lib\font-awesome\.npmignore" />
+    <Content Include="Scripts\lib\font-awesome\bower.json" />
+    <Content Include="Scripts\lib\font-awesome\css\font-awesome.css.map" />
+    <Content Include="Scripts\lib\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Scripts\lib\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Scripts\lib\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Scripts\lib\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Scripts\lib\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Scripts\lib\font-awesome\less\animated.less" />
+    <Content Include="Scripts\lib\font-awesome\less\bordered-pulled.less" />
+    <Content Include="Scripts\lib\font-awesome\less\core.less" />
+    <Content Include="Scripts\lib\font-awesome\less\fixed-width.less" />
+    <Content Include="Scripts\lib\font-awesome\less\font-awesome.less" />
+    <Content Include="Scripts\lib\font-awesome\less\icons.less" />
+    <Content Include="Scripts\lib\font-awesome\less\larger.less" />
+    <Content Include="Scripts\lib\font-awesome\less\list.less" />
+    <Content Include="Scripts\lib\font-awesome\less\mixins.less" />
+    <Content Include="Scripts\lib\font-awesome\less\path.less" />
+    <Content Include="Scripts\lib\font-awesome\less\rotated-flipped.less" />
+    <Content Include="Scripts\lib\font-awesome\less\stacked.less" />
+    <Content Include="Scripts\lib\font-awesome\less\variables.less" />
+    <Content Include="Scripts\lib\font-awesome\scss\font-awesome.scss" />
+    <Content Include="Scripts\lib\font-awesome\scss\_animated.scss" />
+    <Content Include="Scripts\lib\font-awesome\scss\_bordered-pulled.scss" />
+    <Content Include="Scripts\lib\font-awesome\scss\_core.scss" />
+    <Content Include="Scripts\lib\font-awesome\scss\_fixed-width.scss" />
+    <Content Include="Scripts\lib\font-awesome\scss\_icons.scss" />
+    <Content Include="Scripts\lib\font-awesome\scss\_larger.scss" />
+    <Content Include="Scripts\lib\font-awesome\scss\_list.scss" />
+    <Content Include="Scripts\lib\font-awesome\scss\_mixins.scss" />
+    <Content Include="Scripts\lib\font-awesome\scss\_path.scss" />
+    <Content Include="Scripts\lib\font-awesome\scss\_rotated-flipped.scss" />
+    <Content Include="Scripts\lib\font-awesome\scss\_stacked.scss" />
+    <Content Include="Scripts\lib\font-awesome\scss\_variables.scss" />
+    <Content Include="Scripts\lib\angular-bootstrap\.bower.json" />
+    <Content Include="Scripts\lib\angular-bootstrap\bower.json" />
+    <Content Include="Scripts\lib\angular-mocks\.bower.json" />
+    <Content Include="Scripts\lib\angular-mocks\bower.json" />
+    <Content Include="Scripts\lib\angular-mocks\package.json" />
+    <Content Include="Scripts\lib\angular-mocks\README.md" />
+    <Content Include="Scripts\lib\sinon\.bower.json" />
+    <Content Include="Scripts\lib\sinon\.editorconfig" />
+    <Content Include="Scripts\lib\sinon\.jscsrc" />
+    <Content Include="Scripts\lib\sinon\.travis.yml" />
+    <Content Include="Scripts\lib\sinon\AUTHORS" />
+    <Content Include="Scripts\lib\sinon\build" />
+    <Content Include="Scripts\lib\sinon\CONTRIBUTING.md" />
+    <Content Include="Scripts\lib\sinon\LICENSE" />
+    <Content Include="Scripts\lib\sinon\package.json" />
+    <Content Include="Scripts\lib\sinon\README.md" />
+    <Content Include="Scripts\lib\sinon\RELEASE.md" />
+    <Content Include="Scripts\lib\sinon\release.sh" />
+    <Content Include="Scripts\lib\sinon\scripts\ci-test.sh" />
+    <Content Include="Scripts\lib\bardjs\.bower.json" />
+    <Content Include="Scripts\lib\bardjs\bower.json" />
+    <Content Include="Scripts\lib\bardjs\CHANGELOG.md" />
+    <Content Include="Scripts\lib\bardjs\LICENSE" />
+    <Content Include="Scripts\lib\bardjs\package.json" />
+    <Content Include="Scripts\lib\bardjs\README.md" />
+    <Content Include="Scripts\lib\bardjs\snippets\brackets-testing-snippets.yaml" />
+    <Content Include="Scripts\lib\angular-filter\.bower.json" />
+    <Content Include="Scripts\lib\angular-filter\.bowerrc" />
+    <Content Include="Scripts\lib\angular-filter\.travis.yml" />
+    <Content Include="Scripts\lib\angular-filter\bower.json" />
+    <Content Include="Scripts\lib\angular-filter\dist\angular-filter.zip" />
+    <Content Include="Scripts\lib\angular-filter\license.md" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DDDPizza.ApplicationServices\DDDPizza.ApplicationServices.csproj">
+      <Project>{a81be998-b915-4796-9a21-e43b381f3726}</Project>
+      <Name>DDDPizza.ApplicationServices</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DDDPizza.DomainModels\DDDPizza.DomainModels.csproj">
       <Project>{8ae728bc-e430-4210-8131-9759adeb4e14}</Project>
       <Name>DDDPizza.DomainModels</Name>
@@ -200,6 +858,10 @@
     <ProjectReference Include="..\DDDPizza.Infrastructure.MongoDb\DDDPizza.Infrastructure.MongoDb.csproj">
       <Project>{254be57b-45fd-40f6-814b-6522828c1e40}</Project>
       <Name>DDDPizza.Infrastructure.MongoDb</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DDDPizza.Infrastructure\DDDPizza.Infrastructure.csproj">
+      <Project>{A0D1B870-73D2-4E71-9AB1-72E6220C6B76}</Project>
+      <Name>DDDPizza.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\DDDPizza.Interfaces\DDDPizza.Interfaces.csproj">
       <Project>{54502586-2068-4fe0-b4f5-37bf59a553c4}</Project>
@@ -209,6 +871,10 @@
       <Project>{d585ea09-f249-4d86-b086-744d5cfedcd4}</Project>
       <Name>DDDPizza.SharedKernel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DDDPizza.ViewModels\DDDPizza.ViewModels.csproj">
+      <Project>{198a7742-f3d5-4ff7-a8ee-e53dfd7c0ffb}</Project>
+      <Name>DDDPizza.ViewModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -216,11 +882,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
@@ -244,6 +912,7 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
