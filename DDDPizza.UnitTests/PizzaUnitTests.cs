@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using Autofac.Events;
+using Autofac.Features.ResolveAnything;
 using DDDPizza.DomainModels;
 using DDDPizza.DomainModels.Enums;
 using DDDPizza.DomainModels.Events;
+using DDDPizza.DomainModels.Handlers;
 using DDDPizza.DomainModels.Interfaces;
 using DDDPizza.Mocks;
 using Moq;
@@ -16,12 +18,14 @@ namespace DDDPizza.UnitTests
     [TestFixture, Category("UnitTests")]
     public class PizzaUnitTests
     {
-        Mock<IEventPublisher> _mockEventPublisher;
+        private Mock<IEventPublisher> _mockEventPublisher;
+        private Mock<IMessageService> _mockMessageService;
 
         [SetUp]
         public void Setup()
         {
             _mockEventPublisher = new Mock<IEventPublisher>(MockBehavior.Strict);
+            _mockMessageService = new Mock<IMessageService>(MockBehavior.Strict);
         }
 
         #region " INVENTORY TESTS "
@@ -144,9 +148,9 @@ namespace DDDPizza.UnitTests
         public void Should_Create_Instance_Of_Topping()
         {
             const decimal price = 1.1m;
-            var sut = new Size("Mushrooms", price);
+            var sut = new Topping("Mushrooms", price);
             var serialize = sut.ShouldSerializePrice();
-            Assert.IsInstanceOf<Size>(sut);
+            Assert.IsInstanceOf<Topping>(sut);
             Assert.NotNull(sut.Id);
             Assert.IsInstanceOf<Guid>(sut.Id);
             Assert.AreEqual(price, sut.Price);
@@ -158,9 +162,9 @@ namespace DDDPizza.UnitTests
         {
             var id = Guid.NewGuid();
             const decimal price = 1.1m;
-            var sut = new Size(id, "Mushrooms", price);
+            var sut = new Topping(id, "Mushrooms", price);
             var serialize = sut.ShouldSerializePrice();
-            Assert.IsInstanceOf<Size>(sut);
+            Assert.IsInstanceOf<Topping>(sut);
             Assert.NotNull(sut.Id);
             Assert.IsInstanceOf<Guid>(sut.Id);
             Assert.AreEqual(price, sut.Price);
@@ -229,6 +233,26 @@ namespace DDDPizza.UnitTests
             Assert.AreEqual(sut.ServiceCharge, 0);
             Assert.Greater(sut.SubTotal, 0);
             Assert.AreEqual(sut.ServiceCharge + sut.SubTotal, sut.TotalAmount);
+        }
+
+        [Test]
+        public void Should_Create_Instance_Of_NotifyOrderNeedsDelivery()
+        {
+            //Arrange
+            _mockMessageService.Setup(x => x.NotifyDelivery(It.IsAny<Order>())).Verifiable();
+            var pizza = new Pizza(PizzaMocks.ToppingMocks().ToList(), PizzaMocks.SizeMocks().First(), PizzaMocks.BreadMocks().ElementAt(1), PizzaMocks.GetSauces().ElementAt(1), PizzaMocks.GetCheese().ElementAt(2));
+            var pizzas = new List<Pizza>() { pizza };
+            var order = new Order(ServiceType.TakeOut, pizzas, "Jose");
+            
+            //Act
+            var sut = new NotifyOrderNeedsDelivery(_mockMessageService.Object);
+            sut.Handle(new OrderNeedsDelivery(order));
+
+            //Assert
+            _mockMessageService.VerifyAll();
+            _mockMessageService.Verify(x => x.NotifyDelivery(It.IsAny<Order>()), Times.Once);
+            Assert.Pass();
+
         }
 
     }

@@ -18,7 +18,7 @@ namespace DDDPizza.DomainModels.Handlers
         public void Handle(OrderNeedsDelivery args)
         {
            _messageService.NotifyDelivery(args.Order);
-            //args.Order.DateTimeStamp;
+
         }
     }
 }
