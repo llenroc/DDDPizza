@@ -1,4 +1,3 @@
-# build Configuration, i.e. Debug, Release, etc.
 version: 1.0.{build}
 branches:
   only:
