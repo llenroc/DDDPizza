@@ -7,6 +7,6 @@
 
     };
 
-    module.controller("navigationController", navigationController);
+    module.controller('navigationController', navigationController);
 
-}(angular.module("dddPizza")));
+}(angular.module('dddPizza')));

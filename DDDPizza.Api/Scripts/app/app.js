@@ -1,18 +1,18 @@
 ﻿(function () {
-    "use strict";
+    'use strict';
 
     var serviceTypeFn = function () {
         //TODO: ERIC Write a unit test
         return function (value) {
 
-            if (value === "TakeOut") {
-                return "Take Out";
-            } else if (value === "InRestaurant") {
-                return "Dining In";
-            } else if (value === "Delivery") {
-                return "Delivery";
+            if (value === 'TakeOut') {
+                return 'Take Out';
+            } else if (value === 'InRestaurant') {
+                return 'Dining In';
+            } else if (value === 'Delivery') {
+                return 'Delivery';
             }
-            return "Unspecified";
+            return 'Unspecified';
         };
     };
 
@@ -20,15 +20,15 @@
         return function (pizza) {
             //TODO: ERIC Write a unit test
             var returnString = '';
-            returnString += pizza.size.name + ", ";
-            returnString += pizza.bread.name + ", ";
-            returnString += pizza.sauce.name + ", ";
-            returnString += pizza.cheese.name + ", ";
+            returnString += pizza.size.name + ', ';
+            returnString += pizza.bread.name + ', ';
+            returnString += pizza.sauce.name + ', ';
+            returnString += pizza.cheese.name + ', ';
 
             if (pizza.topping.length > 0) {
                 pizza.topping.forEach(function (top) {
                     if (top !== null) {
-                        returnString += top.name + ", ";
+                        returnString += top.name + ', ';
                     }
                 });
             }
@@ -71,25 +71,28 @@
         });
     };
 
-    toaster.$inject = ["toastrConfig"];
+    toaster.$inject = ['toastrConfig'];
 
     var disableScope = function ($compileProvider) {
         $compileProvider.debugInfoEnabled(false);
     };
 
-    disableScope.$inject = ["$compileProvider"];
+    disableScope.$inject = ['$compileProvider'];
 
     var routes = function ($urlRouterProvider, $stateProvider, $locationProvider) {
-        $stateProvider.state('current', {
-             url: '/',
-             templateUrl: '/Scripts/app/views/current.html'
-         }).state('past', {
-            url: '/past',
-            templateUrl: '/Scripts/app/views/past.html'
-         }).state('order', {
-             url: '/order',
-             templateUrl: '/Scripts/app/views/order.html'
-         });
+        $stateProvider.state('current',
+            {
+                url: '/',
+                templateUrl: '/Scripts/app/views/current.html'
+            }).state('past',
+            {
+                url: '/past',
+                templateUrl: '/Scripts/app/views/past.html'
+            }).state('order',
+            {
+                url: '/order',
+                templateUrl: '/Scripts/app/views/order.html'
+            });
         $urlRouterProvider.otherwise('/');
         $locationProvider.html5Mode({
             enabled: true,
@@ -97,13 +100,13 @@
         });
     };
 
-    routes.$inject = ["$urlRouterProvider", "$stateProvider", "$locationProvider"];
+    routes.$inject = ['$urlRouterProvider', '$stateProvider', '$locationProvider'];
 
-    angular.module("dddPizza", ["ngAnimate", "ngSanitize", "ui.router", "toastr", "ui.bootstrap", "angular.filter"])
+    angular.module('dddPizza', ['ngAnimate', 'ngSanitize',
+        'ui.router', 'toastr', 'ui.bootstrap', 'angular.filter'])
         .config(routes)
         .config(toaster)
         .config(disableScope)
-        .filter("pizzadetails", pizzaDetailsFn)
-        .filter("servicetype", serviceTypeFn);
-
+        .filter('pizzadetails', pizzaDetailsFn)
+        .filter('servicetype', serviceTypeFn);
 }());

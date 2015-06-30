@@ -1,11 +1,11 @@
 ﻿(function (module) {
 
     var injectParams = ['$timeout', 'orderRepository'];
-    var currentOrdersController = function ($timeout,orderRepository) {
+    var currentOrdersController = function ($timeout, orderRepository) {
 
         var model = this;
         model.orders = [];
- 
+
         model.timeRemaining = function calculateTimeRemaining(start, end) {
             var startDate = new Date(start);
             var endDate = new Date(end);
@@ -14,7 +14,7 @@
             diff = diff2 / diff;
             diff = (100 - Math.floor((diff) * 100));
             return diff;
-        }
+        };
 
         function getOrders() {
             orderRepository.getOrders().then(function (data) {
@@ -27,11 +27,10 @@
 
         getOrders();
 
-
     };
 
     currentOrdersController.$inject = injectParams;
 
-    module.controller("currentOrdersController", currentOrdersController);
+    module.controller('currentOrdersController', currentOrdersController);
 
-}(angular.module("dddPizza")));
+}(angular.module('dddPizza')));

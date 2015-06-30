@@ -1,6 +1,6 @@
 ﻿(function (module) {
 
-    var injectParams = ["$window"];
+    var injectParams = ['$window'];
 
     var localStorage = function ($window) {
 
@@ -35,6 +35,6 @@
         };
     };
     localStorage.$inject = injectParams;
-    module.factory("localStorage", localStorage);
+    module.factory('localStorage', localStorage);
 
-}(angular.module("dddPizza")));
+}(angular.module('dddPizza')));

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using DDDPizza.DomainModels;
 using DDDPizza.DomainModels.Interfaces;
 using Twilio;
@@ -12,7 +13,8 @@ namespace DDDPizza.Infrastructure
 
         public MessageService()
         {
-            _twilioRestClient = new TwilioRestClient("ACaf6207e619a1c6209160c3aa5bb74c05", "1ec92c959ac3c5dcba8226e1d0edec6a");
+            _twilioRestClient = new TwilioRestClient(ConfigurationManager.AppSettings.Get("twilio:accountSid"), 
+                                        ConfigurationManager.AppSettings.Get("twilio:authToken"));
         }
 
         public void NotifyDelivery(Order order)
