@@ -14,11 +14,10 @@
 
         getOrders();
 
-
     };
 
     pastOrdersController.$inject = injectParams;
 
-    module.controller("pastOrdersController", pastOrdersController);
+    module.controller('pastOrdersController', pastOrdersController);
 
-}(angular.module("dddPizza")));
+}(angular.module('dddPizza')));

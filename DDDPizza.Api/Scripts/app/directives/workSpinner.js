@@ -2,10 +2,10 @@
 
     var workSpinner = ['requestCounter', function (requestCounter) {
         return {
-            restrict: "EAC",
+            restrict: 'EAC',
             transclude: true,
             scope: {},
-            template: "<ng-transclude ng-show='requestCount'></ng-transclude>",
+            template: '<ng-transclude ng-show="requestCount"></ng-transclude>',
             link: function (scope) {
 
                 scope.$watch(function () {
@@ -18,6 +18,5 @@
         };
     }];
 
-    module.directive("workSpinner", workSpinner);
-
-}(angular.module("dddPizza")));
+    module.directive('workSpinner', workSpinner);
+}(angular.module('dddPizza')));

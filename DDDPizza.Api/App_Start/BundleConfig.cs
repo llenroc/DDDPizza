@@ -32,7 +32,7 @@ namespace DDDPizza.Api
                       "~/Scripts/lib/font-awesome/css/font-awesome.css",
                       "~/Scripts/lib/angular-toastr/dist/angular-toastr.css",
                       "~/Scripts/lib/angular-bootstrap/ui-bootstrap-csp.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.min.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                  "~/Scripts/app/app.min.js"));

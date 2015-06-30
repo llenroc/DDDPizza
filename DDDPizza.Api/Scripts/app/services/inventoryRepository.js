@@ -6,7 +6,7 @@
 
         var getInventory = function () {
             var def = $q.defer();
-            httpRepository.getData("/api/inventory").then(function (data) {
+            httpRepository.getData('/api/inventory').then(function (data) {
                 def.resolve(data);
             }).catch(function (error) {
                 def.reject(error);
@@ -16,11 +16,11 @@
 
         return {
             getInventory: getInventory
-        }
+        };
     };
 
     inventoryRepository.$inject = injectParams;
 
-    module.service("inventoryRepository", inventoryRepository);
+    module.service('inventoryRepository', inventoryRepository);
 
-}(angular.module("dddPizza")))
+}(angular.module('dddPizza')));

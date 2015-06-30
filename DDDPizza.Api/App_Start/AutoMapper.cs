@@ -36,7 +36,7 @@ namespace DDDPizza.Api.App_Start
             Mapper.CreateMap<Pizza, PizzaVm>()
                 .ForMember(x => x.Topping, y => y.MapFrom(src => src.Toppings));
 
-            //Mapper.CreateMap<PizzaVm, Pizza>().ConvertUsing<PizzaVmToPizzaDmConverter>();
+            Mapper.CreateMap<PizzaVm, Pizza>().ConvertUsing<PizzaVmToPizzaDmConverter>();
 
             Mapper.CreateMap<Order, OrderVm>()
                 .ForMember(x => x.Total, y => y.MapFrom(src => src.TotalAmount))

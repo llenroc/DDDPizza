@@ -3,7 +3,6 @@ using Autofac;
 using Autofac.Events;
 using Autofac.Features.Variance;
 using Autofac.Integration.WebApi;
-using DDDPizza.Api.Factories;
 using DDDPizza.ApplicationServices;
 using DDDPizza.DomainModels;
 using DDDPizza.DomainModels.Events;

@@ -3,8 +3,8 @@
     var order = function () {
 
         return {
-            name: "",
-            serviceType: "",
+            name: '',
+            serviceType: '',
             subtotal: 0,
             serviceCharge: 0,
             total:0,
@@ -12,6 +12,6 @@
         };
     };
 
-    module.factory("order", order);
+    module.factory('order', order);
 
-}(angular.module("dddPizza")));
+}(angular.module('dddPizza')));

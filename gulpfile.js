@@ -1,14 +1,9 @@
 var gulp = require("gulp");
-var concat = require("gulp-concat");
-var uglify = require("gulp-uglify");
-var uglifycss = require("gulp-uglifycss");
 var del = require("del");
-var watch = require("gulp-watch");
+var args = require("yargs").argv;
+var $ = require("gulp-load-plugins")({lazy:true});
 var config = require("./gulp.config")();
 
-
-
-// Synchronously delete the output file(s)
 gulp.task("clean-js", function () {
     del.sync(["DDDPizza.Api/Scripts/app/app.min.js"]);
 });
@@ -21,16 +16,21 @@ gulp.task("clean-css", function () {
 gulp.task("scripts", ["clean-js"], function () {
 
     return gulp.src(config.alljs)
-      .pipe(uglify())
-      .pipe(concat("app.min.js"))
+      .pipe($.jscs())
+      .pipe($.jshint())
+      .pipe($.jshint.reporter('jshint-stylish',{verbore:true}))
+      .pipe($.if(args.verbose,$.print()))
+      .pipe($.uglify())
+      .pipe($.concat("app.min.js"))
       .pipe(gulp.dest("DDDPizza.Api/Scripts/app/"));
 });
 
 gulp.task("styles", ["clean-css"], function () {
 
     return gulp.src(config.allcss)
-      .pipe(uglifycss())
-      .pipe(concat("site.min.css"))
+      .pipe($.if(args.verbose,$.print()))
+      .pipe($.uglifycss())
+      .pipe($.concat("site.min.css"))
       .pipe(gulp.dest("DDDPizza.Api/Content/"));
 });
 

@@ -39,7 +39,7 @@
     "gulp-load-plugins": "~1.0.0-rc.1",
     "gulp-print": "~1.1.0",
     "gulp-uglify": "~1.2.0",
-    "gulp-uglifycss": "^1.0.4",
+    "gulp-uglifycss": "~1.0.4",
     "gulp-util": "~3.0.5",
     "gulp-watch": "~4.2.4",
     "jasmine": "~2.3.1",
@@ -57,6 +57,8 @@
     "mocha": "~2.2.5",
     "phantomjs": "~1.9.17",
     "sinon": "~1.15.3",
-    "sinon-chai": "~2.8.0"
+    "sinon-chai": "~2.8.0",
+    "yargs": "~3.14.0",
+    "jshint-stylish": "~2.0.1"
   }
 }

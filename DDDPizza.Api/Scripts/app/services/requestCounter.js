@@ -1,8 +1,6 @@
-﻿
+﻿(function (module) {
 
-(function (module) {
-
-    var requestCounter = ["$q",function ($q) {
+    var requestCounter = ['$q', function($q) {
 
         var requests = 0;
 
@@ -40,12 +38,11 @@
 
     }];
 
-    //requestCounter.$inject = ["$q"];
+    module.factory('requestCounter', requestCounter);
 
-    module.factory("requestCounter", requestCounter);
-
-    module.config(["$httpProvider", function ($httpProvider) {
-        $httpProvider.interceptors.push("requestCounter");
+    module.config(['$httpProvider', function ($httpProvider) {
+        $httpProvider.interceptors.push('requestCounter');
     }]);
 
-}(angular.module("dddPizza")));
+}(angular.module('dddPizza')));
+
