@@ -1,36 +1,43 @@
 var gulp = require("gulp");
 var concat = require("gulp-concat");
 var uglify = require("gulp-uglify");
+var uglifycss = require("gulp-uglifycss");
 var del = require("del");
 var watch = require("gulp-watch");
+var config = require("./gulp.config")();
 
-var config = {
-    //Include all js files but exclude any min.js files
-    //src: ['app/**/*.js', '!app/**/*.min.js'],
-    src: ["DDDPizza.Api/Scripts/app/app.js",
-            "DDDPizza.Api/Scripts/app/controllers/*.js",
-            "DDDPizza.Api/Scripts/app/services/*.js",
-            "DDDPizza.Api/Scripts/app/directives/*.js",
-            "!DDDPizza.Api/Scripts/app/app.min.js"]
-};
+
 
 // Synchronously delete the output file(s)
-gulp.task("clean", function () {
+gulp.task("clean-js", function () {
     del.sync(["DDDPizza.Api/Scripts/app/app.min.js"]);
 });
 
-// Combine and minify all files from the app folder
-gulp.task("scripts", ["clean"], function () {
+gulp.task("clean-css", function () {
+    del.sync(["DDDPizza.Api/Content/site.min.css"]);
+});
 
-    return gulp.src(config.src)
+// Combine and minify all files from the app folder
+gulp.task("scripts", ["clean-js"], function () {
+
+    return gulp.src(config.alljs)
       .pipe(uglify())
       .pipe(concat("app.min.js"))
       .pipe(gulp.dest("DDDPizza.Api/Scripts/app/"));
 });
 
+gulp.task("styles", ["clean-css"], function () {
+
+    return gulp.src(config.allcss)
+      .pipe(uglifycss())
+      .pipe(concat("site.min.css"))
+      .pipe(gulp.dest("DDDPizza.Api/Content/"));
+});
+
+
 gulp.task("watch", function () {
-    return gulp.watch(config.src, ["scripts"]);
+    return gulp.watch(config.src, ["scripts","styles"]);
 });
 
 //Set a default tasks
-gulp.task("default", ["scripts"], function () { });
+gulp.task("default", ["scripts","styles"], function () { });
