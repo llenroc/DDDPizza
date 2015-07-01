@@ -16,6 +16,7 @@ gulp.task("clean-css", function () {
 gulp.task("scripts", ["clean-js"], function () {
 
     return gulp.src(config.alljs)
+      .pipe($.plumber())
       .pipe($.jscs())
       .pipe($.jshint())
       .pipe($.jshint.reporter('jshint-stylish',{verbore:true}))
@@ -28,6 +29,7 @@ gulp.task("scripts", ["clean-js"], function () {
 gulp.task("styles", ["clean-css"], function () {
 
     return gulp.src(config.allcss)
+      .pipe($.plumber())
       .pipe($.if(args.verbose,$.print()))
       .pipe($.uglifycss())
       .pipe($.concat("site.min.css"))
@@ -38,6 +40,16 @@ gulp.task("styles", ["clean-css"], function () {
 gulp.task("watch", function () {
     return gulp.watch(config.src, ["scripts","styles"]);
 });
+
+gulp.task("wiredep", function() {
+    var options = config.getWiredepDefaultOptions();
+    var wiredep = require("wiredep").stream;
+    return gulp
+            .src(config.index)
+            .pipe(wiredep(options))
+            .pipe(gulp.dest(config.indexRoot));
+});
+
 
 //Set a default tasks
 gulp.task("default", ["scripts","styles"], function () { });

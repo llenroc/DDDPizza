@@ -16,21 +16,22 @@
     "DDDPizza.Api/tests"
   ],
   "dependencies": {
-    "angular-resource": "~1.4.1",
-    "angular-ui-router": "~0.2.15",
-    "angular-toastr": "~1.4.1",
+    "modernizr": "~2.8.3",
     "bootstrap": "~3.3.4",
     "respond": "~1.4.2",
     "jquery": "~2.1.4",
-    "modernizr": "~2.8.3",
-    "font-awesome": "~4.3.0",
-    "angular-mocks": "~1.4.1",
-    "sinon": "~1.15.3",
     "angular": "~1.4.1",
     "angular-sanitize": "~1.4.1",
     "angular-animate": "~1.4.1",
     "angular-bootstrap": "~0.13.0",
+    "angular-resource": "~1.4.1",
+    "angular-ui-router": "~0.2.15",
+    "angular-toastr": "~1.4.1",
+    "angular-mocks": "~1.4.1",
+    "angular-filter": "~0.5.4",
+    "sinon": "~1.15.3",
     "bardjs": "~0.1.4",
-    "angular-filter": "~0.5.4"
+    "font-awesome": "~4.3.0"
+    
   }
 }
