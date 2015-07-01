@@ -202,6 +202,7 @@
     <Content Include="Content\img\PizzaLogo.png" />
     <Content Include="Content\img\spinner.gif" />
     <Content Include="Content\img\TakeOut.png" />
+    <Content Include="Content\site.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -242,6 +243,9 @@
     <Content Include="Scripts\lib\angular-bootstrap\ui-bootstrap-tpls.min.js" />
     <Content Include="Scripts\lib\angular-bootstrap\ui-bootstrap.js" />
     <Content Include="Scripts\lib\angular-bootstrap\ui-bootstrap.min.js" />
+    <Content Include="Scripts\lib\angular-cookies\angular-cookies.js" />
+    <Content Include="Scripts\lib\angular-cookies\angular-cookies.min.js" />
+    <Content Include="Scripts\lib\angular-cookies\index.js" />
     <Content Include="Scripts\lib\angular-filter\dist\angular-filter.js" />
     <Content Include="Scripts\lib\angular-filter\dist\angular-filter.min.js" />
     <Content Include="Scripts\lib\angular-mocks\angular-mocks.js" />
@@ -882,7 +886,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Scripts\lib\angular-cookies\.bower.json" />
+    <Content Include="Scripts\lib\angular-cookies\angular-cookies.min.js.map" />
+    <Content Include="Scripts\lib\angular-cookies\bower.json" />
+    <Content Include="Scripts\lib\angular-cookies\package.json" />
+    <Content Include="Scripts\lib\angular-cookies\README.md" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

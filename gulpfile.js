@@ -23,7 +23,7 @@ gulp.task("scripts", ["clean-js"], function () {
       .pipe($.if(args.verbose,$.print()))
       .pipe($.uglify())
       .pipe($.concat("app.min.js"))
-      .pipe(gulp.dest("DDDPizza.Api/Scripts/app/"));
+      .pipe(gulp.dest(config.clientApp));
 });
 
 gulp.task("styles", ["clean-css"], function () {
@@ -33,7 +33,7 @@ gulp.task("styles", ["clean-css"], function () {
       .pipe($.if(args.verbose,$.print()))
       .pipe($.uglifycss())
       .pipe($.concat("site.min.css"))
-      .pipe(gulp.dest("DDDPizza.Api/Content/"));
+      .pipe(gulp.dest(config.clientCss));
 });
 
 
@@ -52,4 +52,4 @@ gulp.task("wiredep", function() {
 
 
 //Set a default tasks
-gulp.task("default", ["scripts","styles"], function () { });
+gulp.task("default", ["scripts","styles","wiredep"], function () { });

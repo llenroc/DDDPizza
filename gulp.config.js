@@ -9,18 +9,20 @@ module.exports = function(){
     var config = {
     
         client: client,
-        
+        clientApp: clientApp,
+        clientLib: clientLib,
+        clientCss: clientCss,
+        indexRoot: indexRoot,
+
         alljs:[
             clientApp + "app.js",
             clientApp + "controllers/*.js",
             clientApp + "services/*.js",
             clientApp + "directives/*.js",
             "!" + clientApp + "app.min.js"],
-        
-        indexRoot: indexRoot,
+    
         index: indexRoot + "_Layout.cshtml",
   
-        
         allcss:[
             clientCss + "Site.css"
         ],
@@ -29,7 +31,9 @@ module.exports = function(){
             json: require("./bower.json"),
             directory: clientLib,
             ignorePath: "../..",
-            modernizr: "/Scripts/lib/modernizr/modernizr.js"
+            excludes: [ "/Scripts/lib/modernizr/modernizr.js",
+                        "/Scripts/lib/bard*.js",
+                        "/Scripts/lib/angular-mocks/angular-mocks.js"]
         }
     
     };
@@ -39,7 +43,7 @@ module.exports = function(){
             bowerJson: config.bower.json,
             directory: config.bower.directory,
             ignorePath: config.bower.ignorePath,
-            exclude: [config.bower.modernizr]
+            exclude: config.bower.excludes
         };
         return options;
     };
