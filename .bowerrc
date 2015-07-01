@@ -1,3 +1,6 @@
 {
-"directory":"DDDPizza.Api/Scripts/lib"
+	"directory":"DDDPizza.Api/Scripts/lib",
+	"scripts":{
+		"postinstall":"gulp wiredep"
+	}
 }
