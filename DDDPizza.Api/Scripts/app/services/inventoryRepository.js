@@ -14,8 +14,19 @@
             return def.promise;
         };
 
+        var getInventoryByType = function (type) {
+            var def = $q.defer();
+            httpRepository.getData('/api/inventory/' + type).then(function (data) {
+                def.resolve(data);
+            }).catch(function (error) {
+                def.reject(error);
+            });
+            return def.promise;
+        };
+
         return {
-            getInventory: getInventory
+            getInventory: getInventory,
+            getInventoryByType: getInventoryByType
         };
     };
 

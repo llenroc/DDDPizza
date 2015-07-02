@@ -209,6 +209,7 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\app\app.min.js" />
     <Content Include="Scripts\app\app.js" />
+    <Content Include="Scripts\app\controllers\inventoryController.js" />
     <Content Include="Scripts\app\controllers\pastOrdersController.js" />
     <Content Include="Scripts\app\controllers\orderController.js" />
     <Content Include="Scripts\app\controllers\navigationController.js" />
@@ -224,6 +225,7 @@
     <Content Include="Scripts\app\services\pizza.js" />
     <Content Include="Scripts\app\services\requestCounter.js" />
     <Content Include="Scripts\app\directives\workSpinner.js" />
+    <Content Include="Scripts\app\views\inventory.html" />
     <Content Include="Scripts\app\views\order.html" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\fontawesome-webfont.woff" />

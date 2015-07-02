@@ -1,0 +1,32 @@
+﻿<div class="container" ng-controller="inventoryController as vm" ng-init="vm.init()">
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <h2>{{vm.title}}</h2>
+            <hr />
+            <div>
+
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th class="col-md-4">Name</th>
+                        <th class="col-md-8">
+                            <span ng-if="vm.hasPrice">Price</span>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in vm.items">
+                        <td>{{item.name}}</td>
+                        <td>{{item.price | currency }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+</div>
