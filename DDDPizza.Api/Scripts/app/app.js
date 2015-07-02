@@ -92,6 +92,10 @@
             {
                 url: '/order',
                 templateUrl: '/Scripts/app/views/order.html'
+            }).state('inventory',
+            {
+                url: '/inventory/:id',
+                templateUrl: '/Scripts/app/views/inventory.html'
             });
         $urlRouterProvider.otherwise('/');
         $locationProvider.html5Mode({

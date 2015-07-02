@@ -38,6 +38,15 @@
             </div>
             <div class="navbar-collapse collapse pull-right" data-ng-init="init()" ng-controller="navigationController as nav" ng-cloak>
                 <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" ui-sref="inventory({id:'toppings'})" ui-sref-active-eq="active-link" aria-expanded="false">Inventory <span class="caret"></span></a>
+                        <ul class="dropdown-menu" aria-labelledby="download">
+                            <li><a ui-sref="inventory({id:'toppings'})" ui-sref-active="active-link">Toppings</a></li>
+                            <li><a ui-sref="inventory({id:'breads'})" ui-sref-active="active-link">Breads</a></li>
+                            <li><a ui-sref="inventory({id:'cheeses'})" ui-sref-active="active-link">Cheeses</a></li>
+                            <li><a ui-sref="inventory({id:'sauces'})" ui-sref-active="active-link">Sauces</a></li>
+                        </ul>
+                    </li>
                     <li>
                         <a ui-sref="current" ui-sref-opts="{reload: true}" ui-sref-active="active-link">
                             <i class="fa fa-list"></i>
