@@ -22,18 +22,18 @@ table {
     background-color: #fff;
 }
 
-table > thead {
-    font-weight: bold;
-}
+    table > thead {
+        font-weight: bold;
+    }
 
-table#viewOrders > thead {
-      background-color: #E4E4E4;
-}
+    table#viewOrders > thead {
+        background-color: #E4E4E4;
+    }
 
-table#order > thead {
-    background-color: #511c39;
-    color: #fff;
-}
+    table#order > thead {
+        background-color: #511c39;
+        color: #fff;
+    }
 
 .navbar-nav > li > a {
     padding: 10px;
@@ -45,7 +45,6 @@ table#order > thead {
 
 .active-link {
     background-color: #994271;
-
 }
 
 .site-title {
@@ -112,8 +111,25 @@ table#order > thead {
 }
 
 .work-spinner {
-    position: fixed;
+    position: absolute;
     z-index: 1;
-    left: 45%;
-    top: 65px;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+ 
+}
+
+.work-spinner-img {
+    position: absolute;
+    top: 25%;
+    left: 40%;
+    margin: -28px 0 0 -25px;
+}
+
+.no-orders {
+    background-color: #747474;
+    border-color: #030303;
+    border: 10px solid #626262;
+    color: #FFFFFF;
 }
