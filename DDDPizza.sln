@@ -44,6 +44,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{C74EA0
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{01B4B3D0-8D97-4876-973A-C009C86FFCE8}"
+	ProjectSection(SolutionItems) = preProject
+		.bowerrc = .bowerrc
+		.codeclimate.yml = .codeclimate.yml
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		.jscsrc = .jscsrc
+		.jshintrc = .jshintrc
+		.travis.yml = .travis.yml
+		appveyor.yml = appveyor.yml
+		bower.json = bower.json
+		gulp.config.js = gulp.config.js
+		gulpfile.js = gulpfile.js
+		karma.conf.js = karma.conf.js
+		LICENSE = LICENSE
+		package.json = package.json
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
