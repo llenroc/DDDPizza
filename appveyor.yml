@@ -19,7 +19,7 @@ environment:
     secure: 3B40BeTn3+cKtb67HRbEYRI1Eo7n471MlmkDc7+Nh8ic3EzFVv3tKHV9rxOAWPNx
 
 before_build:
-  - nuget restore "DDDPizza.sln"
+  - nuget restore DDDPizza.sln
 
 cache:
   - node_modules 
