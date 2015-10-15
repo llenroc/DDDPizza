@@ -6,7 +6,7 @@
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
 [![Code Climate](https://codeclimate.com/github/bl1nkr/DDDPizza/badges/gpa.svg)](https://codeclimate.com/github/bl1nkr/DDDPizza)
 
-A Sandbox for implementing DDD using a Pizza Restaurant as a use case
+A Sandbox for implementing DDD using a Pizza Restaurant as a use case.
 
 Technologies being used a list below
 <ol>
